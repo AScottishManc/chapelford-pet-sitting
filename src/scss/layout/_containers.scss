@@ -1,0 +1,23 @@
+@mixin container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+
+    @each $breakpoint, $map in $container {
+        $padding: map-get($breakpoint, "padding");
+
+        $max-width: map-get($breakpoint, "max-width");
+
+        @if $max-width != none {
+            @if type-of($max-width) != number or unit ($max-width) != px {
+                @error "$container > #{$breakpoint} > 'max-width' is not a length in px"
+            }
+        }
+
+        @include above($breakpoint) {
+            max-width: $max-width;
+            padding-right: $padding;
+            padding-left: $padding;
+        }
+    }
+}

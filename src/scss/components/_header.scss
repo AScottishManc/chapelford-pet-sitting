@@ -1,0 +1,8 @@
+.header {
+    background: tomato; // temp
+    font-size: 40px; // temp
+    
+    &__hidden {
+        @extend %accessibility-hidden;
+    }
+}

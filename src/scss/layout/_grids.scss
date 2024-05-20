@@ -1,0 +1,34 @@
+$site-width: 1240px;
+
+@mixin grid-layout($small: null, $medium: null, $large: null) {
+    position: relative;
+
+    @if $small == null {
+        display: block;
+    }
+    @else {
+        display: grid;
+        grid-template-columns: repeat($small 1fr);
+    }
+
+    @if $medium == null {
+        display: block;
+    }
+    @else {
+        display: grid;
+        grid-template-columns: repeat($medium 1fr);
+    }
+
+    @if $large == null {
+        display: block;
+    }
+    @else {
+        display: grid;
+        grid-template-columns: repeat($large 1fr);
+    }
+}
+
+//
+%twelve-grid-layout {
+    @include grid-layout(4, 8, 12);
+}
