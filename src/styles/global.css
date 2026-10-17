@@ -103,6 +103,9 @@ img {
   /* The old site's hidden skip links still took up one line above the logo */
   padding-top: 1.15em;
   width: 95%;
+  /* Lets column padding below be a percentage of the whole page width (cqi),
+     as it was with the old floated layout, rather than of each column */
+  container-type: inline-size;
   display: grid;
   grid-template-columns: 100%;
   grid-template-areas:
@@ -563,7 +566,7 @@ footer a:focus {
 @media screen and (min-width: 600px) {
   #container {
     width: 93%;
-    grid-template-columns: 29.27463% 1fr;
+    grid-template-columns: 29.27463% 69.98816%;
     grid-template-areas:
       'logo logo'
       'header-aside header-aside'
@@ -619,13 +622,12 @@ footer a:focus {
   }
 
   #content {
-    padding-left: 3.02233%;
+    padding-left: 3.02233cqi;
   }
 
   /* Sidebar boxes: three across, below the content */
   aside article {
     display: inline-block;
-    box-sizing: border-box;
     width: 31.5%;
     vertical-align: top;
     background: linear-gradient(to bottom, #fff 0%, var(--blue-pale) 50%);
@@ -692,7 +694,7 @@ footer a:focus {
 
   #icons {
     width: 20.27463%;
-    margin: 0;
+    margin: 0 0 0 auto;
     padding: 0;
   }
 }
@@ -714,14 +716,14 @@ footer a:focus {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: flex-end;
-    padding-left: 2.24609%;
-    padding-top: 2%;
+    padding-left: 2.24609cqi;
+    padding-top: 2cqi;
     margin: 0 -1.25em 0 0;
   }
 
   #search {
     width: 100%;
-    height: 2.6em;
+    height: 1.85em;
   }
 
   #telephone {
@@ -740,11 +742,11 @@ footer a:focus {
   }
 
   #content {
-    padding-left: 2.24609%;
+    padding-left: 2.24609cqi;
   }
 
   aside {
-    padding-left: 2.24609%;
+    padding-left: 2.24609cqi;
   }
 
   aside article {
