@@ -1,4 +1,4 @@
-<!-- Extracted from old site: testimonials.php -->
+<!-- Extracted from the live site on 2026-10-17: testimonials.php -->
 <!-- Old page title: Testimonials | Chapelford Pet Sitting Services -->
 <!-- Old meta description: Read some of the feedback that I have received for the personal yet professional pet sitting services for cat owners in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire. -->
 

@@ -1,4 +1,4 @@
-<!-- Extracted from old site: terms_conditions.php -->
+<!-- Extracted from the live site on 2026-10-17: terms_conditions.php -->
 <!-- Old page title: Terms & Conditions | Services | Chapelford Pet Sitting Services -->
 <!-- Old meta description: During the free consultation, all new customers are required to agree and sign the set out Terms & Conditions -->
 

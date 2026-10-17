@@ -1,4 +1,4 @@
-<!-- Extracted from old site: extras.php -->
+<!-- Extracted from the live site on 2026-10-17: extras.php -->
 <!-- Old page title: Added Extras | Services | Chapelford Pet Sitting Services -->
 <!-- Old meta description: Free additional services that are provided as part of the pet sitting service for cats, dogs & other small animals in Chapelford &  
 surrounding areas of Great Sankey in Warrington, Cheshire. -->

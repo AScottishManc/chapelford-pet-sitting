@@ -1,4 +1,4 @@
-<!-- Extracted from old site: contact.php -->
+<!-- Extracted from the live site on 2026-10-17: contact.php -->
 <!-- Old page title: Contact | Chapelford Pet Sitting Services -->
 <!-- Old meta description: Contact me to arrange a free consultation or to ask any additional questions that you may have. -->
 

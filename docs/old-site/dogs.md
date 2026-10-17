@@ -1,4 +1,4 @@
-<!-- Extracted from old site: dogs.php -->
+<!-- Extracted from the live site on 2026-10-17: dogs.php -->
 <!-- Old page title: Dogs | Services | Chapelford Pet Sitting Services -->
 <!-- Old meta description: I offer personal yet professional pet sitting services, including dog walking, available for dog owners in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire. -->
 
@@ -16,7 +16,7 @@ The services below can easily be tailored to suit the needs of you and your dog(
 
 **Price:**
 
-£4.50
+£5.00
 per visit
 
 **Please note:** This service is only available within Chapelford and the immediate surrounding area.
@@ -33,7 +33,7 @@ This is an ideal service for when you are away from home for a day or are at wor
 
 **Price:**
 
-£8.00*
+£9.00*
 per visit
 
 This is an ideal service if you have a puppy or dog that needs attention during the day. Regular visits can be carried out to feed and play with your dog and to give them toilet breaks.
@@ -56,7 +56,7 @@ This is an ideal service if you have a puppy or dog that needs attention during 
 
 **Price:**
 
-£8.00*
+£9.00*
 per walk
 
 I am happy to walk your dog as a one off or as a regular arrangement.
@@ -67,21 +67,6 @@ I am happy to walk your dog as a one off or as a regular arrangement.
 - You must provide doggy bags if you wish me to walk your dog.
 - Bitches on heat and un-castrated males will not be walked.
 - Dogs will be kept on a lead at *all* times. If you supply me with a flexi extending lead, this will be used where safe to do so.
-
-<!-- article emergency -->
-
-# Emergency Pet to Vet Service
-
-**Price:**
-
-£18.00
-per visit
-
-- Contact you or the emergency contact to discuss the options.
-- Liaise with your vet (if necessary).
-- Take your dog to the vet.
-- Stay with your dog, to keep them calm and comfortable.
-- If allowed home, I will settle your dog before I leave.
 
 <!-- article day -->
 

@@ -1,4 +1,4 @@
-<!-- Extracted from old site: links.php -->
+<!-- Extracted from the live site on 2026-10-17: links.php -->
 <!-- Old page title: Links | Chapelford Pet Sitting Services -->
 <!-- Old meta description: A recommendation of some websites that pet owners may find useful. -->
 
@@ -6,9 +6,9 @@
 
 <!-- article links -->
 
-# Medivet Warrington, Four Paws Veterinary Clinic [![Company logo](images/links/medivet.jpg)](https://www.medivet.co.uk/vet-practices/warrington/)
+# Westbrook Vets [![Company logo](images/links/WestbrookVets.jpg)](https://https://www.westbrookvets.co.uk/)
 
-One of the best vet practices in the area of which I have personally been a client of for many, many years and I do truly trust them with our cats implicitly. Steve Hancox, who was the practice owner, has now retired and the practice is now under the umbrella of the Medivet Group. We have used their services many times not just for routine check ups but also for some complex surgery and the treatment and care of our cats has been second to none. I would not go anywhere else as I have so much faith in Medivet Warrington Four Paws Clinic!
+Westbrook Vets are a fantastic practice and I whole heartedly recommend them personally and professionally. Their aim is to be your vet for life and will give you the best possible care for you and you pet.
 
 <!-- article links --> [
 

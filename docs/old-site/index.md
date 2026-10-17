@@ -1,4 +1,4 @@
-<!-- Extracted from old site: index.php -->
+<!-- Extracted from the live site on 2026-10-17: index.php -->
 <!-- Old page title: Chapelford Pet Sitting Services -->
 <!-- Old meta description: A personal yet professional pet sitting service for cats, small/medium dogs & other small animals in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire. -->
 
