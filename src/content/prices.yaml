@@ -1,0 +1,5 @@
+# Placeholder prices - real prices to be confirmed by the owner (MIK-10).
+- id: dog-walk
+  service: Dog walk
+  price: "TBC"
+  category: main

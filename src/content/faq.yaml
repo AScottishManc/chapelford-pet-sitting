@@ -1,0 +1,5 @@
+# Placeholder - real FAQs migrated from the old site in MIK-12.
+- id: example
+  question: Example question?
+  answer: Example answer.
+  order: 1
