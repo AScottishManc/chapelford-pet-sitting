@@ -1,7 +1,11 @@
 # Business details shown across the site.
+# Taken from the old site (2018) - owner to confirm (see docs/content-inventory.md).
 site:
-  businessName: Chapelford Pet Sitting
-  tagline: Placeholder tagline - to be confirmed
-  phone: "TBC"
+  businessName: Chapelford Pet Sitting Services
+  ownerName: Karen
+  tagline: Where meeting your pets needs & giving you peace of mind are my priorities
+  phone: "07725 167863"
+  landline: "01925 658255"
   email: chapelfordpetsittingservices@gmail.com
-  areaCovered: Chapelford and surrounding areas
+  areaCovered: Chapelford and surrounding areas of Great Sankey, Warrington, Cheshire
+  facebook: https://www.facebook.com/pages/Chapelford-Pet-Sitting-Services/172412056163691

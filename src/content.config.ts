@@ -10,10 +10,13 @@ const settings = defineCollection({
   loader: file('src/content/settings.yaml'),
   schema: z.object({
     businessName: z.string(),
+    ownerName: z.string(),
     tagline: z.string().optional(),
     phone: z.string(),
+    landline: z.string().optional(),
     email: z.email(),
     areaCovered: z.string(),
+    facebook: z.url().optional(),
   }),
 });
 
