@@ -1,36 +1,61 @@
 ---
-// Minimal page shell. Full design, header and footer come in MIK-7.
+// Shared page shell recreating the old site's layout: header, navigation,
+// main content, sidebar and footer.
 import { getEntry } from 'astro:content';
+import Header from '../components/Header.astro';
+import Navigation from '../components/Navigation.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Footer from '../components/Footer.astro';
+import background from '../assets/images/ui/bgrd.png';
+import menuIcon from '../assets/images/ui/menu-icon-large.png';
+import closeIcon from '../assets/images/ui/close-icon-large.png';
+import '../styles/global.css';
 
 interface Props {
   title: string;
   description: string;
+  /** Sidebar box ids from src/content/sidebar.yaml. Most old pages showed Recent News. */
+  sidebar?: string[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, sidebar = ['recent-news'] } = Astro.props;
 const site = (await getEntry('settings', 'site'))!.data;
 const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.businessName}`;
+// Image paths are encoded because in dev they include the project folder,
+// whose name contains spaces.
+const imageVars = [
+  `--bg-texture: url("${encodeURI(background.src)}")`,
+  `--menu-icon: url("${encodeURI(menuIcon.src)}")`,
+  `--close-icon: url("${encodeURI(closeIcon.src)}")`,
+].join('; ');
 ---
 
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" style={imageVars}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{pageTitle}</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <header>
-      <a href="/">{site.businessName}</a>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer>
-      <p>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-      </p>
-    </footer>
+    <div id="container">
+      <a class="skip-link" href="#nav-wrap">Skip to Navigation</a>
+      <a class="skip-link" href="#content">Skip to Content</a>
+
+      <Header />
+      <Navigation />
+
+      <main id="content">
+        <slot />
+      </main>
+
+      <Sidebar boxes={sidebar} />
+      <Footer />
+    </div>
   </body>
 </html>

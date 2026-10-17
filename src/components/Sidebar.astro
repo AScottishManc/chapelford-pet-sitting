@@ -1,0 +1,38 @@
+---
+// Right-hand sidebar: the boxes chosen by the page, then the insurer logo.
+import { getEntries } from 'astro:content';
+import cliverton from '../assets/images/brand/clivertonlogo.jpg';
+
+interface Props {
+  boxes: string[];
+}
+
+const { boxes } = Astro.props;
+const entries = await getEntries(boxes.map((id) => ({ collection: 'sidebar' as const, id })));
+---
+
+<aside>
+  {entries.map(({ data }) => (
+    <article
+      class:list={['right', data.background ? 'photo' : 'news']}
+      style={data.background ? `background-image: url("${encodeURI(data.background.src)}")` : undefined}
+    >
+      <h1>{data.heading}</h1>
+      <p>
+        <a href={data.link}>
+          {data.title && (
+            <>
+              <span class="bold">{data.title}</span>
+              <br />
+            </>
+          )}
+          {data.text}
+        </a>
+      </p>
+    </article>
+  ))}
+
+  <a href="https://www.cliverton.co.uk/" title="Cliverton Insurance">
+    <img src={cliverton.src} width={cliverton.width} height={cliverton.height} alt="Cliverton Insurance" />
+  </a>
+</aside>

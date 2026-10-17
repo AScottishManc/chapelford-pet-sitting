@@ -1,0 +1,52 @@
+---
+// Main navigation with the Services dropdown. On small screens it collapses
+// into a bar at the top of the page with a menu button, as on the old site.
+const services = [
+  { href: '/cats/', label: 'Cats', title: 'Services that are available for felines' },
+  { href: '/dogs/', label: 'Dogs', title: 'Services that are available for canines' },
+  { href: '/other-pets/', label: 'Other Pets', title: 'Services available for other types of animals' },
+  { href: '/extras/', label: 'Added Extras', title: 'Additional services that are provided' },
+  { href: '/terms-conditions/', label: 'Terms & Conditions', title: 'Contract for services' },
+  { href: '/faq/', label: 'FAQ', title: 'Frequently asked questions about the service' },
+];
+
+const links = [
+  { href: '/prices/', label: 'Prices', title: 'A list of all the prices for the services on offer' },
+  { href: '/testimonials/', label: 'Testimonials', title: 'Testimonials from previous customers' },
+  { href: '/news/', label: 'News', title: 'Recent news and updates' },
+  { href: '/contact/', label: 'Contact', title: 'Contact details to get in touch' },
+  { href: '/links/', label: 'Links', title: 'Useful websites for pet lovers' },
+];
+---
+
+<nav id="nav-wrap" aria-label="Main">
+  <button class="nav-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+    Toggle Navigation
+  </button>
+  <ul class="primary-nav" id="primary-nav">
+    <li><a href="/" title="To the home page">Home</a></li>
+    <li class="has-sub-nav">
+      <a href="#" title="Full information about services">Services</a>
+      <ul class="sub-nav">
+        {services.map((item) => (
+          <li><a href={item.href} title={item.title}>{item.label}</a></li>
+        ))}
+      </ul>
+    </li>
+    {links.map((item) => (
+      <li><a href={item.href} title={item.title}>{item.label}</a></li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.nav-button');
+  const menu = document.querySelector<HTMLUListElement>('.primary-nav');
+
+  button?.addEventListener('click', () => {
+    const open = !menu?.classList.contains('open');
+    button.classList.toggle('open', open);
+    menu?.classList.toggle('open', open);
+    button.setAttribute('aria-expanded', String(open));
+  });
+</script>

@@ -1,0 +1,759 @@
+/*
+ * Recreation of the old site's stylesheets (style.css, style_tablet.css,
+ * style_desktop.css, mobilemenu.css) with the same colours, fonts, sizes and
+ * breakpoints. Floats are replaced by CSS grid and vendor prefixes removed,
+ * but the look is unchanged.
+ *
+ * Breakpoints: mobile < 600px, tablet 600px+, desktop 860px+.
+ */
+
+@font-face {
+  font-family: 'jennasue';
+  src: url('/fonts/jennasue-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --navy: #152d4a;
+  --navy-mid: #2a476c;
+  --blue: #305680;
+  --blue-soft: #7d93b5;
+  --blue-pale: #ddebec;
+  --grey-light: #f0efef;
+  --grey-border: #c9c9c9;
+  --text: #1d1d1d;
+  --shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  --photo-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
+  --font-script: jennasue, 'Bradley Hand ITC', 'MV Boli', cursive;
+  /* The old site named Montserrat Alternates but never loaded it, so visitors
+     saw their default sans-serif font. Kept the same here. */
+  --font-body: 'Montserrat Alternates', sans-serif;
+}
+
+/* BASE (from normalize.css and style.css) */
+
+html {
+  font-family: sans-serif;
+  background: var(--blue-pale) var(--bg-texture);
+}
+
+body {
+  margin: 0;
+}
+
+p,
+a {
+  color: var(--text);
+}
+
+h1,
+h2 {
+  font-family: var(--font-script);
+  margin: 0;
+  color: var(--navy);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2.3em;
+}
+
+p,
+li {
+  font-family: var(--font-body);
+  line-height: 1.5em;
+  text-align: justify;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.sup {
+  font-size: 0.75em;
+  vertical-align: super;
+}
+
+/* Hidden until focused with the keyboard */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip-link:focus {
+  position: static;
+  background: #fff;
+}
+
+/* PAGE LAYOUT */
+
+#container {
+  margin: 0 auto;
+  /* The old site's hidden skip links still took up one line above the logo */
+  padding-top: 1.15em;
+  width: 95%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    'logo'
+    'nav'
+    'content'
+    'aside'
+    'header-aside'
+    'footer';
+}
+
+.site-logo {
+  grid-area: logo;
+}
+
+#header-aside {
+  grid-area: header-aside;
+}
+
+#nav-wrap {
+  grid-area: nav;
+}
+
+#content {
+  grid-area: content;
+}
+
+aside {
+  grid-area: aside;
+}
+
+footer {
+  grid-area: footer;
+}
+
+#nav-wrap,
+#content,
+aside {
+  margin-bottom: 1em;
+}
+
+/* HEADER */
+
+#logo {
+  display: block;
+}
+
+#logo img {
+  width: 100%;
+}
+
+#header-aside {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Keeps the space the old Google search box took up */
+#search {
+  width: 100%;
+  height: 2.6em;
+}
+
+#telephone {
+  width: 57.5625%;
+  font-size: 0.9em;
+  padding-top: 1em;
+}
+
+#icons {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 1em 0;
+  padding: 0 0 0 3.4375%;
+  width: 38%;
+  list-style: none;
+}
+
+#icons a {
+  display: block;
+  padding: 0.5em;
+  text-decoration: none;
+}
+
+#icons img {
+  display: block;
+  transition: transform 2s ease-in-out 2s;
+}
+
+#icons a:hover img,
+#icons a:focus img {
+  transform: rotate(-10deg);
+}
+
+#icons a:focus {
+  background-color: #fff;
+}
+
+@media screen and (max-width: 340px) {
+  #telephone {
+    font-size: 0.8em;
+    padding-top: 1.6em;
+  }
+}
+
+/* MAIN CONTENT */
+
+#content a:link,
+#content a:visited {
+  color: var(--navy);
+}
+
+#content a:hover,
+#content a:active,
+#content a:focus {
+  text-decoration: none;
+}
+
+#content a:focus {
+  background-color: var(--blue-pale);
+}
+
+#content article h1 {
+  font-size: 2.2em;
+  color: var(--navy-mid);
+  margin-top: 0.5em;
+}
+
+article ul {
+  padding-left: 1em;
+}
+
+blockquote {
+  font-family: var(--font-script);
+  color: #2c2c2c;
+  font-size: 1.8em;
+  font-weight: 500;
+  text-align: justify;
+  margin-top: 0.25em;
+}
+
+.service {
+  clear: both;
+}
+
+/* Photo with a white frame, tilted slightly */
+.img_right,
+.img_left {
+  padding: 0.5em;
+  border: 1px var(--grey-border) solid;
+  background: linear-gradient(to bottom, #fff 15%, var(--grey-light) 85%);
+  box-shadow: var(--photo-shadow);
+  border-radius: 5px;
+}
+
+.img_left,
+.odd {
+  margin: 0.8em 1.2em 0.8em 0;
+  float: left;
+  transform: rotate(-2deg);
+}
+
+.img_right,
+.even {
+  margin: 0.8em 0 0.8em 1.2em;
+  float: right;
+  transform: rotate(2deg);
+}
+
+a:hover .img_left,
+a:focus .img_left,
+a:hover .img_right,
+a:focus .img_right {
+  transform: rotate(0);
+}
+
+/* Round price badge on service pages */
+.price {
+  float: right;
+  margin: -2em 0 1em 1em;
+  width: 80px;
+  background: radial-gradient(circle farthest-corner at center, var(--blue) 0%, var(--navy-mid) 100%);
+  border: 1px var(--navy) solid;
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+}
+
+.price p {
+  color: var(--blue-pale);
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Prices table */
+#table table,
+#table th,
+#table td {
+  border: 1px solid var(--text);
+}
+
+#table table {
+  width: 100%;
+  box-shadow: var(--shadow);
+}
+
+#table td {
+  vertical-align: text-top;
+  padding: 0.2em;
+}
+
+#table th {
+  background: linear-gradient(to bottom, var(--navy-mid) 25%, var(--navy) 75%);
+  color: #fff;
+  font-weight: 100;
+  font-size: 1.2em;
+}
+
+.sub_head {
+  background: linear-gradient(to bottom, var(--blue-pale) 15%, var(--blue-soft) 85%);
+  font-size: 1.1em;
+}
+
+/* Testimonials */
+.testimonial,
+.links {
+  clear: both;
+}
+
+.testimonial img {
+  border: 1px var(--grey-border) solid;
+}
+
+.testimonial figure {
+  width: 150px;
+  padding: 0.6em 0.7em 0.8em 0.7em;
+  border: 1px var(--grey-border) solid;
+  background: linear-gradient(to bottom, #fff 15%, var(--grey-light) 85%);
+  box-shadow: var(--photo-shadow);
+}
+
+.testimonial figcaption {
+  text-align: center;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 1.4em;
+  color: #454f40;
+  letter-spacing: 0.09em;
+}
+
+/* News */
+#content .news header h1 {
+  font-family: var(--font-body);
+  font-size: 1.5em;
+}
+
+.news header p,
+.date {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.75em;
+  font-weight: bold;
+  color: #7e7e7e;
+}
+
+#tc h2 {
+  font-family: var(--font-body);
+  font-size: 1.5em;
+}
+
+.top_link p {
+  clear: both;
+  padding-top: 1em;
+  text-align: right;
+  font-size: 0.75em;
+}
+
+/* SIDEBAR */
+
+/* Sidebar boxes are hidden on mobile; only the insurer logo shows */
+aside article {
+  display: none;
+}
+
+aside h1 {
+  font-size: 2em;
+  text-align: center;
+}
+
+aside img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* FOOTER */
+
+footer {
+  margin-top: 1em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer p {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 0.65em;
+  padding: 0 0 2px 20px;
+  margin: 0;
+}
+
+footer a {
+  color: #000;
+  text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus {
+  text-decoration: underline;
+}
+
+footer a:focus {
+  color: #fff;
+  background-color: #000;
+}
+
+/* The old site moved the phone number and icons to the bottom of the page
+   below 500px, and kept them under the logo from 500px. */
+@media screen and (min-width: 500px) and (max-width: 599px) {
+  #container {
+    grid-template-areas:
+      'logo'
+      'header-aside'
+      'nav'
+      'content'
+      'aside'
+      'footer';
+  }
+}
+
+/* MOBILE MENU (below 600px) */
+
+.nav-button {
+  display: none;
+}
+
+@media screen and (max-width: 599px) {
+  body {
+    padding-top: 50px;
+  }
+
+  .nav-button {
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    width: 50px;
+    height: 35px;
+    background: var(--menu-icon), linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 21px, 100%;
+    cursor: pointer;
+    border: 0 none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.7) inset;
+    border-radius: 5px;
+    z-index: 999;
+    text-indent: -9999px;
+    overflow: hidden;
+  }
+
+  .nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-button.open {
+    background-image: var(--close-icon), linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  }
+
+  .primary-nav {
+    width: 100%;
+    background-color: var(--blue);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    list-style: none;
+  }
+
+  .primary-nav li {
+    display: none;
+    width: 100%;
+    font-family: var(--font-body);
+    text-align: left;
+  }
+
+  .primary-nav li a {
+    display: block;
+    padding: 10px 5%;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.15);
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .primary-nav li a:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top-color: transparent;
+  }
+
+  .primary-nav > li:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .primary-nav.open {
+    height: auto;
+    padding-top: 50px;
+  }
+
+  .primary-nav.open li {
+    display: block;
+  }
+
+  .primary-nav > li:hover > a {
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom-color: transparent;
+  }
+
+  .primary-nav li ul {
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+    border-top: 0 none;
+    padding: 0;
+    list-style: none;
+  }
+
+  .primary-nav li ul a {
+    border: 0 none;
+    font-size: 12px;
+    padding: 10px 5%;
+    font-weight: normal;
+  }
+
+  .primary-nav li:hover ul,
+  .primary-nav li:focus-within ul {
+    display: block;
+  }
+}
+
+/* TABLET (600px and up) */
+
+@media screen and (min-width: 600px) {
+  #container {
+    width: 93%;
+    grid-template-columns: 29.27463% 1fr;
+    grid-template-areas:
+      'logo logo'
+      'header-aside header-aside'
+      'nav content'
+      'aside aside'
+      'footer footer';
+  }
+
+  /* Navigation: stacked rounded buttons */
+  #nav-wrap ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #nav-wrap a {
+    display: block;
+    width: 90%;
+  }
+
+  #nav-wrap ul a {
+    background: linear-gradient(to bottom, var(--blue-soft) 0%, var(--blue) 100%);
+    padding: 0.5em 0 0.5em 0.5em;
+    margin: 0 0 0.5em 0;
+    border: 1px solid var(--blue);
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+  }
+
+  #nav-wrap ul a:hover,
+  #nav-wrap ul a:active,
+  #nav-wrap ul a:focus {
+    background: linear-gradient(to bottom, var(--blue) 0%, var(--navy) 100%);
+    border: 1px solid var(--navy);
+    color: #e5fff4;
+  }
+
+  #nav-wrap .sub-nav a {
+    background: linear-gradient(to bottom, var(--blue-pale) 0%, var(--blue-soft) 100%);
+    border: 1px solid var(--blue-soft);
+  }
+
+  /* Services sub-menu opens on hover (and keyboard focus) */
+  .has-sub-nav li {
+    display: none;
+  }
+
+  .has-sub-nav:hover li,
+  .has-sub-nav:focus-within li {
+    display: block;
+  }
+
+  #content {
+    padding-left: 3.02233%;
+  }
+
+  /* Sidebar boxes: three across, below the content */
+  aside article {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 31.5%;
+    vertical-align: top;
+    background: linear-gradient(to bottom, #fff 0%, var(--blue-pale) 50%);
+    padding: 0.5em;
+    border: 1px var(--grey-border) solid;
+    border-radius: 0 15px 0 15px;
+    box-shadow: var(--shadow);
+  }
+
+  aside article.photo {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  aside .right {
+    float: right;
+  }
+
+  aside h1 {
+    margin-top: 0;
+  }
+
+  aside a:link,
+  aside a:visited {
+    text-decoration: none;
+  }
+
+  aside a:hover,
+  aside a:active,
+  aside a:focus {
+    text-decoration: underline;
+  }
+
+  aside a:focus {
+    background-color: #fff;
+  }
+
+  aside > a {
+    clear: both;
+    display: block;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  #header-aside {
+    margin-top: 0.75em;
+  }
+
+  #search {
+    width: 31.27463%;
+    height: auto;
+  }
+
+  #telephone {
+    width: 39.54687%;
+    padding: 0.1em 0.25em;
+    margin-left: 2.73437%;
+  }
+
+  #telephone p {
+    text-align: center;
+  }
+
+  #icons {
+    width: 20.27463%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* DESKTOP (860px and up) */
+
+@media screen and (min-width: 860px) {
+  #container {
+    width: 90%;
+    max-width: 1024px;
+    grid-template-columns: 23.24218% 51.26952% 1fr;
+    grid-template-areas:
+      'logo logo header-aside'
+      'nav content aside'
+      'footer footer footer';
+  }
+
+  #header-aside {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    padding-left: 2.24609%;
+    padding-top: 2%;
+    margin: 0 -1.25em 0 0;
+  }
+
+  #search {
+    width: 100%;
+    height: 2.6em;
+  }
+
+  #telephone {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  #telephone p {
+    text-align: right;
+  }
+
+  #icons {
+    width: 100%;
+    margin-right: -0.55em;
+  }
+
+  #content {
+    padding-left: 2.24609%;
+  }
+
+  aside {
+    padding-left: 2.24609%;
+  }
+
+  aside article {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  aside .right {
+    float: none;
+  }
+}

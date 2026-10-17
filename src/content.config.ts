@@ -68,6 +68,19 @@ const faq = defineCollection({
   }),
 });
 
+// Sidebar boxes (recent news, offers, testimonial snippets).
+const sidebar = defineCollection({
+  loader: file('src/content/sidebar.yaml'),
+  schema: ({ image }) =>
+    z.object({
+      heading: z.string(),
+      title: z.string().optional(),
+      text: z.string(),
+      link: z.string(),
+      background: image().optional(),
+    }),
+});
+
 const news = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/news' }),
   schema: z.object({
@@ -77,4 +90,4 @@ const news = defineCollection({
   }),
 });
 
-export const collections = { settings, pages, services, prices, testimonials, faq, news };
+export const collections = { settings, pages, services, prices, testimonials, faq, sidebar, news };
