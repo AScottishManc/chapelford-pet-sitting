@@ -23,10 +23,17 @@ const settings = defineCollection({
 // Standalone pages: home intro, privacy policy, terms and conditions, etc.
 const pages = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/pages' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      // Used in the browser tab title
+      title: z.string(),
+      // Main heading on the page, if different from the title
+      heading: z.string().optional(),
+      description: z.string(),
+      // Framed photo shown at the top right of the page
+      image: image().optional(),
+      imageAlt: z.string().optional(),
+    }),
 });
 
 // Dogs, cats, other pets.
