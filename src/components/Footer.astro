@@ -1,0 +1,16 @@
+---
+import { getEntry } from 'astro:content';
+
+const site = (await getEntry('settings', 'site'))!.data;
+// Set when the site is built, so the year stays current.
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <p>
+    &copy; {site.businessName} {year} |{' '}
+    <a href="/privacy/" title={`${site.businessName} privacy policy`}>Privacy Policy</a>{' '}
+    | Website designed by{' '}
+    <a href="https://lifeofmike.co.uk" title="Life of Mike - Mike DH">Mike DH</a>
+  </p>
+</footer>

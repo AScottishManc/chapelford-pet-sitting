@@ -1,0 +1,29 @@
+# Boxes shown in the right-hand sidebar. Each page chooses which boxes to show.
+# Text copied as-is from the old site's aside/ snippets.
+recent-news:
+  heading: Recent News
+  title: A New Qualification Achieved With A Distinction
+  text: I now hold a foundation qualification in "Cat Health and Welfare" awarded to me with a "Distinction"....
+  link: /news/#blog_15
+special-offer:
+  heading: Special Offer
+  text: 10% Discount off first booking for new clients within the Chapelford area
+  link: /prices/
+testimonial-cats:
+  heading: Testimonial
+  title: Nala & Luna
+  text: We couldn't have been any happier with the service from Karen. Our daily pictures and updates put our minds at rest...
+  link: /testimonials/#test_25
+  background: ../assets/images/sidebar/test_cat_25.jpg
+testimonial-dogs:
+  heading: Testimonial
+  title: Penelope
+  text: Karen gave me peace of mind while we were away...the daily text messages are great, stops me being an over anxious owner...
+  link: /testimonials/#test_28
+  background: ../assets/images/sidebar/test_dog_28.jpg
+testimonial-other-pets:
+  heading: Testimonial
+  title: Daisey
+  text: Very friendly and professional. Loved getting our daily text to see how Daisy was getting on, also loved the pictures by email. Would highly recommend...
+  link: /testimonials/#test_14
+  background: ../assets/images/sidebar/test_otherpet_14.jpg
