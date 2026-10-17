@@ -36,14 +36,43 @@ const pages = defineCollection({
     }),
 });
 
-// Dogs, cats, other pets.
+// Dogs, cats, other pets. The Markdown body is the intro text above the
+// list of services. Fields marked "Markdown" can contain links and *italics*.
 const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/services' }),
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    order: z.number().int().default(0),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      order: z.number().int().default(0),
+      // Sidebar box ids from sidebar.yaml
+      sidebar: z.array(z.string()).default(['recent-news']),
+      quote: z.string().optional(),
+      image: image(),
+      imageAlt: z.string(),
+      imagePosition: z.enum(['left', 'right']).default('right'),
+      services: z.array(
+        z.object({
+          // Used in links to this service, e.g. /cats/#feeding
+          id: z.string(),
+          name: z.string(),
+          // Shown in the round badge, e.g. "£5.00" or "Please Call"
+          price: z.string(),
+          // Second line of the badge, e.g. "per visit"
+          priceUnit: z.string().optional(),
+          // Markdown, shown in bold after "Please note:"
+          note: z.string().optional(),
+          // Markdown paragraphs
+          summary: z.array(z.string()).default([]),
+          // Small bold line, e.g. the half price offer
+          footnote: z.string().optional(),
+          // Markdown bullet points
+          includes: z.array(z.string()).default([]),
+        }),
+      ),
+      // Markdown paragraphs after the list of services
+      outro: z.array(z.string()).default([]),
+    }),
 });
 
 const prices = defineCollection({
