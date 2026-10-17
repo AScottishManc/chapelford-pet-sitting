@@ -1,4 +1,4 @@
-<!-- Extracted from old site: privacy.php -->
+<!-- Extracted from the live site on 2026-10-17: privacy.php -->
 <!-- Old page title: Privacy | Chapelford Pet Sitting Services -->
 <!-- Old meta description: Read about our privacy policy, including information about the cookies that are used on the website. -->
 

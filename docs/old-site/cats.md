@@ -1,4 +1,4 @@
-<!-- Extracted from old site: cats.php -->
+<!-- Extracted from the live site on 2026-10-17: cats.php -->
 <!-- Old page title: Cats | Services | Chapelford Pet Sitting Services -->
 <!-- Old meta description: A personal yet professional pet sitting service for cats, dogs & other small animals in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire. -->
 
@@ -20,7 +20,7 @@ I charge per visit *not* per animal. So if you have more than one pet, my servic
 
 **Price:**
 
-£4.50
+£5.00
 per visit
 
 **Please note:** This service is only available within Chapelford and the immediate surrounding area.
@@ -38,7 +38,7 @@ This is an ideal service if you have outdoor cats or cats that only require a qu
 
 **Price:**
 
-£8.00
+£9.00
 per visit
 
 - This visit will be for 30 minutes and can be carried out up to 3 times a day.
@@ -52,21 +52,6 @@ per visit
 - I shall administer any oral medication that may be necessary that your pet may be on.
 - If your cat is willing to pose for a photo, then a picture can be taken and emailed to you. For example, while you are on holiday and have access to check your emails, you can see how happy your pet is.
 - Alternatively, you may prefer a simple text to simply reassure you all is well.
-
-<!-- article emergency -->
-
-# Emergency Pet to Vet Service
-
-**Price:**
-
-£18.00
-per visit
-
-- Contact you or the emergency contact to discuss the options.
-- Liaise with your vet (if necessary).
-- Take your cat to the vet.
-- Stay with your cat, to keep them calm and comfortable.
-- If allowed home, I will settle your cat before I leave.
 
 It is recommended your cat is kept indoors whilst in my care to ensure their health and safety. However should you wish for your cat to have free access to outside then I cannot be held liable for any disappearance, injury or death.
 

@@ -1,26 +1,37 @@
 # Content inventory
 
-What the old site contained, where it has been saved, and what needs checking before it goes on the new site.
+What the current site contains, where it has been saved, and what to check with the owner.
 
-The old site was last updated in **2018** (some pages 2013). Everything with a ⚠️ needs the owner to confirm it is still accurate.
+**Source:** the live site, www.chapelfordpetsittingservices.co.uk, extracted on 17 October 2026. An older local copy was used at first (MIK-6); the live site is newer (higher prices, Emergency Pet to Vet service removed, different vet on the Links page), so everything here now comes from the live site (MIK-27).
+
+The site's content was last substantially updated around **2018**.
+
+## How this is used
+
+The work is split into two Linear projects:
+
+- **Rebuild** recreates the current site exactly as it is, content and design, on Astro. Nothing below is changed during the Rebuild, apart from fixing obvious typos and broken links.
+- **Redesign** is where the owner reviews and updates content. Everything marked ⚠️ is a question for the owner in **MIK-22**, and the changes are applied in MIK-26.
 
 ## Where things are
 
 | What | Location |
 | --- | --- |
-| Text of every old page, converted to Markdown | [`docs/old-site/`](old-site/) |
-| Old PDFs (privacy policy, GDPR policy, T&Cs, 2018) | [`docs/old-site/files/`](old-site/files/) |
+| Text of every page, converted to Markdown | [`docs/old-site/`](old-site/) |
+| PDFs (privacy policy, GDPR policy, T&Cs, 2018) | [`docs/old-site/files/`](old-site/files/) |
 | Logo, insurer logo | `src/assets/images/brand/` |
 | Page photos (home, cats, dogs, other pets, extras) | `src/assets/images/pages/` |
+| Sidebar testimonial photos | `src/assets/images/sidebar/` |
 | Testimonial pet photos (72) | `src/assets/images/testimonials/` |
 | News images (18) | `src/assets/images/news/` |
-| Favicon | `public/favicon.ico` |
+| Background texture, icons | `src/assets/images/ui/` |
+| Favicon, handwriting font | `public/` |
 
-Not carried over: third-party logos from the Links page (we don't have rights to reuse them), old UI icons, Dreamweaver `_notes`, the PHP contact form and reCAPTCHA (dead since 2018).
+Not carried over: third-party logos from the Links page (we don't have rights to reuse them), Dreamweaver `_notes`, the PHP contact form and reCAPTCHA (dead since 2018), the Google site search box and Google Analytics code (both retired services).
 
 ## Business details
 
-| Detail | Old site | Notes |
+| Detail | Live site | Notes |
 | --- | --- | --- |
 | Business name | Chapelford Pet Sitting Services | |
 | Owner | Karen (Mrs Karen Mercer) | |
@@ -31,24 +42,23 @@ Not carried over: third-party logos from the Links page (we don't have rights to
 | Area | Chapelford and surrounding areas of Great Sankey, Warrington, Cheshire | |
 | Facebook | facebook.com/pages/Chapelford-Pet-Sitting-Services/172412056163691 | ⚠️ confirm still active |
 | Insurance | Cliverton Insurance (since Sept 2017) | ⚠️ confirm still current |
-| Old domain | www.chapelfordpetsittingservices.co.uk | |
+| Domain | www.chapelfordpetsittingservices.co.uk | |
 | Visiting hours | 8am – 6pm, outside by arrangement (extra charge) | ⚠️ confirm |
-| Credentials | Fully insured, police checked, Pet First Aid qualified, references available, Cat Health and Welfare foundation qualification (Distinction) | ⚠️ police check may need renewing/ re-wording as DBS checked |
+| Credentials | Fully insured, police checked, Pet First Aid qualified, references available, Cat Health and Welfare foundation qualification (Distinction) | ⚠️ police check may need renewing, or re-wording as DBS checked |
 
 ## Pages
 
 ### Home → MIK-8
-Short intro: professional pet sitting for cats, small to medium dogs and other small animals in their own home. "About me" bullet list of credentials (above). Very thin — the new home page will need more.
+Short intro: professional pet sitting for cats, small to medium dogs and other small animals in their own home. "About me" bullet list of credentials (above).
 
 ### Services → MIK-9
 Three pages with the same pattern: intro, then a list of services each with price, duration and what's included.
 
-| Service | Cats | Dogs | Other pets | Old price | Duration |
+| Service | Cats | Dogs | Other pets | Price | Duration |
 | --- | --- | --- | --- | --- | --- |
-| Feeding / Toilet break † | ✓ | ✓ | ✓ | £4.50 | 15 mins |
-| Sitting / Home visit | ✓ | ✓ * | ✓ | £8.00 | 30 mins, up to 3×/day |
-| Walking | | ✓ | | £8.00 | 30 mins |
-| Emergency pet to vet | ✓ | ✓ | ✓ | £18.00 | |
+| Feeding / Toilet break † | ✓ | ✓ | ✓ | £5.00 | 15 mins |
+| Sitting / Home visit | ✓ | ✓ * | ✓ | £9.00 | 30 mins, up to 3×/day |
+| Walking | | ✓ | | £9.00 | 30 mins |
 | Longer visits | | ✓ | | Please call | |
 
 † Only within Chapelford and the immediate area.
@@ -56,62 +66,49 @@ Three pages with the same pattern: intro, then a list of services each with pric
 
 Pricing is per visit, not per animal.
 
+The Emergency Pet to Vet service (£18) has been removed from the service pages and the price table, but is still mentioned in **FAQ question 11** ⚠️ owner to confirm whether it is still offered.
+
 ### Prices and extras → MIK-10
-- ⚠️ **All prices are from 2018 or earlier and almost certainly need updating.**
+- Price table as above. ⚠️ Prices may have changed again since the site was last updated.
 - Added extras (free with visits): bring in post, lights/radio, curtains/blinds, water plants, wheelie bins out; buying milk and bread at extra charge.
-- Old sidebar promotion: "10% discount off first booking for new clients within the Chapelford area" ⚠️ still offered?
-- Payment: old T&Cs say cash or cheque, full payment at consultation ⚠️ likely outdated (bank transfer?).
+- Sidebar promotion on the Cats page: "10% discount off first booking for new clients within the Chapelford area" ⚠️ still offered?
+- Payment: T&Cs say cash or cheque, full payment at consultation ⚠️ likely outdated.
 
 ### Testimonials → MIK-11
 - **72 testimonials**, each with pet name(s), a quote and a small pet photo (150px). Newest first.
-- ⚠️ **No dates** on any testimonial. They are numbered 1–73, so order is known.
-- Customer surnames are not shown; only pet names. Good for privacy.
-- Six short extracts were used as sidebar quotes on the service pages (see `docs/old-site/_sidebar-snippets.md`), useful as "featured" picks.
+- No dates on any testimonial. They are numbered 1–73, so order is known.
+- Only pet names are shown, not customer names.
+- Three short extracts are used as sidebar boxes (Dogs, Contact and FAQ pages); see `src/content/sidebar.yaml`.
 
 ### FAQ → MIK-12
 13 questions: area covered, animals, who visits, consultation process, number of visits, last-minute bookings, arranging a consultation, hours, visit length, medication (including injections), emergencies, pet illness, delayed return.
-- ⚠️ Mentions payment at consultation and the £18 vet fee.
-- Typos to fix on the way across (e.g. "acccept", "consultantion", "hestate").
+- ⚠️ Mentions payment at consultation and the £18 vet fee (service no longer listed elsewhere).
+- Typos fixed on the way across (e.g. "acccept", "consultantion", "hestate").
 
-### News → MIK-13 — decision needed
+### News → MIK-13
 - **24 posts, May 2013 – January 2018.** Mostly qualifications, training, insurance changes, booking notices.
-- ⚠️ Nothing for over 8 years, so it makes the business look inactive.
-- **Recommendation:** drop the News page. Fold the useful parts (qualifications, training, insurance) into an "About" section on the home page. Only keep News if the owner will post regularly.
+- ⚠️ Nothing for over 8 years, so it makes the business look inactive. Recommendation for the Redesign: drop the News page and fold the useful parts (qualifications, training, insurance) into an About section.
 
 ### Contact → MIK-14
-Phone, mobile and email. Old form removed (phase 1 has no form).
+Phone, mobile and email. The old contact form is not rebuilt.
 
-### Links — decision needed
-Nine recommended sites: Medivet Warrington (Four Paws), Hoo Farm Animal Kingdom, Dogs Trust, International Cat Care, APDT, Vicky Halls, Feliway, Your Cat, Your Dog magazines.
-- ⚠️ Several URLs are old, and one is broken (`https://https://www.hoofarm.com/`).
-- **Recommendation:** drop as a separate page. If the owner wants to keep a few (e.g. her vet), add a short "Recommended" section to the FAQ or About.
+### Links → MIK-23
+Nine recommended sites: Westbrook Vets, Hoo Farm Animal Kingdom, Dogs Trust, International Cat Care, APDT, Vicky Halls, Feliway, Your Cat, Your Dog magazines.
+- Two URLs are broken on the live site (`https://https://...`). Fixed in the Rebuild with the correct addresses: Westbrook Vets → https://www.westbrookvets.co.uk/, Hoo Farm Animal Kingdom (now Hoo Zoo) → https://www.hoo-zoo.com/.
+- ⚠️ Recommendation for the Redesign: drop as a separate page.
 
 ### Privacy policy and T&Cs → MIK-15
-- Privacy policy dated **May 2018**, written for the old site: mentions Google Analytics cookies, Facebook Like button and the contact form. ⚠️ Needs rewriting to match the new site (no form; decide on analytics).
-- T&Cs: liability, keys kept in a secure box, windows, cats indoors, no aggressive animals, dogs on lead, max 2 dogs, owner supplies food/meds, vet fees, false information, consultation required, 48-hour cancellation (50% retained), no refund for early return.
-- ⚠️ Owner to review; refers to cheques payable to "Mrs Karen Mercer".
+- Privacy policy dated **May 2018**, written for the old site: mentions Google Analytics cookies, the Facebook Like button and the contact form. ⚠️ Needs rewriting in the Redesign.
+- T&Cs: liability, keys kept in a secure box, windows, cats indoors, no aggressive animals, dogs on lead, max 2 dogs, owner supplies food/meds, vet fees, false information, consultation required, 48-hour cancellation (50% retained), no refund for early return. ⚠️ Owner to review; refers to cheques payable to "Mrs Karen Mercer".
 - PDF copies of all three documents are in `docs/old-site/files/`.
 
 ## Images
 
-- Everything on the old site is small (most 150×150px). Fine as thumbnails (testimonials) but too small for a modern hero image or feature photos.
-- ⚠️ **New photos needed** for the home page and service pages: Karen with pets, pets being cared for, the local area. Phone photos are fine.
-- Logo exists at 763×245px (PNG). Usable for now, but a vector (SVG) or larger version would be better. Decide in MIK-7 whether to keep or refresh the branding.
+- Most images are small (150×150px). Fine as thumbnails, too small for large feature photos. ⚠️ New photos needed in the Redesign.
+- Five News images have larger originals (up to 3024px), taken from the live site.
+- Logo exists at 763×245px (PNG). A vector (SVG) or larger version would be better for the Redesign.
 
-## Old design (reference for MIK-7)
+## Design (recreated in MIK-7)
 
-- Colours: navy `#152d4a`, `#2a476c`, `#305680`; soft blue `#7d93b5`; pale blue `#ddebec`; light grey `#f0efef`; warm `#e8dddb`. Logo uses yellow and pale blue pets on a grey house.
-- Fonts: Montserrat Alternates (headings), "Jenna Sue" and Reenie Beanie (handwritten accents).
-
-## Questions for the owner
-
-1. Current prices for every service.
-2. Which phone numbers and email to show.
-3. Is the Facebook page still used? Any other social accounts (Instagram)?
-4. Still insured with Cliverton? Police/DBS check still current?
-5. Is the 10% new client discount still offered?
-6. How do clients pay now?
-7. Keep the News page and/or Links page? (Recommendation: no.)
-8. Any services added or dropped since 2018?
-9. Can she provide new photos?
-10. Keep the existing logo, or refresh it?
+- Colours: navy `#152d4a`, `#2a476c`, `#305680`; soft blue `#7d93b5`; pale blue `#ddebec`; light grey `#f0efef`; warm `#e8dddb`.
+- Fonts: "Jenna Sue" for headings and quotes; Reenie Beanie for testimonial captions. Body text names Montserrat Alternates, but the font was never loaded, so visitors see their default sans-serif.

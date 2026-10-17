@@ -1,4 +1,4 @@
-<!-- Sidebar snippets from old site aside/ folder -->
+<!-- Sidebar snippets from the live site aside/ folder, 2026-10-17 -->
 
 ## aside/cats_01.html
 

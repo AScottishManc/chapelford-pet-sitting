@@ -1,4 +1,4 @@
-<!-- Extracted from old site: other_pets.php -->
+<!-- Extracted from the live site on 2026-10-17: other_pets.php -->
 <!-- Old page title: Other Pets | Services | Chapelford Pet Sitting Services -->
 <!-- Old meta description: I offer personal yet professional pet sitting services for small animals, including guinea pigs, rabbits, chickens and ducks, for owners in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire. -->
 
@@ -16,7 +16,7 @@ Even with other smaller animals I still offer a [free consultation](contact.php)
 
 **Price:**
 
-£4.50
+£5.00
 per visit
 
 **Please note:** This service is only available within Chapelford and the immediate surrounding area.
@@ -33,7 +33,7 @@ This is an ideal service when you are away from home for a day or are at work, a
 
 **Price:**
 
-£8.00
+£9.00
 per visit
 
 This is an ideal service if you have a pet that needs attention during the day. Regular visits can be carried out to feed and play with your pet.
@@ -47,21 +47,6 @@ This is an ideal service if you have a pet that needs attention during the day. 
 - All pet related rubbish will be placed in your outside wheelie bin. You must provide relevant cleaning .
 - If your pet is willing to pose for a photo, then a picture can be taken and emailed to you. For example, while you are on holiday and have access to check your emails, you can see how happy your pet is.
 - Alternatively, you may prefer a simple text to simply reassure you all is well.
-
-<!-- article emergency -->
-
-# Emergency Pet to Vet Service
-
-**Price:**
-
-£18.00
-per visit
-
-- Contact you or the emergency contact to discuss the options.
-- Liaise with your vet (if necessary).
-- Take your pet to the vet.
-- Stay with your pet, to keep them calm and comfortable.
-- If allowed home, I will settle your pet before I leave.
 
 Some smaller pets have a combination of 15 and 30 minute visits as not all smaller pets need cleaning out on a daily basis. At the consultation, we can discuss your exact needs to ensure your pet(s) get the best possible care and attention.
 

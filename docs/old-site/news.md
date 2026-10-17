@@ -1,4 +1,4 @@
-<!-- Extracted from old site: news.php -->
+<!-- Extracted from the live site on 2026-10-17: news.php -->
 <!-- Old page title: News | Chapelford Pet Sitting Services -->
 <!-- Old meta description: Read about the latest updates from the company, including some hints & tips to assist you with looking after your pet. -->
 

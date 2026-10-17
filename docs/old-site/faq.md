@@ -1,4 +1,4 @@
-<!-- Extracted from old site: faq.php -->
+<!-- Extracted from the live site on 2026-10-17: faq.php -->
 <!-- Old page title: Frequently Asked Questions | Services | Chapelford Pet Sitting Services -->
 <!-- Old meta description: I answer some of the common questions put forward to me about the pet sitting service for cats, dogs & other small animals in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire. -->
 
