@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon/Icon.astro';
 // Main navigation with the Services dropdown. On small screens it collapses
 // into a bar at the top of the page with a menu button, as on the old site.
 const services = [
@@ -20,8 +21,9 @@ const links = [
 ---
 
 <nav id="nav-wrap" aria-label="Main">
-  <button class="nav-button" type="button" aria-expanded="false" aria-controls="primary-nav">
-    Toggle Navigation
+  <button class="nav-button" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+    <Icon name="menu" class="nav-button__open" />
+    <Icon name="close" class="nav-button__close" />
   </button>
   <ul class="primary-nav" id="primary-nav">
     <li><a href="/" title="To the home page">Home</a></li>
