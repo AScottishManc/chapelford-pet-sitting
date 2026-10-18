@@ -5,4 +5,8 @@ import { defineConfig } from 'astro/config';
 // served by any host (see MIK-18 for the hosting decision).
 export default defineConfig({
   output: 'static',
+  markdown: {
+    // Keep quotes and dashes exactly as typed, as on the old site
+    smartypants: false,
+  },
 });

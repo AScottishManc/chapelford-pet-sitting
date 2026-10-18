@@ -33,6 +33,10 @@ const pages = defineCollection({
       // Framed photo shown at the top right of the page
       image: image().optional(),
       imageAlt: z.string().optional(),
+      // Sidebar box ids from sidebar.yaml
+      sidebar: z.array(z.string()).default(['recent-news']),
+      // Markdown paragraphs shown after the page's main section (e.g. after a table)
+      outro: z.array(z.string()).default([]),
     }),
 });
 
@@ -58,6 +62,8 @@ const services = defineCollection({
           name: z.string(),
           // Shown in the round badge, e.g. "£5.00" or "Please Call"
           price: z.string(),
+          // Symbol after the price in the badge, e.g. "*"
+          priceMarker: z.string().optional(),
           // Second line of the badge, e.g. "per visit"
           priceUnit: z.string().optional(),
           // Markdown, shown in bold after "Please note:"
@@ -75,13 +81,30 @@ const services = defineCollection({
     }),
 });
 
-const prices = defineCollection({
-  loader: file('src/content/prices.yaml'),
+// Layout of the price table on the Prices page. One entry per service page
+// (the id matches the file in src/content/services). Prices themselves come
+// from the service pages, so they only need changing in one place.
+const priceTable = defineCollection({
+  loader: file('src/content/price-table.yaml'),
   schema: z.object({
-    service: z.string(),
-    price: z.string(),
-    notes: z.string().optional(),
-    category: z.enum(['main', 'extra']).default('main'),
+    heading: z.string(),
+    order: z.number().int(),
+    rows: z.array(
+      z.union([
+        z.object({
+          // Service id on the service page, e.g. "feeding"
+          service: z.string(),
+          // Symbol after the name, e.g. "†" or "*"
+          marker: z.string().optional(),
+          time: z.string(),
+        }),
+        z.object({
+          // A full-width note row, e.g. explaining a marker
+          note: z.string(),
+          bold: z.boolean().default(true),
+        }),
+      ]),
+    ),
   }),
 });
 
@@ -126,4 +149,4 @@ const news = defineCollection({
   }),
 });
 
-export const collections = { settings, pages, services, prices, testimonials, faq, sidebar, news };
+export const collections = { settings, pages, services, priceTable, testimonials, faq, sidebar, news };

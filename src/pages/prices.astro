@@ -1,0 +1,71 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { inlineMarkdown } from '../lib/markdown';
+
+const entry = (await getEntry('pages', 'prices'))!;
+const { Content } = await render(entry);
+const page = entry.data;
+
+// Each table section matches a service page; look up the name and price of
+// each row from that page so prices are only stored once.
+const sections = await Promise.all(
+  (await getCollection('priceTable'))
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(async (section) => {
+      const servicePage = await getEntry('services', section.id);
+      if (!servicePage) throw new Error(`price-table.yaml: no service page "${section.id}"`);
+
+      const rows = section.data.rows.map((row) => {
+        if ('note' in row) return row;
+        const service = servicePage.data.services.find((s) => s.id === row.service);
+        if (!service) throw new Error(`price-table.yaml: no service "${row.service}" on the ${section.id} page`);
+        return { ...row, name: service.name, price: service.price, href: `/${section.id}/#${service.id}` };
+      });
+
+      return { heading: section.data.heading, rows };
+    }),
+);
+---
+
+<BaseLayout title={page.title} description={page.description} sidebar={page.sidebar}>
+  <h1>{page.heading ?? page.title}</h1>
+  <Content />
+
+  <table id="table">
+    <tr>
+      <th scope="col">Services</th>
+      <th scope="col">Time</th>
+      <th scope="col">Price</th>
+      <th scope="col">Link to services information</th>
+    </tr>
+    {sections.map((section) => (
+      <>
+        <tr class="sub_head">
+          <td colspan="4">{section.heading}</td>
+        </tr>
+        {section.rows.map((row) =>
+          'note' in row ? (
+            <tr>
+              <td colspan="4" class:list={['sup', { bold: row.bold }]}>{row.note}</td>
+            </tr>
+          ) : (
+            <tr>
+              <td>
+                {row.name}
+                {row.marker && <span class="sup">{row.marker}</span>}
+              </td>
+              <td>{row.time}</td>
+              <td>{row.price}</td>
+              <td>
+                <a href={row.href} title="List of what is provided in this service">Service Breakdown</a>
+              </td>
+            </tr>
+          ),
+        )}
+      </>
+    ))}
+  </table>
+
+  {page.outro.map((paragraph) => <p set:html={inlineMarkdown(paragraph)} />)}
+</BaseLayout>
