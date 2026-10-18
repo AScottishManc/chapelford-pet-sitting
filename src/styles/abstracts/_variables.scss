@@ -1,9 +1,105 @@
-// Design tokens. Values marked "2024" were decided in the earlier rebuild
-// attempt (repo chapelford-pet-sitting-old, see docs/2024-styling-decisions.md).
-// Colours, fonts, spacing and the rest are added in MIK-30.
+@use 'sass:map';
 
-// Screen widths where the layout can change, smallest first (2024).
-// Use with the above() and below() mixins rather than writing media queries.
+// Colours
+
+$palette: (
+  'cream': #fffefc,
+  'white': #fff,
+  'navy': #23395d,
+  'navy-dark': #1a2b47,
+  'charcoal': #4a4a4a,
+  'muted': #6b6e73,
+  'border': #e6e0d4,
+  'house-grey': #949599, // logo only
+  'apricot': #ffce71, // only on navy, or behind navy text
+  'duck-egg': #c1d9d9,
+);
+
+// Use these roles in components rather than the palette directly
+$colours: (
+  'background': map.get($palette, 'cream'),
+  'surface': map.get($palette, 'white'),
+  'text': map.get($palette, 'charcoal'),
+  'text-muted': map.get($palette, 'muted'),
+  'heading': map.get($palette, 'navy'),
+  'link': map.get($palette, 'navy'),
+  'link-hover': map.get($palette, 'navy-dark'),
+  'focus': map.get($palette, 'navy'),
+  'border': map.get($palette, 'border'),
+  'primary': map.get($palette, 'navy'),
+  'primary-hover': map.get($palette, 'navy-dark'),
+  'on-primary': map.get($palette, 'white'),
+  'secondary': map.get($palette, 'duck-egg'),
+  'on-secondary': map.get($palette, 'navy'),
+  'accent': map.get($palette, 'apricot'),
+  'logo': map.get($palette, 'house-grey'),
+);
+
+// Typography
+
+$font-heading: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+$font-body: 'Open Sans Variable', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+
+$font-weights: (
+  'light': 300,
+  'regular': 400,
+  'semi': 600,
+  'bold': 700,
+);
+
+$font-sizes: (
+  'xs': 0.75rem,
+  'sm': 0.875rem,
+  'base': 1rem,
+  'md': 1.125rem,
+  'lg': 1.25rem,
+  'xl': 1.5rem,
+  'xxl': 1.875rem,
+  'xxxl': 2.25rem,
+  'display': 2.75rem,
+);
+
+$line-height-body: 1.6;
+$line-height-heading: 1.2;
+
+// Spacing, shape and depth
+
+$spacing: (
+  'xxs': 0.25rem,
+  'xs': 0.5rem,
+  'sm': 0.75rem,
+  'md': 1rem,
+  'lg': 1.5rem,
+  'xl': 2rem,
+  'xxl': 3rem,
+  'xxxl': 4rem,
+);
+
+$radii: (
+  'sm': 4px,
+  'md': 8px,
+  'lg': 16px,
+  'pill': 999px,
+);
+
+$shadows: (
+  'card': (0 1px 2px rgba(35, 57, 93, 0.06), 0 4px 12px rgba(35, 57, 93, 0.08)),
+  'raised': (0 2px 4px rgba(35, 57, 93, 0.08), 0 8px 24px rgba(35, 57, 93, 0.12)),
+);
+
+$z-index: (
+  'base': 0,
+  'header': 100,
+  'menu': 200,
+  'overlay': 300,
+  'skip-link': 1000,
+);
+
+$transition-duration: 0.3s;
+$transition-easing: ease-in-out;
+
+// Breakpoints
+
 $breakpoints: (
   'mobile': 375px,
   'mobile-large': 599px,

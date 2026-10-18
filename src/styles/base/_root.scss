@@ -1,0 +1,10 @@
+@use 'abstracts' as *;
+
+:root {
+  @each $role, $value in $colours {
+    --colour-#{$role}: #{$value};
+  }
+
+  --font-heading: #{$font-heading};
+  --font-body: #{$font-body};
+}

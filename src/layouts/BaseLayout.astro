@@ -1,30 +1,31 @@
 ---
-// Shared page shell recreating the old site's layout: header, navigation,
-// main content, sidebar and footer.
 import { getEntry } from 'astro:content';
 import Header from '../components/Header.astro';
 import Navigation from '../components/Navigation.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
-import background from '../assets/images/ui/bgrd.png';
 import menuIcon from '../assets/images/ui/menu-icon-large.png';
 import closeIcon from '../assets/images/ui/close-icon-large.png';
+// Self-hosted so visitors' browsers never contact Google
+import '@fontsource/lato/300.css';
+import '@fontsource/lato/400.css';
+import '@fontsource/lato/700.css';
+import '@fontsource-variable/open-sans';
+import '@fontsource-variable/open-sans/standard-italic.css';
 import '../styles/main.scss';
 
 interface Props {
   title: string;
   description: string;
-  /** Sidebar box ids from src/content/sidebar.yaml. Most old pages showed Recent News. */
+  /** Box ids from src/content/sidebar.yaml */
   sidebar?: string[];
 }
 
 const { title, description, sidebar = ['recent-news'] } = Astro.props;
 const site = (await getEntry('settings', 'site'))!.data;
 const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.businessName}`;
-// Image paths are encoded because in dev they include the project folder,
-// whose name contains spaces.
+// Encoded because the dev path contains the folder name, which has spaces
 const imageVars = [
-  `--bg-texture: url("${encodeURI(background.src)}")`,
   `--menu-icon: url("${encodeURI(menuIcon.src)}")`,
   `--close-icon: url("${encodeURI(closeIcon.src)}")`,
 ].join('; ');
@@ -38,9 +39,6 @@ const imageVars = [
     <meta name="description" content={description} />
     <title>{pageTitle}</title>
     <link rel="icon" href="/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="container">

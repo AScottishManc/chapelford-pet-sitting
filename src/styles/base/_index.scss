@@ -1,1 +1,4 @@
-// Base styles: reset, page defaults and typography. Added in MIK-30.
+@use 'reset';
+@use 'root';
+@use 'base';
+@use 'typography';
