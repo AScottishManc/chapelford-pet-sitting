@@ -1,0 +1,17 @@
+@use 'functions' as *;
+
+// Styles for screens at least as wide as a breakpoint (mobile first) (2024).
+//   .header { @include above('laptop') { display: flex; } }
+@mixin above($name) {
+  @media screen and (min-width: breakpoint($name)) {
+    @content;
+  }
+}
+
+// Styles for screens narrower than a breakpoint (2024).
+//   .nav { @include below('tablet') { display: none; } }
+@mixin below($name) {
+  @media screen and (max-width: (breakpoint($name) - 1px)) {
+    @content;
+  }
+}

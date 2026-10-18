@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+// Width of a named breakpoint, e.g. breakpoint('tablet') => 768px.
+@function breakpoint($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error 'Unknown breakpoint "#{$name}". Use one of: #{map.keys($breakpoints)}.';
+  }
+  @return map.get($breakpoints, $name);
+}
+
+// Look up a value in nested maps, e.g. map-deep-get($container, 'tablet', 'padding') (2024).
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    @if not map.has-key($map, $key) {
+      @error 'map-deep-get: no key "#{$key}" in #{$map}.';
+    }
+    $map: map.get($map, $key);
+  }
+  @return $map;
+}

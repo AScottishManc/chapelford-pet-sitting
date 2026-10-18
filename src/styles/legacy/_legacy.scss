@@ -1,8 +1,12 @@
 /*
- * Recreation of the old site's stylesheets (style.css, style_tablet.css,
- * style_desktop.css, mobilemenu.css) with the same colours, fonts, sizes and
- * breakpoints. Floats are replaced by CSS grid and vendor prefixes removed,
- * but the look is unchanged.
+ * LEGACY: recreation of the old site's stylesheets (style.css,
+ * style_tablet.css, style_desktop.css, mobilemenu.css) with the same colours,
+ * fonts, sizes and breakpoints. Floats are replaced by CSS grid and vendor
+ * prefixes removed, but the look is unchanged.
+ *
+ * Do not add new styles here. As each component is converted to BEM (MIK-33),
+ * move its rules into the component's own Sass file and delete them from
+ * here. This file is removed in the clean-up (MIK-48).
  *
  * Breakpoints: mobile < 600px, tablet 600px+, desktop 860px+.
  */

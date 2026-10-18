@@ -11,7 +11,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "lint:styles": "stylelint \"src/**/*.scss\""
   },
   "dependencies": {
     "astro": "^7.4.0",
@@ -19,6 +20,10 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "postcss-scss": "^4.0.9",
+    "sass-embedded": "^1.105.2",
+    "stylelint": "^17.16.0",
+    "stylelint-scss": "^7.3.0",
     "typescript": "^6.0.3"
   }
 }
