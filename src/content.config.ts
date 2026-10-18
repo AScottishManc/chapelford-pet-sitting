@@ -167,4 +167,22 @@ const news = defineCollection({
     }),
 });
 
-export const collections = { settings, pages, services, priceTable, testimonials, faq, sidebar, news };
+// Recommended websites on the Links page.
+const links = defineCollection({
+  loader: file('src/content/links.yaml'),
+  schema: ({ image }) =>
+    z.object({
+      order: z.number().int(),
+      name: z.string(),
+      url: z.url(),
+      logo: image(),
+      logoPosition: z.enum(['left', 'right']).default('left'),
+      // Size the logo is shown at
+      logoWidth: z.number().int(),
+      logoHeight: z.number().int(),
+      // Markdown; may have several paragraphs and links
+      description: z.string(),
+    }),
+});
+
+export const collections = { settings, pages, services, priceTable, testimonials, faq, sidebar, news, links };
