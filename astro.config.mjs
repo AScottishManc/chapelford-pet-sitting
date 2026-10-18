@@ -8,5 +8,7 @@ export default defineConfig({
   markdown: {
     // Keep quotes and dashes exactly as typed, as on the old site
     smartypants: false,
+    // Don't turn plain "www." text into links; the old site didn't
+    gfm: false,
   },
 });
