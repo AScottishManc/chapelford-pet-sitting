@@ -10,6 +10,7 @@ $palette: (
   'charcoal': #4a4a4a,
   'muted': #6b6e73,
   'border': #e6e0d4,
+  'stone': #f6f3ec,
   'house-grey': #949599, // logo only
   'apricot': #ffce71, // only on navy, or behind navy text
   'duck-egg': #c1d9d9,
@@ -25,6 +26,7 @@ $colours: (
   'link-hover': map.get($palette, 'navy-dark'),
   'focus': map.get($palette, 'navy'),
   'border': map.get($palette, 'border'),
+  'highlight': map.get($palette, 'stone'),
   'primary': map.get($palette, 'navy'),
   'primary-hover': map.get($palette, 'navy-dark'),
   'on-primary': map.get($palette, 'white'),
@@ -43,6 +45,7 @@ $font-logo: 'Boogaloo', $font-heading;
 $font-weights: (
   'light': 300,
   'regular': 400,
+  'medium': 500,
   'semi': 600,
   'bold': 700,
 );
@@ -89,6 +92,8 @@ $shadows: (
 
 $z-index: (
   'base': 0,
+  'backdrop': 80,
+  'drawer': 90,
   'header': 100,
   'menu': 200,
   'overlay': 300,
@@ -110,6 +115,8 @@ $header-heights: (
   'desktop-small': 90px,
 );
 $header-height-compact: 60px;
+$nav-height: 52px;
+$nav-gap: 12px;
 
 $transition-duration: 0.3s;
 $transition-easing: ease-in-out;

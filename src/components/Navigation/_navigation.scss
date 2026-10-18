@@ -1,0 +1,322 @@
+@use 'sass:color';
+@use 'sass:map';
+
+// Drawer (below tablet)
+
+.nav {
+  @include below('tablet') {
+    position: fixed;
+    inset: 0 0 0 auto;
+    z-index: 1;
+    width: min(20rem, 85vw);
+    padding: map.get($header-heights, 'base') space('lg') space('xl');
+    overflow-y: auto;
+    background-color: colour('background');
+    box-shadow: shadow('raised');
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform $transition-duration $transition-easing,
+      visibility 0s linear $transition-duration;
+
+    &--open {
+      transform: none;
+      visibility: visible;
+      transition: transform $transition-duration $transition-easing;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-color: rgba(35, 57, 93, 0.4);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__list,
+  &__sub-list {
+    @include list-reset;
+  }
+
+  &__indicator {
+    display: none;
+  }
+
+  &__list > li,
+  &__sub-list > li {
+    margin: 0;
+  }
+
+  &__item {
+    border-bottom: 1px solid colour('border');
+  }
+
+  &__link,
+  &__sub-link {
+    border-radius: radius('sm');
+  }
+
+  &__link {
+    @include button-reset;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: space('sm');
+    font-family: $font-body;
+    font-size: font-size('md');
+    font-weight: font-weight('semi');
+    color: colour('heading');
+    text-align: left;
+    text-decoration: none;
+    @include transition(color);
+
+    &:hover {
+      color: colour('text-muted');
+    }
+  }
+
+  &__chevron {
+    font-size: 1.25rem;
+    @include transition(transform);
+  }
+
+  &__item--open &__chevron {
+    transform: rotate(180deg);
+  }
+
+  // Sub-menu slides open by animating its row from 0 to its natural height
+
+  &__sub {
+    display: grid;
+    grid-template-rows: 0fr;
+    @include transition(grid-template-rows);
+  }
+
+  &__item--open &__sub {
+    grid-template-rows: 1fr;
+  }
+
+  &__sub-list {
+    min-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: visibility 0s linear $transition-duration;
+  }
+
+  &__item--open &__sub-list {
+    visibility: visible;
+    transition: none;
+  }
+
+  &__sub-link {
+    display: block;
+    padding: space('xs') space('sm') space('xs') (space('md') + space('sm'));
+    color: colour('heading');
+    text-decoration: none;
+    @include transition(color);
+
+    &:hover {
+      color: colour('text-muted');
+    }
+  }
+
+  &__sub-list li:last-child &__sub-link {
+    padding-bottom: space('sm');
+  }
+
+  &__link--current,
+  &__sub-link#{&}__link--current {
+    background-color: colour('highlight');
+  }
+
+  // Without JavaScript the drawer is a plain list with sub-menus open
+
+  @media (scripting: none) {
+    position: static;
+    width: auto;
+    padding: 0;
+    box-shadow: none;
+    transform: none;
+    visibility: visible;
+
+    &__sub {
+      grid-template-rows: 1fr;
+    }
+
+    &__sub-list {
+      visibility: visible;
+    }
+
+    &__chevron {
+      display: none;
+    }
+  }
+
+  // Row under the header (tablet and up)
+
+  @include above('tablet') {
+    @include container;
+    height: $nav-gap + $nav-height;
+    padding-top: $nav-gap;
+    padding-bottom: space('xs');
+
+    &__backdrop {
+      display: none;
+    }
+
+    &__list {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: space('xxs');
+      width: max-content;
+      max-width: 100%;
+      height: 100%;
+      margin-inline: auto;
+      padding-inline: space('xxs');
+      background-color: colour('highlight');
+      border-radius: radius('pill');
+      @include transition(background-color);
+    }
+
+    .header--compact &__list {
+      background-color: color.change(colour('highlight'), $alpha: 0.85);
+    }
+
+    &__item {
+      position: relative;
+      border: 0;
+    }
+
+    &__link,
+    &__sub-link {
+      border-radius: radius('pill');
+    }
+
+    &__link {
+      position: relative;
+      z-index: 1;
+      gap: space('xxs');
+      width: auto;
+      padding: space('xs') space('md');
+      font-size: font-size('base');
+      font-weight: font-weight('medium');
+      white-space: nowrap;
+
+      &:hover {
+        color: colour('heading');
+      }
+    }
+
+    &__chevron {
+      font-size: 1rem;
+    }
+
+    &__link--current,
+    &__sub-link#{&}__link--current,
+    &__link--section {
+      font-weight: font-weight('bold');
+      background-color: transparent;
+    }
+
+    // Darker pill that slides to the hovered item
+    &__indicator {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      background-color: colour('border');
+      border-radius: radius('pill');
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform $transition-duration $transition-easing,
+        width $transition-duration $transition-easing,
+        height $transition-duration $transition-easing,
+        opacity 0.2s ease;
+
+      &--visible {
+        opacity: 1;
+      }
+
+      &--jump {
+        transition: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: opacity 0.2s ease;
+      }
+    }
+
+    // Without the sliding pill, hover darkens the item itself
+    &:not(.nav--js) &__link:hover {
+      background-color: colour('border');
+    }
+
+    // Dropdown: opens on click
+
+    &__sub {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 2;
+      display: block;
+      min-width: 13rem;
+      padding-top: space('xs');
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-0.25rem);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0s linear 0.2s;
+    }
+
+    &__item--open &__sub {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    &__sub-list {
+      padding: space('xs');
+      overflow: visible;
+      visibility: inherit;
+      background-color: colour('highlight');
+      border-radius: radius('md');
+      box-shadow: shadow('raised');
+      transition: none;
+    }
+
+    &__sub-link {
+      padding: space('xs') space('md');
+      white-space: nowrap;
+      @include transition(background-color);
+
+      &:hover {
+        color: colour('heading');
+        background-color: colour('border');
+      }
+    }
+
+    &__sub-list li:last-child &__sub-link {
+      padding-bottom: space('xs');
+    }
+  }
+}
+
+.has-open-menu {
+  overflow: hidden;
+}

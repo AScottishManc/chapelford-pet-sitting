@@ -1,0 +1,176 @@
+---
+import Icon from '../Icon/Icon.astro';
+import { navItems } from './items';
+import './_navigation.scss';
+
+const path = Astro.url.pathname;
+const isCurrent = (href?: string) => href === path;
+---
+
+<div class="nav__backdrop" data-nav-backdrop hidden></div>
+
+<nav class="nav" id="site-nav" aria-label="Main" data-nav>
+  <ul class="nav__list" data-nav-list>
+    <li class="nav__indicator" aria-hidden="true" data-nav-indicator></li>
+    {navItems.map((item, index) => {
+      const inSection = item.children?.some((child) => isCurrent(child.href));
+      return item.children ? (
+        <li class:list={['nav__item', 'nav__item--has-sub', { 'nav__item--section': inSection }]}>
+          <button
+            class:list={['nav__link', 'nav__toggle', { 'nav__link--section': inSection }]}
+            type="button"
+            aria-expanded="false"
+            aria-controls={`nav-sub-${index}`}
+            data-nav-sub-toggle
+          >
+            {item.label}
+            <Icon name="chevron-down" class="nav__chevron" />
+          </button>
+          <div class="nav__sub" id={`nav-sub-${index}`}>
+            <ul class="nav__sub-list">
+              {item.children.map((child) => (
+                <li>
+                  <a
+                    class:list={['nav__sub-link', { 'nav__link--current': isCurrent(child.href) }]}
+                    href={child.href}
+                    aria-current={isCurrent(child.href) ? 'page' : undefined}
+                  >
+                    {child.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      ) : (
+        <li class="nav__item">
+          <a
+            class:list={['nav__link', { 'nav__link--current': isCurrent(item.href) }]}
+            href={item.href}
+            aria-current={isCurrent(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const list = document.querySelector<HTMLElement>('[data-nav-list]');
+  const indicator = document.querySelector<HTMLElement>('[data-nav-indicator]');
+  const backdrop = document.querySelector<HTMLElement>('[data-nav-backdrop]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const tablet = window.matchMedia('(min-width: 768px)');
+  const subToggles = [...(nav?.querySelectorAll<HTMLButtonElement>('[data-nav-sub-toggle]') ?? [])];
+
+  nav?.classList.add('nav--js');
+
+  // Sub-menus: expanded in the drawer for the current section, closed in the row
+  const setSubOpen = (button: HTMLButtonElement, open: boolean) => {
+    button.setAttribute('aria-expanded', String(open));
+    button.closest('.nav__item')?.classList.toggle('nav__item--open', open);
+  };
+
+  const resetSubs = () =>
+    subToggles.forEach((button) =>
+      setSubOpen(button, !tablet.matches && !!button.closest('.nav__item--section')),
+    );
+
+  subToggles.forEach((button) =>
+    button.addEventListener('click', () => {
+      const open = button.getAttribute('aria-expanded') !== 'true';
+      subToggles.forEach((other) => other !== button && tablet.matches && setSubOpen(other, false));
+      setSubOpen(button, open);
+    }),
+  );
+
+  document.addEventListener('click', (event) => {
+    if (tablet.matches && !nav?.contains(event.target as Node)) subToggles.forEach((b) => setSubOpen(b, false));
+  });
+
+  resetSubs();
+
+  // Sliding hover pill (tablet and up)
+  if (list && indicator) {
+    let visible = false;
+    const moveTo = (target: HTMLElement) => {
+      const listBox = list.getBoundingClientRect();
+      const box = target.getBoundingClientRect();
+      indicator.style.width = `${box.width}px`;
+      indicator.style.height = `${box.height}px`;
+      indicator.style.transform = `translate(${box.left - listBox.left}px, ${box.top - listBox.top}px)`;
+      if (!visible) {
+        indicator.classList.add('nav__indicator--jump');
+        void indicator.offsetWidth;
+        indicator.classList.remove('nav__indicator--jump');
+        indicator.classList.add('nav__indicator--visible');
+        visible = true;
+      }
+    };
+    const hide = () => {
+      indicator.classList.remove('nav__indicator--visible');
+      visible = false;
+    };
+
+    list.querySelectorAll<HTMLElement>(':scope > .nav__item > .nav__link').forEach((link) => {
+      link.addEventListener('mouseenter', () => tablet.matches && moveTo(link));
+      link.addEventListener('focus', () => tablet.matches && link.matches(':focus-visible') && moveTo(link));
+      link.addEventListener('blur', hide);
+    });
+    list.addEventListener('mouseleave', hide);
+  }
+
+  // Drawer (below tablet)
+  if (nav && backdrop && toggle) {
+    const focusable = () =>
+      [toggle, ...nav.querySelectorAll<HTMLElement>('a[href], button')].filter((el) => el.offsetParent !== null);
+
+    const setOpen = (open: boolean) => {
+      nav.classList.toggle('nav--open', open);
+      backdrop.hidden = !open;
+      document.documentElement.classList.toggle('has-open-menu', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      if (open) nav.querySelector<HTMLElement>('a[href], button')?.focus();
+    };
+
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('nav--open')));
+    backdrop.addEventListener('click', () => setOpen(false));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && tablet.matches) {
+        const open = subToggles.find((b) => b.getAttribute('aria-expanded') === 'true');
+        if (open) {
+          setSubOpen(open, false);
+          open.focus();
+        }
+        return;
+      }
+      if (!nav.classList.contains('nav--open')) return;
+      if (event.key === 'Escape') {
+        setOpen(false);
+        toggle.focus();
+      }
+      if (event.key === 'Tab') {
+        const items = focusable();
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    tablet.addEventListener('change', () => {
+      setOpen(false);
+      resetSubs();
+    });
+  }
+</script>

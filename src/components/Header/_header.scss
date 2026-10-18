@@ -1,22 +1,47 @@
+@use 'sass:color';
+
+$-frosted: color.change(colour('background'), $alpha: 0.75);
+
 .header {
   position: fixed;
   inset: 0 0 auto;
   z-index: z('header');
-  background-color: colour('background');
-  @include transition(box-shadow);
-
-  &--compact {
-    box-shadow: shadow('card');
-  }
 
   &__inner {
     @include container;
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: space('md');
     @include by-breakpoint(height, $header-heights);
     @include transition(height);
+
+    // Full-width background behind this strip only, so the nav row has none
+    &::before {
+      position: absolute;
+      inset: 0 auto;
+      left: 50%;
+      z-index: -1;
+      width: 100vw;
+      content: '';
+      background-color: colour('background');
+      border-bottom: 1px solid transparent;
+      transform: translateX(-50%);
+      @include transition(background-color, border-color);
+    }
+  }
+
+  &--compact &__inner::before {
+    background-color: $-frosted;
+    border-bottom-color: color.change(colour('border'), $alpha: 0.6);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    backdrop-filter: blur(12px) saturate(1.4);
+  }
+
+  .has-open-menu &--compact &__inner::before {
+    background-color: colour('background');
   }
 
   &--compact &__inner {
@@ -28,6 +53,7 @@
     display: flex;
     align-items: center;
     gap: space('md');
+    margin-left: auto;
   }
 
   &__contact-item + &__contact-item {

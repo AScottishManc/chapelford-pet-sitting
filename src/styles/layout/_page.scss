@@ -1,12 +1,11 @@
+@use 'sass:map';
 @use 'abstracts' as *;
 
-$-mobile-menu-bar: 50px;
-
 html {
-  scroll-padding-top: $-mobile-menu-bar + $header-height-compact + 16px;
+  scroll-padding-top: $header-height-compact + 16px;
 
   @include above('tablet') {
-    scroll-padding-top: $header-height-compact + 16px;
+    scroll-padding-top: $header-height-compact + $nav-gap + $nav-height + 16px;
   }
 }
 
@@ -20,33 +19,24 @@ html {
   }
 
   &__header {
-    @include by-breakpoint(height, $header-heights);
+    height: map.get($header-heights, 'base');
 
-    // Temporary: sits under the old mobile menu bar until MIK-35
-    @include below('tablet') {
-      .header {
-        top: $-mobile-menu-bar;
-      }
-    }
-  }
-
-  @include above('tablet') {
-    &__nav {
-      @include grid-col-layout(auto, 3);
+    @include above('tablet') {
+      height: map.get($header-heights, 'tablet') + $nav-gap + $nav-height;
     }
 
-    &__main {
-      @include grid-col-layout(auto, 5);
+    @include above('desktop-small') {
+      height: map.get($header-heights, 'desktop-small') + $nav-gap + $nav-height;
     }
   }
 
   @include above('desktop-small') {
     &__main {
-      @include grid-col-layout(auto, 6);
+      @include grid-col-layout(auto, 8);
     }
 
     &__sidebar {
-      @include grid-col-layout(auto, 3);
+      @include grid-col-layout(auto, 4);
     }
   }
 }
