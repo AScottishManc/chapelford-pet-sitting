@@ -1,0 +1,80 @@
+---
+import { getEntry } from 'astro:content';
+import houseMark from '../../assets/images/brand/house-mark.svg?raw';
+import Icon from '../Icon/Icon.astro';
+import { navItems, type NavItem } from '../Navigation/items';
+import './_footer.scss';
+
+const site = (await getEntry('settings', 'site'))!.data;
+const year = new Date().getFullYear();
+const phoneLink = `tel:${site.phone.replace(/\D/g, '').replace(/^0/, '+44')}`;
+const mark = houseMark.replace('<svg ', '<svg class="footer__mark" aria-hidden="true" focusable="false" ');
+
+const services = navItems.find((item) => item.children)?.children ?? [];
+const pages = navItems.filter((item): item is NavItem & { href: string } => !!item.href);
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <Fragment set:html={mark} />
+      <p class="footer__name">{site.businessName}</p>
+      {site.tagline && <p class="footer__tagline">{site.tagline}</p>}
+    </div>
+
+    <div class="footer__section">
+      <h2 class="footer__heading">Get in touch</h2>
+      <ul class="footer__contact">
+        <li>
+          <a class="footer__link" href={phoneLink}>
+            <Icon name="phone" />
+            {site.phone}
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="/contact/">
+            <Icon name="email" />
+            Email {site.ownerName}
+          </a>
+        </li>
+        {site.facebook && (
+          <li>
+            <a class="footer__link" href={site.facebook}>
+              <Icon name="facebook" />
+              Facebook
+            </a>
+          </li>
+        )}
+      </ul>
+      <p class="footer__detail">{site.areaCovered}</p>
+      {site.hours && <p class="footer__detail">Visits: {site.hours}</p>}
+      <a class="footer__button" href="/contact/">Book a free consultation</a>
+    </div>
+
+    <nav class="footer__section" aria-label="Footer">
+      <h2 class="footer__heading">Quick links</h2>
+      <div class="footer__columns">
+        <ul class="footer__links">
+          {services.map((item) => (
+            <li><a class="footer__link" href={item.href}>{item.label}</a></li>
+          ))}
+        </ul>
+        <ul class="footer__links">
+          {pages.map((item) => (
+            <li><a class="footer__link" href={item.href}>{item.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="footer__bottom">
+    <p class="footer__legal">
+      &copy; {site.businessName} {year}
+      <span aria-hidden="true">|</span>
+      <a class="footer__link" href="/privacy/">Privacy Policy</a>
+      <span aria-hidden="true">|</span>
+      Website designed by <a class="footer__link" href="https://lifeofmike.co.uk">Mike DH</a>
+    </p>
+  </div>
+</footer>

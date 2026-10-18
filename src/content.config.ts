@@ -12,6 +12,7 @@ const settings = defineCollection({
     landline: z.string().optional(),
     email: z.email(),
     areaCovered: z.string(),
+    hours: z.string().optional(),
     facebook: z.url().optional(),
   }),
 });
