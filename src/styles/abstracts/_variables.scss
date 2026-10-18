@@ -1,0 +1,17 @@
+// Design tokens. Values marked "2024" were decided in the earlier rebuild
+// attempt (repo chapelford-pet-sitting-old, see docs/2024-styling-decisions.md).
+// Colours, fonts, spacing and the rest are added in MIK-30.
+
+// Screen widths where the layout can change, smallest first (2024).
+// Use with the above() and below() mixins rather than writing media queries.
+$breakpoints: (
+  'mobile': 375px,
+  'mobile-large': 599px,
+  'tablet': 768px,
+  'tablet-large': 865px,
+  'laptop': 960px,
+  'laptop-large': 1100px,
+  'desktop': 1300px,
+  'desktop-large': 1440px,
+  'max': 1920px,
+);

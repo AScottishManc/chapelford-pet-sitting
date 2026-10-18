@@ -1,0 +1,9 @@
+// Site-wide styles, loaded once by BaseLayout.
+// Component styles live next to each component and are loaded by it.
+@use 'base';
+@use 'layout';
+
+// The old site's stylesheet, ported in MIK-7. Rules move out of here into
+// components as each one is converted (MIK-33), and the file is deleted in
+// the clean-up (MIK-48).
+@use 'legacy/legacy';

@@ -28,15 +28,23 @@ src/
   content.config.ts   Content collections and their fields
   content/            All editable site content (Markdown and YAML)
     settings.yaml     Business name, phone, email, area covered
-    pages/            Standalone pages (home, privacy, terms...)
-    services/         Dogs, cats, other pets
-    prices.yaml       Prices and extras
+    pages/            Page text (home, prices, extras, privacy, terms...)
+    services/         Cats, dogs, other pets, including their prices
+    price-table.yaml  Layout of the Prices page table
     testimonials/     One file per testimonial
-    faq.yaml          Questions and answers
     news/             One file per news post
+    faq.yaml          Questions and answers
+    links.yaml        Recommended websites
+    sidebar.yaml      Sidebar boxes
+  components/         Reusable parts of the page (header, navigation, ...)
   layouts/            Shared page shell
   pages/              Routes (one file per URL)
+  styles/             Sass: abstracts, base, layout (see docs/conventions.md)
 public/               Files served as-is (images, favicon)
 ```
 
 Content is kept separate from code so the owner can edit it through Pages CMS.
+
+## Code conventions
+
+Styles are written in Sass and components use BEM naming. See [docs/conventions.md](docs/conventions.md).

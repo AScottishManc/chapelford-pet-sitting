@@ -1,0 +1,83 @@
+# 2024 styling decisions
+
+Styling decided during an earlier rebuild attempt (React + Vite, April–May 2024), recovered from the `task/cps2-solution-set-up` branch of the archived repo [AScottishManc/chapelford-pet-sitting-old](https://github.com/AScottishManc/chapelford-pet-sitting-old). Recorded here so they are kept with the project.
+
+Where each decision is used in this project is noted in the right-hand column.
+
+## Fonts
+
+| Use | Font | Source |
+| --- | --- | --- |
+| Headings | Lato | Google Fonts |
+| Body text | Open Sans | Google Fonts |
+
+Weights: light 300, regular 400, semi-bold 600, bold 700. Applied in MIK-30.
+
+## Colours
+
+Only the greys were defined. The file had a `// Primary` heading with no colours under it, so brand colours are still to be chosen (MIK-28).
+
+| Name | Value | Note |
+| --- | --- | --- |
+| `$black` | `#000` | |
+| `$grey-100` | `#152d38` | Dark |
+| `$grey-80` | `#61686b` | |
+| `$grey-60` | `#9ca3a5` | |
+| `$grey-40` | `#c4c8ca` | |
+| `$grey-05` | `#e2e4e4` | |
+| `$grey` | `#f2f3f3` | Light |
+| `$white` | `#fff` | |
+
+Applied in MIK-30.
+
+## Breakpoints
+
+| Name | Width |
+| --- | --- |
+| mobile | 375px |
+| mobile-large | 599px |
+| tablet | 768px |
+| tablet-large | 865px |
+| laptop | 960px |
+| laptop-large | 1100px |
+| desktop | 1300px |
+| desktop-large | 1440px |
+| max | 1920px |
+
+Applied in MIK-29 (`src/styles/abstracts/_variables.scss`), used with the `above()` / `below()` mixins.
+
+## Container (page width and side padding)
+
+| From | Side padding | Max width |
+| --- | --- | --- |
+| mobile, mobile-large | 20px | none |
+| tablet to laptop-large | 30px | none |
+| desktop | 30px | 1240px |
+| desktop-large | 0 | 1240px |
+
+Site width 1240px. Applied in MIK-31.
+
+## Grid
+
+4 columns on small screens, 8 on medium, 12 on large. Applied in MIK-31.
+
+## Sass helpers
+
+| Helper | Purpose | Here |
+| --- | --- | --- |
+| `above($breakpoint)` / `below($breakpoint)` | Media queries by breakpoint name | MIK-29 |
+| `map-deep-get($map, $keys...)` | Read nested map values | MIK-29 |
+| `grid-col-layout($start, $span)` / `grid-row-layout(...)` | Place an item on the grid | MIK-31 |
+| `container` | Page width and padding per breakpoint | MIK-31 |
+| `transition(...)` | Transitions with default duration/easing (0.3s ease-in-out) | MIK-30 |
+| `%accessibility-hidden` | Hide visually but keep for screen readers | MIK-30 |
+
+The 2024 versions of the grid, container and transition helpers had bugs (they would not compile), so they are rewritten here rather than copied; names and values are kept.
+
+## Tooling
+
+Stylelint with the `stylelint-scss` plugin and the same three rules. Applied in MIK-29 (`.stylelintrc.json`, `npm run lint:styles`).
+
+## Components
+
+Header, footer and navigation had only empty or temporary styles; nothing to carry over.
