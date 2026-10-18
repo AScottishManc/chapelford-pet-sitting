@@ -149,13 +149,22 @@ const sidebar = defineCollection({
     }),
 });
 
+// One file per news post; the Markdown body is the post.
 const news = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/news' }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    draft: z.boolean().default(false),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      // Highest number shows first; also used in links, e.g. /news/#blog_15
+      number: z.number().int(),
+      title: z.string(),
+      date: z.coerce.date(),
+      image: image().optional(),
+      imageAlt: z.string().optional(),
+      imagePosition: z.enum(['left', 'right']).default('left'),
+      // Size the photo is shown at
+      imageWidth: z.number().int().optional(),
+      imageHeight: z.number().int().optional(),
+    }),
 });
 
 export const collections = { settings, pages, services, priceTable, testimonials, faq, sidebar, news };
