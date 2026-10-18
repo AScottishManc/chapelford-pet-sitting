@@ -108,14 +108,21 @@ const priceTable = defineCollection({
   }),
 });
 
+// One file per testimonial; the Markdown body is the quote.
 const testimonials = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/testimonials' }),
-  schema: z.object({
-    name: z.string(),
-    pets: z.string().optional(),
-    date: z.coerce.date(),
-    featured: z.boolean().default(false),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      // Highest number shows first; also used in links, e.g. /testimonials/#test_25
+      number: z.number().int(),
+      // Pet name(s), shown as the heading
+      name: z.string(),
+      // Handwritten caption under the photo, if shorter than the name
+      caption: z.string().optional(),
+      image: image(),
+      // Description of the photo for screen readers, if different from the name
+      imageAlt: z.string().optional(),
+    }),
 });
 
 const faq = defineCollection({
