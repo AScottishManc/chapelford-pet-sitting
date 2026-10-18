@@ -101,13 +101,31 @@ $transition-easing: ease-in-out;
 // Breakpoints
 
 $breakpoints: (
-  'mobile': 375px,
-  'mobile-large': 599px,
+  'mobile-large': 425px,
   'tablet': 768px,
-  'tablet-large': 865px,
-  'laptop': 960px,
-  'laptop-large': 1100px,
-  'desktop': 1300px,
-  'desktop-large': 1440px,
-  'max': 1920px,
+  'desktop-small': 1024px,
+  'desktop': 1440px,
+);
+
+// Grid and container
+
+// Columns from each breakpoint up ('base' = smallest screens)
+$grid-columns: (
+  'base': 4,
+  'tablet': 8,
+  'desktop-small': 12,
+);
+
+$grid-gaps: (
+  'base': 1rem,
+  'tablet': 1.5rem,
+  'desktop-small': 2rem,
+);
+
+// Readable line length comes from the columns content spans, not the container
+$site-width: 1440px;
+
+$container: (
+  'base': ('padding': 20px, 'max-width': none),
+  'tablet': ('padding': 30px, 'max-width': $site-width),
 );

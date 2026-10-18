@@ -44,7 +44,7 @@ Only the greys were defined. The file had a `// Primary` heading with no colours
 | desktop-large | 1440px |
 | max | 1920px |
 
-Applied in MIK-29 (`src/styles/abstracts/_variables.scss`), used with the `above()` / `below()` mixins.
+**Replaced (18 Oct 2026):** mobile-large 425, tablet 768, desktop-small 1024, desktop 1440. See [conventions.md](conventions.md).
 
 ## Container (page width and side padding)
 
@@ -55,11 +55,11 @@ Applied in MIK-29 (`src/styles/abstracts/_variables.scss`), used with the `above
 | desktop | 30px | 1240px |
 | desktop-large | 0 | 1240px |
 
-Site width 1240px. Applied in MIK-31.
+**Replaced (18 Oct 2026):** maximum width 1440px; side padding 20px, then 30px from tablet. Line length comes from the columns content spans, not the container.
 
 ## Grid
 
-4 columns on small screens, 8 on medium, 12 on large. Applied in MIK-31.
+4 columns on small screens, 8 on medium, 12 on large. Applied in MIK-31 (8 from tablet, 12 from desktop-small).
 
 ## Sass helpers
 

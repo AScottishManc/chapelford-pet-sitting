@@ -1,0 +1,41 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// Breakpoints that get span classes, e.g. .grid__col--tablet-6
+$-span-breakpoints: ('mobile-large', 'tablet', 'desktop-small', 'desktop');
+
+// Number of columns in use at a breakpoint
+@function -columns-at($name) {
+  $columns: map.get($grid-columns, 'base');
+  @each $from, $count in $grid-columns {
+    @if $from != 'base' and breakpoint($from) <= breakpoint($name) {
+      $columns: $count;
+    }
+  }
+  @return $columns;
+}
+
+.grid {
+  @include grid;
+
+  // Full width unless told otherwise
+  > * {
+    grid-column: 1 / -1;
+  }
+}
+
+@for $i from 1 through map.get($grid-columns, 'base') {
+  .grid > .grid__col--#{$i} {
+    grid-column: auto / span $i;
+  }
+}
+
+@each $name in $-span-breakpoints {
+  @include above($name) {
+    @for $i from 1 through -columns-at($name) {
+      .grid > .grid__col--#{$name}-#{$i} {
+        grid-column: auto / span $i;
+      }
+    }
+  }
+}

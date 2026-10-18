@@ -1,0 +1,44 @@
+@use 'abstracts' as *;
+
+// Site layout: header, navigation, content, sidebar and footer on the grid
+
+.page {
+  @include grid;
+  padding-block: space('md') space('xl');
+
+  > * {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+
+    @include above('desktop-small') {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  @include above('tablet') {
+    &__nav {
+      @include grid-col-layout(auto, 3);
+    }
+
+    &__main {
+      @include grid-col-layout(auto, 5);
+    }
+  }
+
+  @include above('desktop-small') {
+    &__main {
+      @include grid-col-layout(auto, 6);
+    }
+
+    &__sidebar {
+      @include grid-col-layout(auto, 3);
+    }
+  }
+}
