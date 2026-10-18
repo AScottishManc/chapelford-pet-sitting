@@ -1,0 +1,28 @@
+.menu-toggle {
+  @include button-reset;
+  display: flex;
+  font-size: 1.75rem;
+  color: colour('heading');
+  @include transition(color);
+
+  &:hover {
+    color: colour('text-muted');
+  }
+
+  &__close,
+  &[aria-expanded='true'] &__open {
+    display: none;
+  }
+
+  &[aria-expanded='true'] &__close {
+    display: block;
+  }
+
+  @include above('tablet') {
+    display: none;
+  }
+
+  @media (scripting: none) {
+    display: none;
+  }
+}

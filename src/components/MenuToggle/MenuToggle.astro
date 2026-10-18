@@ -1,0 +1,16 @@
+---
+import Icon from '../Icon/Icon.astro';
+import './_menu-toggle.scss';
+---
+
+<button
+  class="menu-toggle"
+  type="button"
+  aria-controls="site-nav"
+  aria-expanded="false"
+  aria-label="Open menu"
+  data-menu-toggle
+>
+  <Icon name="menu" class="menu-toggle__open" />
+  <Icon name="close" class="menu-toggle__close" />
+</button>

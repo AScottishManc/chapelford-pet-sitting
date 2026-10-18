@@ -2,6 +2,8 @@
 import { getEntry } from 'astro:content';
 import Icon from '../Icon/Icon.astro';
 import Logo from '../Logo/Logo.astro';
+import MenuToggle from '../MenuToggle/MenuToggle.astro';
+import Navigation from '../Navigation/Navigation.astro';
 import './_header.scss';
 
 const site = (await getEntry('settings', 'site'))!.data;
@@ -33,7 +35,11 @@ const phoneLink = `tel:${site.phone.replace(/\D/g, '').replace(/^0/, '+44')}`;
         </li>
       )}
     </ul>
+
+    <MenuToggle />
   </div>
+
+  <Navigation />
 </header>
 
 <script>
