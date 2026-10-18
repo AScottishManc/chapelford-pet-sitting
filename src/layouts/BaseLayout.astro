@@ -41,19 +41,29 @@ const imageVars = [
     <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
-    <div id="container">
+    <div class="container page">
       <a class="skip-link" href="#nav-wrap">Skip to Navigation</a>
       <a class="skip-link" href="#content">Skip to Content</a>
 
-      <Header />
-      <Navigation />
+      <div class="page__header">
+        <Header />
+      </div>
 
-      <main id="content">
+      <div class="page__nav">
+        <Navigation />
+      </div>
+
+      <main id="content" class="page__main">
         <slot />
       </main>
 
-      <Sidebar boxes={sidebar} />
-      <Footer />
+      <div class="page__sidebar">
+        <Sidebar boxes={sidebar} />
+      </div>
+
+      <div class="page__footer">
+        <Footer />
+      </div>
     </div>
   </body>
 </html>

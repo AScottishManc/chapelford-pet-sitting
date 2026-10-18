@@ -34,7 +34,7 @@ h6 {
 h1 {
   font-size: font-size('xxl');
 
-  @include above('laptop') {
+  @include above('desktop-small') {
     font-size: font-size('display');
   }
 }
@@ -42,7 +42,7 @@ h1 {
 h2 {
   font-size: font-size('xl');
 
-  @include above('laptop') {
+  @include above('desktop-small') {
     font-size: font-size('xxl');
   }
 }
@@ -50,7 +50,7 @@ h2 {
 h3 {
   font-size: font-size('lg');
 
-  @include above('laptop') {
+  @include above('desktop-small') {
     font-size: font-size('xl');
   }
 }
@@ -58,7 +58,7 @@ h3 {
 h4 {
   font-size: font-size('md');
 
-  @include above('laptop') {
+  @include above('desktop-small') {
     font-size: font-size('lg');
   }
 }
@@ -106,7 +106,7 @@ blockquote {
   color: colour('heading');
   border-inline-start: 4px solid palette('duck-egg');
 
-  @include above('laptop') {
+  @include above('desktop-small') {
     font-size: font-size('lg');
   }
 }

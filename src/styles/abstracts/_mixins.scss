@@ -1,4 +1,5 @@
 @use 'sass:list';
+@use 'sass:map';
 @use 'variables' as *;
 @use 'functions' as *;
 
@@ -77,4 +78,59 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+// Grid and container
+
+@mixin container {
+  width: 100%;
+  margin-inline: auto;
+
+  @each $from, $settings in $container {
+    $padding: map-deep-get($settings, 'padding');
+    $max-width: map-deep-get($settings, 'max-width');
+
+    @if $from == 'base' {
+      padding-inline: $padding;
+    } @else {
+      @include above($from) {
+        padding-inline: $padding;
+
+        @if $max-width != none {
+          max-width: $max-width;
+        }
+      }
+    }
+  }
+}
+
+@mixin grid {
+  display: grid;
+
+  @each $from, $columns in $grid-columns {
+    $gap: map.get($grid-gaps, $from);
+
+    @if $from == 'base' {
+      grid-template-columns: repeat($columns, minmax(0, 1fr));
+      gap: $gap;
+    } @else {
+      @include above($from) {
+        grid-template-columns: repeat($columns, minmax(0, 1fr));
+        gap: $gap;
+      }
+    }
+  }
+}
+
+// grid-col-layout(1, 6) or grid-col-layout(auto, 3)
+@mixin grid-col-layout($start, $span) {
+  grid-column: $start / span $span;
+}
+
+@mixin grid-row-layout($start, $span, $gap: null) {
+  grid-row: $start / span $span;
+
+  @if $gap {
+    row-gap: $gap;
+  }
 }

@@ -22,7 +22,7 @@
   margin-block: space('lg') space('xs');
   font-size: font-size('lg');
 
-  @include above('laptop') {
+  @include above('desktop-small') {
     font-size: font-size('xl');
   }
 }
@@ -47,58 +47,17 @@
   background: #fff;
 }
 
-/* PAGE LAYOUT */
-
-#container {
-  margin: 0 auto;
-  /* The old site's hidden skip links still took up one line above the logo */
-  padding-top: 1.15em;
-  width: 95%;
-  /* Lets column padding below be a percentage of the whole page width (cqi),
-     as it was with the old floated layout, rather than of each column */
-  container-type: inline-size;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-areas:
-    'logo'
-    'nav'
-    'content'
-    'aside'
-    'header-aside'
-    'footer';
-}
+/* HEADER */
 
 .site-logo {
-  grid-area: logo;
+  @include above('desktop-small') {
+    flex: 0 1 763px;
+  }
 }
 
-#header-aside {
-  grid-area: header-aside;
+#telephone p {
+  white-space: nowrap;
 }
-
-#nav-wrap {
-  grid-area: nav;
-}
-
-#content {
-  grid-area: content;
-}
-
-aside {
-  grid-area: aside;
-}
-
-footer {
-  grid-area: footer;
-}
-
-#nav-wrap,
-#content,
-aside {
-  margin-bottom: 1em;
-}
-
-/* HEADER */
 
 #logo {
   display: block;
@@ -349,20 +308,6 @@ footer a:focus {
   background-color: #000;
 }
 
-/* The old site moved the phone number and icons to the bottom of the page
-   below 500px, and kept them under the logo from 500px. */
-@media screen and (min-width: 500px) and (max-width: 599px) {
-  #container {
-    grid-template-areas:
-      'logo'
-      'header-aside'
-      'nav'
-      'content'
-      'aside'
-      'footer';
-  }
-}
-
 /* MOBILE MENU (below 600px) */
 
 .nav-button {
@@ -485,17 +430,6 @@ footer a:focus {
 /* TABLET (600px and up) */
 
 @media screen and (min-width: 600px) {
-  #container {
-    width: 93%;
-    grid-template-columns: 29.27463% 69.98816%;
-    grid-template-areas:
-      'logo logo'
-      'header-aside header-aside'
-      'nav content'
-      'aside aside'
-      'footer footer';
-  }
-
   /* Navigation: stacked rounded buttons */
   #nav-wrap ul {
     margin: 0;
@@ -540,10 +474,6 @@ footer a:focus {
   .has-sub-nav:hover li,
   .has-sub-nav:focus-within li {
     display: block;
-  }
-
-  #content {
-    padding-left: 3.02233cqi;
   }
 
   /* Sidebar boxes: three across, below the content */
@@ -623,23 +553,11 @@ footer a:focus {
 /* DESKTOP (860px and up) */
 
 @media screen and (min-width: 860px) {
-  #container {
-    width: 90%;
-    max-width: 1024px;
-    grid-template-columns: 23.24218% 51.26952% 1fr;
-    grid-template-areas:
-      'logo logo header-aside'
-      'nav content aside'
-      'footer footer footer';
-  }
-
   #header-aside {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: flex-end;
-    padding-left: 2.24609cqi;
-    padding-top: 2cqi;
-    margin: 0 -1.25em 0 0;
+    padding-top: space('md');
   }
 
   #search {
@@ -660,14 +578,6 @@ footer a:focus {
   #icons {
     width: 100%;
     margin-right: -0.55em;
-  }
-
-  #content {
-    padding-left: 2.24609cqi;
-  }
-
-  aside {
-    padding-left: 2.24609cqi;
   }
 
   aside article {

@@ -76,17 +76,62 @@ Mobile first: write the phone styles first, then add wider screens with `above()
 
 | Name | Width |
 | --- | --- |
-| `mobile` | 375px |
-| `mobile-large` | 599px |
+| `mobile-large` | 425px |
 | `tablet` | 768px |
-| `tablet-large` | 865px |
-| `laptop` | 960px |
-| `laptop-large` | 1100px |
-| `desktop` | 1300px |
-| `desktop-large` | 1440px |
-| `max` | 1920px |
+| `desktop-small` | 1024px |
+| `desktop` | 1440px |
 
-`above('tablet')` means 768px and wider; `below('tablet')` means narrower than 768px. These values were decided in 2024; see [2024-styling-decisions.md](2024-styling-decisions.md).
+`above('tablet')` means 768px and wider; `below('tablet')` means narrower than 768px.
+
+## Layout and grid
+
+The page sits in a **container**: full width with 20px side padding on phones, 30px from tablet, and never wider than **1440px**.
+
+Inside it is a **grid** whose column count grows with the screen:
+
+| From | Columns | Gap |
+| --- | --- | --- |
+| Phones | 4 | 16px |
+| `tablet` (768px) | 8 | 24px |
+| `desktop-small` (1024px) | 12 | 32px |
+
+There's no maximum text width on the container. A comfortable line length comes from how many columns the content spans (e.g. rich text across 6 of 12 columns).
+
+### Using the grid in markup
+
+```html
+<div class="grid">
+  <div class="grid__col--4 grid__col--tablet-4 grid__col--desktop-small-8">Main</div>
+  <div class="grid__col--4 grid__col--tablet-4 grid__col--desktop-small-4">Aside</div>
+</div>
+```
+
+Children of `.grid` are full width unless given a span. Span classes exist for each breakpoint: `grid__col--{1-4}`, `grid__col--mobile-large-{1-4}`, `grid__col--tablet-{1-8}`, `grid__col--desktop-small-{1-12}`, `grid__col--desktop-{1-12}`.
+
+### Using the grid in a component's Sass
+
+Prefer the mixins, so markup stays clean:
+
+```scss
+.services {
+  @include grid;
+
+  &__item {
+    @include above('tablet') {
+      @include grid-col-layout(auto, 4);
+    }
+  }
+}
+```
+
+| Mixin | Use |
+| --- | --- |
+| `container` | Width, side padding and 1440px maximum |
+| `grid` | The responsive 4/8/12-column grid |
+| `grid-col-layout($start, $span)` | Place an item, e.g. `(1, 6)` or `(auto, 3)` |
+| `grid-row-layout($start, $span, $gap)` | Place an item across rows |
+
+The site layout itself (header, navigation, content, sidebar, footer) is in `src/styles/layout/_page.scss`.
 
 ### Checking styles
 
