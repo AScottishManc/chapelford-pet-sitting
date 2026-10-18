@@ -1,0 +1,34 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { blockMarkdown } from '../lib/markdown';
+
+const page = (await getEntry('pages', 'links'))!.data;
+const links = (await getCollection('links')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title={page.title} description={page.description} sidebar={page.sidebar}>
+  <h1>{page.heading ?? page.title}</h1>
+
+  {links.map(({ data }) => (
+    <>
+      <article class="links">
+        <h1>{data.name}</h1>
+        <a href={data.url} title="Company website">
+          <Image
+            class={`img_${data.logoPosition}`}
+            src={data.logo}
+            alt="Company logo"
+            width={data.logoWidth}
+            height={data.logoHeight}
+          />
+        </a>
+        <Fragment set:html={blockMarkdown(data.description)} />
+      </article>
+      <article class="links">
+        <a class="top_link" href="#top"><p>Back to the top</p></a>
+      </article>
+    </>
+  ))}
+</BaseLayout>

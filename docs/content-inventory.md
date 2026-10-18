@@ -25,9 +25,10 @@ The work is split into two Linear projects:
 | Testimonial pet photos (72) | `src/assets/images/testimonials/` |
 | News images (18) | `src/assets/images/news/` |
 | Background texture, icons | `src/assets/images/ui/` |
+| Links page logos (9, from the live site) | `src/assets/images/links/` |
 | Favicon, handwriting font | `public/` |
 
-Not carried over: third-party logos from the Links page (we don't have rights to reuse them), Dreamweaver `_notes`, the PHP contact form and reCAPTCHA (dead since 2018), the Google site search box and Google Analytics code (both retired services).
+Not carried over: Dreamweaver `_notes`, the PHP contact form and reCAPTCHA (dead since 2018), the Google site search box and Google Analytics code (both retired services).
 
 ## Business details
 
@@ -95,6 +96,7 @@ Phone, mobile and email. The old contact form is not rebuilt.
 ### Links → MIK-23
 Nine recommended sites: Westbrook Vets, Hoo Farm Animal Kingdom, Dogs Trust, International Cat Care, APDT, Vicky Halls, Feliway, Your Cat, Your Dog magazines.
 - Two URLs are broken on the live site (`https://https://...`). Fixed in the Rebuild with the correct addresses: Westbrook Vets → https://www.westbrookvets.co.uk/, Hoo Farm Animal Kingdom (now Hoo Zoo) → https://www.hoo-zoo.com/.
+- The organisations' logos are carried over as on the live site (decided 18 October 2026); revisit in the Redesign.
 - ⚠️ Recommendation for the Redesign: drop as a separate page.
 
 ### Privacy policy and T&Cs → MIK-15
