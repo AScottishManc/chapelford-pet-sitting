@@ -1,7 +1,5 @@
-// Abstracts: variables, functions and mixins. These produce no CSS on their
-// own, so they are added automatically to every component's Sass file
-// (see astro.config.mjs). Files inside src/styles must @use them explicitly:
-//   @use 'abstracts' as *;
+// Injected into every component's Sass (astro.config.mjs). Files inside
+// src/styles must add: @use 'abstracts' as *;
 @forward 'variables';
 @forward 'functions';
 @forward 'mixins';

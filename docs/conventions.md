@@ -10,10 +10,10 @@ All styles are written in Sass (`.scss`). Astro compiles them; there is no separ
 src/styles/
   main.scss            Site-wide entry file, loaded once by BaseLayout
   abstracts/           Variables, functions, mixins (no CSS output)
-    _variables.scss    Design tokens: breakpoints, and later colours, fonts, spacing
-    _functions.scss    e.g. breakpoint('tablet'), map-deep-get()
-    _mixins.scss       e.g. above('laptop'), below('tablet')
-  base/                Reset, page defaults, typography
+    _variables.scss    Design tokens: colours, fonts, type scale, spacing, breakpoints...
+    _functions.scss    colour(), space(), font-size(), radius(), shadow(), z(), rem()...
+    _mixins.scss       above(), below(), transition(), visually-hidden, focus-ring...
+  base/                Reset, tokens as CSS custom properties, page defaults, typography
   layout/              Container and 12-column grid
   legacy/_legacy.scss  The old site's styles, emptied as components are converted
 ```
@@ -24,7 +24,15 @@ Every Sass file loaded by a page or component already has the abstracts availabl
 
 ```scss
 .price-badge {
-  display: block;
+  padding: space('sm');
+  color: colour('on-primary');
+  background-color: colour('primary');
+  border-radius: radius('pill');
+  @include transition(background-color);
+
+  &:hover {
+    background-color: colour('primary-hover');
+  }
 
   @include above('tablet') {
     float: right;
@@ -33,6 +41,34 @@ Every Sass file loaded by a page or component already has the abstracts availabl
 ```
 
 Files **inside `src/styles/`** that need them must add `@use 'abstracts' as *;` at the top, because the automatic import only applies to files loaded directly by pages and components.
+
+### Design tokens
+
+Never type a colour, font size, spacing value, radius or shadow directly into a component. Use the functions, which read the values from `_variables.scss` and stop the build with a helpful message if a name is mistyped:
+
+| Function | Example | Gives |
+| --- | --- | --- |
+| `colour($role)` | `colour('heading')` | Navy `#23395d` |
+| `palette($name)` | `palette('duck-egg')` | Raw palette colour (prefer `colour()`) |
+| `space($size)` | `space('md')` | `1rem` (xxs, xs, sm, md, lg, xl, xxl, xxxl) |
+| `font-size($size)` | `font-size('xl')` | `1.5rem` (xs, sm, base, md, lg, xl, xxl, xxxl, display) |
+| `font-weight($name)` | `font-weight('semi')` | `600` (light, regular, semi, bold) |
+| `radius($size)` | `radius('md')` | `8px` (sm, md, lg, pill) |
+| `shadow($name)` | `shadow('card')` | Soft card shadow (card, raised) |
+| `z($layer)` | `z('header')` | `100` (base, header, menu, overlay, skip-link) |
+| `rem($px)` | `rem(24px)` | `1.5rem` |
+
+Fonts: `$font-heading` (Lato) and `$font-body` (Open Sans). Colour roles, fonts and the reasons behind them are in [brand.md](brand.md).
+
+### Mixins
+
+| Mixin | Use |
+| --- | --- |
+| `above($breakpoint)` / `below($breakpoint)` | Media queries (see below) |
+| `transition($properties...)` | Transitions with the default 0.3s ease-in-out; switched off for people who prefer reduced motion |
+| `visually-hidden` / `@extend %accessibility-hidden` | Hide visually but keep for screen readers |
+| `focus-ring` | The site's keyboard focus outline |
+| `button-reset`, `list-reset` | Strip browser styles from buttons and lists |
 
 ### Breakpoints
 

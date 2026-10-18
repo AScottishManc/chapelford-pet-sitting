@@ -1,15 +1,62 @@
 @use 'sass:map';
+@use 'sass:math';
 @use 'variables' as *;
 
-// Width of a named breakpoint, e.g. breakpoint('tablet') => 768px.
-@function breakpoint($name) {
-  @if not map.has-key($breakpoints, $name) {
-    @error 'Unknown breakpoint "#{$name}". Use one of: #{map.keys($breakpoints)}.';
+// Fails the build on an unknown key, so typos don't silently drop styles
+@function -token($map, $key, $label) {
+  @if not map.has-key($map, $key) {
+    @error 'Unknown #{$label} "#{$key}". Use one of: #{map.keys($map)}.';
   }
-  @return map.get($breakpoints, $name);
+  @return map.get($map, $key);
 }
 
-// Look up a value in nested maps, e.g. map-deep-get($container, 'tablet', 'padding') (2024).
+// Tokens
+
+@function colour($role) {
+  @return -token($colours, $role, 'colour');
+}
+
+@function palette($name) {
+  @return -token($palette, $name, 'palette colour');
+}
+
+@function space($size) {
+  @return -token($spacing, $size, 'spacing');
+}
+
+@function font-size($size) {
+  @return -token($font-sizes, $size, 'font size');
+}
+
+@function font-weight($weight) {
+  @return -token($font-weights, $weight, 'font weight');
+}
+
+@function radius($size) {
+  @return -token($radii, $size, 'radius');
+}
+
+@function shadow($name) {
+  @return -token($shadows, $name, 'shadow');
+}
+
+@function z($layer) {
+  @return -token($z-index, $layer, 'z-index layer');
+}
+
+@function breakpoint($name) {
+  @return -token($breakpoints, $name, 'breakpoint');
+}
+
+// Utilities
+
+@function rem($pixels, $base: 16px) {
+  @if math.unit($pixels) != 'px' {
+    @error 'rem() expects a px value, got #{$pixels}.';
+  }
+  @return math.div($pixels, $base) * 1rem;
+}
+
 @function map-deep-get($map, $keys...) {
   @each $key in $keys {
     @if not map.has-key($map, $key) {

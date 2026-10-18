@@ -1,0 +1,48 @@
+@use 'abstracts' as *;
+
+html {
+  background-color: colour('background');
+}
+
+body {
+  font-family: $font-body;
+  font-size: font-size('base');
+  line-height: $line-height-body;
+  color: colour('text');
+  background-color: colour('background');
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Links
+
+a {
+  color: colour('link');
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  @include transition(color, text-decoration-thickness);
+
+  &:hover {
+    color: colour('link-hover');
+    text-decoration-thickness: 2px;
+  }
+}
+
+// Focus
+
+:focus-visible {
+  @include focus-ring;
+}
+
+::selection {
+  color: colour('heading');
+  background-color: palette('duck-egg');
+}
+
+hr {
+  height: 0;
+  margin: space('xl') 0;
+  border: 0;
+  border-top: 1px solid colour('border');
+}

@@ -1,23 +1,7 @@
-/*
- * LEGACY: recreation of the old site's stylesheets (style.css,
- * style_tablet.css, style_desktop.css, mobilemenu.css) with the same colours,
- * fonts, sizes and breakpoints. Floats are replaced by CSS grid and vendor
- * prefixes removed, but the look is unchanged.
- *
- * Do not add new styles here. As each component is converted to BEM (MIK-33),
- * move its rules into the component's own Sass file and delete them from
- * here. This file is removed in the clean-up (MIK-48).
- *
- * Breakpoints: mobile < 600px, tablet 600px+, desktop 860px+.
- */
+// Old site styles. Don't add to this file: move rules into components as
+// they're converted, then delete it (MIK-48).
 
-@font-face {
-  font-family: 'jennasue';
-  src: url('/fonts/jennasue-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+@use 'abstracts' as *;
 
 :root {
   --navy: #152d4a;
@@ -30,59 +14,17 @@
   --text: #1d1d1d;
   --shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
   --photo-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.75);
-  --font-script: jennasue, 'Bradley Hand ITC', 'MV Boli', cursive;
-  /* The old site named Montserrat Alternates but never loaded it, so visitors
-     saw their default sans-serif font. Kept the same here. */
-  --font-body: 'Montserrat Alternates', sans-serif;
 }
 
-/* BASE (from normalize.css and style.css) */
+// Temporary: old markup uses <h1> for sub-headings; remove once components
+// use the right heading level
+#content article h1 {
+  margin-block: space('lg') space('xs');
+  font-size: font-size('lg');
 
-html {
-  font-family: sans-serif;
-  background: var(--blue-pale) var(--bg-texture);
-}
-
-body {
-  margin: 0;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-p,
-a {
-  color: var(--text);
-}
-
-h1,
-h2 {
-  font-family: var(--font-script);
-  margin: 0;
-  color: var(--navy);
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-h1 {
-  font-size: 2.5em;
-}
-
-h2 {
-  font-size: 2.3em;
-}
-
-p,
-li {
-  font-family: var(--font-body);
-  line-height: 1.5em;
-  text-align: justify;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
+  @include above('laptop') {
+    font-size: font-size('xl');
+  }
 }
 
 .bold {
@@ -222,38 +164,8 @@ aside {
 
 /* MAIN CONTENT */
 
-#content a:link,
-#content a:visited {
-  color: var(--navy);
-}
-
-#content a:hover,
-#content a:active,
-#content a:focus {
-  text-decoration: none;
-}
-
-#content a:focus {
-  background-color: var(--blue-pale);
-}
-
-#content article h1 {
-  font-size: 2.2em;
-  color: var(--navy-mid);
-  margin-top: 0.5em;
-}
-
 article ul {
   padding-left: 1em;
-}
-
-blockquote {
-  font-family: var(--font-script);
-  color: #2c2c2c;
-  font-size: 1.8em;
-  font-weight: 500;
-  text-align: justify;
-  margin-top: 0.25em;
 }
 
 .service {
@@ -357,7 +269,7 @@ a:focus .img_right {
 
 .testimonial figcaption {
   text-align: center;
-  font-family: 'Reenie Beanie', cursive;
+  font-family: var(--font-body);
   font-size: 1.4em;
   color: #454f40;
   letter-spacing: 0.09em;

@@ -11,7 +11,7 @@ Where each decision is used in this project is noted in the right-hand column.
 | Headings | Lato | Google Fonts |
 | Body text | Open Sans | Google Fonts |
 
-Weights: light 300, regular 400, semi-bold 600, bold 700. Applied in MIK-30.
+Weights: light 300, regular 400, semi-bold 600, bold 700. **Applied in MIK-30** (self-hosted; see [brand.md](brand.md)).
 
 ## Colours
 
@@ -28,7 +28,7 @@ Only the greys were defined. The file had a `// Primary` heading with no colours
 | `$grey` | `#f2f3f3` | Light |
 | `$white` | `#fff` | |
 
-Applied in MIK-30.
+**Retired (18 Oct 2026):** replaced by the redesign palette in [brand.md](brand.md).
 
 ## Breakpoints
 
@@ -69,8 +69,8 @@ Site width 1240px. Applied in MIK-31.
 | `map-deep-get($map, $keys...)` | Read nested map values | MIK-29 |
 | `grid-col-layout($start, $span)` / `grid-row-layout(...)` | Place an item on the grid | MIK-31 |
 | `container` | Page width and padding per breakpoint | MIK-31 |
-| `transition(...)` | Transitions with default duration/easing (0.3s ease-in-out) | MIK-30 |
-| `%accessibility-hidden` | Hide visually but keep for screen readers | MIK-30 |
+| `transition(...)` | Transitions with default duration/easing (0.3s ease-in-out) | MIK-30 (done) |
+| `%accessibility-hidden` | Hide visually but keep for screen readers | MIK-30 (done, plus a `visually-hidden` mixin) |
 
 The 2024 versions of the grid, container and transition helpers had bugs (they would not compile), so they are rewritten here rather than copied; names and values are kept.
 
