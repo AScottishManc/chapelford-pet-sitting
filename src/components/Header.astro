@@ -1,14 +1,9 @@
 ---
-// Logo plus the telephone number and Facebook/email icons, as on the old site.
-// The old Google site search box is not recreated (the service was retired).
 import { getEntry } from 'astro:content';
+import Icon from './Icon/Icon.astro';
 import logoSmall from '../assets/images/brand/logo_sml.png';
 import logoMedium from '../assets/images/brand/logo_med.png';
 import logoLarge from '../assets/images/brand/logo_lge.png';
-import facebook32 from '../assets/images/ui/facebook_32.gif';
-import facebook48 from '../assets/images/ui/facebook_48.gif';
-import email32 from '../assets/images/ui/email_32.gif';
-import email48 from '../assets/images/ui/email_48.gif';
 
 const site = (await getEntry('settings', 'site'))!.data;
 ---
@@ -40,19 +35,13 @@ const site = (await getEntry('settings', 'site'))!.data;
     {site.facebook && (
       <li>
         <a href={site.facebook} title={`${site.businessName}'s Facebook page`}>
-          <picture>
-            <source media="(min-width: 860px)" srcset={encodeURI(facebook48.src)} />
-            <img src={facebook32.src} alt="Facebook icon" />
-          </picture>
+          <Icon name="facebook" label="Facebook" />
         </a>
       </li>
     )}
     <li>
       <a href="/contact/" title="Contact details to get in touch">
-        <picture>
-          <source media="(min-width: 860px)" srcset={encodeURI(email48.src)} />
-          <img src={email32.src} alt="Email icon" />
-        </picture>
+        <Icon name="email" label="Email" />
       </a>
     </li>
   </ul>

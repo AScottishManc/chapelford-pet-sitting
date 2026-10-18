@@ -4,8 +4,6 @@ import Header from '../components/Header.astro';
 import Navigation from '../components/Navigation.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
-import menuIcon from '../assets/images/ui/menu-icon-large.png';
-import closeIcon from '../assets/images/ui/close-icon-large.png';
 // Self-hosted so visitors' browsers never contact Google
 import '@fontsource/lato/300.css';
 import '@fontsource/lato/400.css';
@@ -24,15 +22,10 @@ interface Props {
 const { title, description, sidebar = ['recent-news'] } = Astro.props;
 const site = (await getEntry('settings', 'site'))!.data;
 const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.businessName}`;
-// Encoded because the dev path contains the folder name, which has spaces
-const imageVars = [
-  `--menu-icon: url("${encodeURI(menuIcon.src)}")`,
-  `--close-icon: url("${encodeURI(closeIcon.src)}")`,
-].join('; ');
 ---
 
 <!doctype html>
-<html lang="en-GB" style={imageVars}>
+<html lang="en-GB">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

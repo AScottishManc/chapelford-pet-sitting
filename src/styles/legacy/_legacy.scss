@@ -97,21 +97,14 @@
 #icons a {
   display: block;
   padding: 0.5em;
+  font-size: 1.75rem;
+  color: colour('link');
   text-decoration: none;
-}
+  @include transition(color);
 
-#icons img {
-  display: block;
-  transition: transform 2s ease-in-out 2s;
-}
-
-#icons a:hover img,
-#icons a:focus img {
-  transform: rotate(-10deg);
-}
-
-#icons a:focus {
-  background-color: #fff;
+  &:hover {
+    color: colour('link-hover');
+  }
 }
 
 @media screen and (max-width: 340px) {
@@ -320,32 +313,35 @@ footer a:focus {
   }
 
   .nav-button {
-    display: block;
     position: absolute;
     top: 7px;
     left: 7px;
     width: 50px;
     height: 35px;
-    background: var(--menu-icon), linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 21px, 100%;
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    color: #fff;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     cursor: pointer;
     border: 0 none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.7) inset;
     border-radius: 5px;
     z-index: 999;
-    text-indent: -9999px;
-    overflow: hidden;
   }
 
   .nav-button:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
 
-  .nav-button.open {
-    background-image: var(--close-icon), linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  .nav-button__close,
+  .nav-button.open .nav-button__open {
+    display: none;
+  }
+
+  .nav-button.open .nav-button__close {
+    display: inline-block;
   }
 
   .primary-nav {

@@ -183,6 +183,20 @@ Rules:
 4. Delete the matching rules from `src/styles/legacy/_legacy.scss`.
 5. Check the page at phone, tablet and desktop widths.
 
+## Icons
+
+Icons are SVG files in `src/icons/` (sources and licences in its README), used through the `Icon` component:
+
+```astro
+---
+import Icon from '../Icon/Icon.astro';
+---
+<Icon name="phone" />                  <!-- decorative: hidden from screen readers -->
+<Icon name="facebook" label="Facebook" />  <!-- meaningful on its own: give it a label -->
+```
+
+Icons are 1em square and use `currentColor`, so set their size with `font-size` and their colour with `color` on the parent. Available: `arrow-up`, `chevron-down`, `close`, `download`, `email`, `facebook`, `menu`, `paw-cat`, `paw-dog`, `phone`.
+
 ## Content
 
 Editable content lives in `src/content/` (Markdown and YAML), separate from code. Its fields are defined in `src/content.config.ts`; see the README for where each type of content lives.
