@@ -17,9 +17,24 @@
   }
 }
 
+@mixin by-breakpoint($properties, $values) {
+  @each $from, $value in $values {
+    @if $from == 'base' {
+      @each $property in $properties {
+        #{$property}: $value;
+      }
+    } @else {
+      @include above($from) {
+        @each $property in $properties {
+          #{$property}: $value;
+        }
+      }
+    }
+  }
+}
+
 // Motion
 
-// transition(color, background-color) or transition(transform 0.5s ease-out)
 @mixin transition($properties...) {
   @if list.length($properties) == 0 {
     $properties: (all,);
@@ -122,7 +137,6 @@
   }
 }
 
-// grid-col-layout(1, 6) or grid-col-layout(auto, 3)
 @mixin grid-col-layout($start, $span) {
   grid-column: $start / span $span;
 }

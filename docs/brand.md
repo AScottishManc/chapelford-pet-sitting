@@ -58,6 +58,13 @@ In Sass use the **role** (`colour('heading')`), not the raw colour, so a colour 
 | Navy on apricot | 7.9 : 1 | AAA |
 | Muted grey on cream / white | 5.1 : 1 / 5.1 : 1 | AA |
 
+## Logo
+
+- **House mark:** `src/assets/images/brand/house-mark.svg`, traced from the original logo in its three colours (house grey, dog apricot, cat duck-egg).
+- **Name:** live text in navy, set in **Boogaloo** (free, SIL Open Font License; self-hosted). It stands in for Dom Casual, the original logo font, which is a commercial URW++ font needing a paid web licence.
+- **Tagline:** no longer in the header.
+- **Behaviour:** the header stays fixed at the top. The house mark is 45×45px on phones, 50×50px from tablet and 55×55px from small desktop, shrinking smoothly to 35×35px at every size once the page is scrolled. On phones only the house mark shows; on larger screens the name fades out on scroll.
+
 ## Still open
 
-- Logo wordmark font: Dom Casual (licence to check) or something more in keeping with the mature look, such as Lato (MIK-28, MIK-34).
+- Optional: buy a Dom Casual D web licence (URW++) and swap it in for Boogaloo. Don't use unlicensed copies from free-font sites.

@@ -17,7 +17,6 @@ export type IconName =
 
 interface Props {
   name: IconName;
-  /** Read out by screen readers; leave empty when the icon is decorative */
   label?: string;
   class?: string;
 }
@@ -30,5 +29,4 @@ const classes = ['icon', className].filter(Boolean).join(' ');
 const accessibility = label ? `role="img" aria-label="${label.replace(/"/g, '&quot;')}"` : 'aria-hidden="true"';
 const html = svg.replace('<svg ', `<svg class="${classes}" focusable="false" ${accessibility} `);
 ---
-
 <Fragment set:html={html} />

@@ -1,0 +1,17 @@
+---
+import houseMark from '../../assets/images/brand/house-mark.svg?raw';
+import '@fontsource/boogaloo/latin-400.css';
+import './_logo.scss';
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+const mark = houseMark.replace('<svg ', '<svg class="logo__mark" aria-hidden="true" focusable="false" ');
+---
+
+<a class="logo" href="/" aria-label={`${name} home page`}>
+  <Fragment set:html={mark} />
+  <span class="logo__text" aria-hidden="true">{name}</span>
+</a>

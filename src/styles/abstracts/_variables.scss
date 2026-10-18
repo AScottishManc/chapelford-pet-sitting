@@ -15,7 +15,6 @@ $palette: (
   'duck-egg': #c1d9d9,
 );
 
-// Use these roles in components rather than the palette directly
 $colours: (
   'background': map.get($palette, 'cream'),
   'surface': map.get($palette, 'white'),
@@ -39,6 +38,7 @@ $colours: (
 
 $font-heading: 'Lato', 'Helvetica Neue', Arial, sans-serif;
 $font-body: 'Open Sans Variable', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+$font-logo: 'Boogaloo', $font-heading;
 
 $font-weights: (
   'light': 300,
@@ -95,6 +95,22 @@ $z-index: (
   'skip-link': 1000,
 );
 
+// Header
+
+$logo-sizes: (
+  'base': 45px,
+  'tablet': 50px,
+  'desktop-small': 55px,
+);
+$logo-size-compact: 35px;
+
+$header-heights: (
+  'base': 80px,
+  'tablet': 85px,
+  'desktop-small': 90px,
+);
+$header-height-compact: 60px;
+
 $transition-duration: 0.3s;
 $transition-easing: ease-in-out;
 
@@ -109,7 +125,6 @@ $breakpoints: (
 
 // Grid and container
 
-// Columns from each breakpoint up ('base' = smallest screens)
 $grid-columns: (
   'base': 4,
   'tablet': 8,
@@ -122,7 +137,6 @@ $grid-gaps: (
   'desktop-small': 2rem,
 );
 
-// Readable line length comes from the columns content spans, not the container
 $site-width: 1440px;
 
 $container: (

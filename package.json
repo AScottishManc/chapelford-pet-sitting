@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@fontsource-variable/open-sans": "^5.3.0",
+    "@fontsource/boogaloo": "^5.3.0",
     "@fontsource/lato": "^5.3.0",
     "astro": "^7.4.0",
     "marked": "^18.1.1"

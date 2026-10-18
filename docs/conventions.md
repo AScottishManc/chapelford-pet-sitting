@@ -65,6 +65,7 @@ Fonts: `$font-heading` (Lato) and `$font-body` (Open Sans). Colour roles, fonts 
 | Mixin | Use |
 | --- | --- |
 | `above($breakpoint)` / `below($breakpoint)` | Media queries (see below) |
+| `by-breakpoint($properties, $map)` | Set a property that steps up at breakpoints, e.g. `by-breakpoint((width, height), $logo-sizes)` |
 | `transition($properties...)` | Transitions with the default 0.3s ease-in-out; switched off for people who prefer reduced motion |
 | `visually-hidden` / `@extend %accessibility-hidden` | Hide visually but keep for screen readers |
 | `focus-ring` | The site's keyboard focus outline |
