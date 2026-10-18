@@ -1,0 +1,37 @@
+---
+// Contact details only; the old contact form is not rebuilt (its reCAPTCHA
+// service was retired in 2018). Numbers and email come from settings.yaml.
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const page = (await getEntry('pages', 'contact'))!.data;
+const site = (await getEntry('settings', 'site'))!.data;
+
+// Percent-encode every character of the address, as the old site did, so
+// simple spam bots can't read it from the page source.
+const encodedEmail = [...site.email]
+  .map((char) => '%' + char.charCodeAt(0).toString(16).toUpperCase().padStart(2, '0'))
+  .join('');
+---
+
+<BaseLayout title={page.title} description={page.description} sidebar={page.sidebar}>
+  <h1>{page.heading ?? page.title}</h1>
+
+  <article>
+    <h1>Telephone</h1>
+    <p>To book a consultation or if you have any further questions, then please contact {site.ownerName} on:</p>
+    <p>
+      {site.landline && (
+        <>
+          <span class="bold">Telephone:</span>{site.landline}<br />
+        </>
+      )}
+      <span class="bold">Mobile:</span>{site.phone}
+    </p>
+  </article>
+
+  <article>
+    <h1>EMail</h1>
+    <p>Alternatively, send an <a href={`mailto:${encodedEmail}`}>email</a></p>
+  </article>
+</BaseLayout>
