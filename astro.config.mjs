@@ -8,7 +8,6 @@ export default defineConfig({
       preprocessorOptions: {
         scss: {
           loadPaths: ['src/styles'],
-          // Shared variables, functions and mixins in every component's Sass
           additionalData: `@use 'abstracts' as *;\n`,
         },
       },

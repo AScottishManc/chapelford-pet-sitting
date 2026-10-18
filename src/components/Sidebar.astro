@@ -1,5 +1,4 @@
 ---
-// Right-hand sidebar: the boxes chosen by the page, then the insurer logo.
 import { getEntries } from 'astro:content';
 import cliverton from '../assets/images/brand/clivertonlogo.jpg';
 
@@ -10,7 +9,6 @@ interface Props {
 const { boxes } = Astro.props;
 const entries = await getEntries(boxes.map((id) => ({ collection: 'sidebar' as const, id })));
 ---
-
 <aside>
   {entries.map(({ data }) => (
     <article

@@ -1,10 +1,9 @@
 ---
 import { getEntry } from 'astro:content';
-import Header from '../components/Header.astro';
+import Header from '../components/Header/Header.astro';
 import Navigation from '../components/Navigation.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
-// Self-hosted so visitors' browsers never contact Google
 import '@fontsource/lato/300.css';
 import '@fontsource/lato/400.css';
 import '@fontsource/lato/700.css';
@@ -15,7 +14,6 @@ import '../styles/main.scss';
 interface Props {
   title: string;
   description: string;
-  /** Box ids from src/content/sidebar.yaml */
   sidebar?: string[];
 }
 
@@ -23,7 +21,6 @@ const { title, description, sidebar = ['recent-news'] } = Astro.props;
 const site = (await getEntry('settings', 'site'))!.data;
 const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.businessName}`;
 ---
-
 <!doctype html>
 <html lang="en-GB">
   <head>

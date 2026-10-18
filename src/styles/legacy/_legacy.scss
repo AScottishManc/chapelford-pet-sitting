@@ -47,73 +47,6 @@
   background: #fff;
 }
 
-/* HEADER */
-
-.site-logo {
-  @include above('desktop-small') {
-    flex: 0 1 763px;
-  }
-}
-
-#telephone p {
-  white-space: nowrap;
-}
-
-#logo {
-  display: block;
-}
-
-#logo img {
-  width: 100%;
-}
-
-#header-aside {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-/* Keeps the space the old Google search box took up */
-#search {
-  width: 100%;
-  height: 2.6em;
-}
-
-#telephone {
-  width: 57.5625%;
-  font-size: 0.9em;
-  padding-top: 1em;
-}
-
-#icons {
-  display: flex;
-  flex-direction: row-reverse;
-  margin: 1em 0;
-  padding: 0 0 0 3.4375%;
-  width: 38%;
-  list-style: none;
-}
-
-#icons a {
-  display: block;
-  padding: 0.5em;
-  font-size: 1.75rem;
-  color: colour('link');
-  text-decoration: none;
-  @include transition(color);
-
-  &:hover {
-    color: colour('link-hover');
-  }
-}
-
-@media screen and (max-width: 340px) {
-  #telephone {
-    font-size: 0.8em;
-    padding-top: 1.6em;
-  }
-}
-
 /* MAIN CONTENT */
 
 article ul {
@@ -301,19 +234,19 @@ footer a:focus {
   background-color: #000;
 }
 
-/* MOBILE MENU (below 600px) */
+/* MOBILE MENU (below tablet) */
 
 .nav-button {
   display: none;
 }
 
-@media screen and (max-width: 599px) {
+@include below('tablet') {
   body {
     padding-top: 50px;
   }
 
   .nav-button {
-    position: absolute;
+    position: fixed;
     top: 7px;
     left: 7px;
     width: 50px;
@@ -328,7 +261,7 @@ footer a:focus {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.7) inset;
     border-radius: 5px;
-    z-index: 999;
+    z-index: z('menu') + 1;
   }
 
   .nav-button:hover {
@@ -353,10 +286,10 @@ footer a:focus {
     padding: 0;
     overflow: hidden;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 998;
+    z-index: z('menu');
     list-style: none;
   }
 
@@ -390,6 +323,8 @@ footer a:focus {
 
   .primary-nav.open {
     height: auto;
+    max-height: 100vh;
+    overflow-y: auto;
     padding-top: 50px;
   }
 
@@ -423,9 +358,9 @@ footer a:focus {
   }
 }
 
-/* TABLET (600px and up) */
+/* TABLET AND UP */
 
-@media screen and (min-width: 600px) {
+@include above('tablet') {
   /* Navigation: stacked rounded buttons */
   #nav-wrap ul {
     margin: 0;
@@ -519,63 +454,9 @@ footer a:focus {
   }
 }
 
-@media screen and (min-width: 650px) {
-  #header-aside {
-    margin-top: 0.75em;
-  }
-
-  #search {
-    width: 31.27463%;
-    height: auto;
-  }
-
-  #telephone {
-    width: 39.54687%;
-    padding: 0.1em 0.25em;
-    margin-left: 2.73437%;
-  }
-
-  #telephone p {
-    text-align: center;
-  }
-
-  #icons {
-    width: 20.27463%;
-    margin: 0 0 0 auto;
-    padding: 0;
-  }
-}
-
 /* DESKTOP (860px and up) */
 
-@media screen and (min-width: 860px) {
-  #header-aside {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: flex-end;
-    padding-top: space('md');
-  }
-
-  #search {
-    width: 100%;
-    height: 1.85em;
-  }
-
-  #telephone {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-
-  #telephone p {
-    text-align: right;
-  }
-
-  #icons {
-    width: 100%;
-    margin-right: -0.55em;
-  }
-
+@include above('desktop-small') {
   aside article {
     display: block;
     width: 100%;

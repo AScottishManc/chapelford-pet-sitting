@@ -1,6 +1,14 @@
 @use 'abstracts' as *;
 
-// Site layout: header, navigation, content, sidebar and footer on the grid
+$-mobile-menu-bar: 50px;
+
+html {
+  scroll-padding-top: $-mobile-menu-bar + $header-height-compact + 16px;
+
+  @include above('tablet') {
+    scroll-padding-top: $header-height-compact + 16px;
+  }
+}
 
 .page {
   @include grid;
@@ -12,13 +20,13 @@
   }
 
   &__header {
-    display: flex;
-    flex-direction: column;
+    @include by-breakpoint(height, $header-heights);
 
-    @include above('desktop-small') {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
+    // Temporary: sits under the old mobile menu bar until MIK-35
+    @include below('tablet') {
+      .header {
+        top: $-mobile-menu-bar;
+      }
     }
   }
 

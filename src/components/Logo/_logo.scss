@@ -1,0 +1,45 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: space('md');
+  color: colour('heading');
+  text-decoration: none;
+
+  &:hover {
+    color: colour('heading');
+  }
+
+  &__mark {
+    @include by-breakpoint((width, height), $logo-sizes);
+    @include transition(width, height);
+  }
+
+  &__text {
+    display: none;
+    font-family: $font-logo;
+    font-size: font-size('xl');
+    font-weight: font-weight('regular');
+    line-height: $line-height-heading;
+    @include transition(opacity, visibility);
+
+    @include above('tablet') {
+      display: block;
+    }
+
+    @include above('desktop-small') {
+      font-size: font-size('xxl');
+    }
+  }
+}
+
+.header--compact .logo {
+  &__mark {
+    width: $logo-size-compact;
+    height: $logo-size-compact;
+  }
+
+  &__text {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

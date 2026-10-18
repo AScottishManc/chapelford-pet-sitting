@@ -2,10 +2,8 @@
 import { getEntry } from 'astro:content';
 
 const site = (await getEntry('settings', 'site'))!.data;
-// Set when the site is built, so the year stays current.
 const year = new Date().getFullYear();
 ---
-
 <footer>
   <p>
     &copy; {site.businessName} {year} |{' '}

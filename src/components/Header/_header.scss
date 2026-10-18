@@ -1,0 +1,71 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: z('header');
+  background-color: colour('background');
+  @include transition(box-shadow);
+
+  &--compact {
+    box-shadow: shadow('card');
+  }
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: space('md');
+    @include by-breakpoint(height, $header-heights);
+    @include transition(height);
+  }
+
+  &--compact &__inner {
+    height: $header-height-compact;
+  }
+
+  &__contact {
+    @include list-reset;
+    display: flex;
+    align-items: center;
+    gap: space('md');
+  }
+
+  &__contact-item + &__contact-item {
+    margin: 0;
+  }
+
+  &__contact-link {
+    display: flex;
+    align-items: center;
+    gap: space('xs');
+    font-size: font-size('sm');
+    color: colour('heading');
+    text-decoration: none;
+    white-space: nowrap;
+    @include transition(color);
+
+    &:hover {
+      color: colour('text-muted');
+    }
+
+    .icon {
+      font-size: 1.5rem;
+    }
+
+    @include above('desktop-small') {
+      font-size: font-size('base');
+    }
+  }
+
+  &__phone-label {
+    @include visually-hidden;
+  }
+
+  &__phone-number {
+    font-weight: font-weight('semi');
+
+    @include below('tablet') {
+      @include visually-hidden;
+    }
+  }
+}

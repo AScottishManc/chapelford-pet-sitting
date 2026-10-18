@@ -1,10 +1,8 @@
 @use 'sass:map';
 @use 'abstracts' as *;
 
-// Breakpoints that get span classes, e.g. .grid__col--tablet-6
 $-span-breakpoints: ('mobile-large', 'tablet', 'desktop-small', 'desktop');
 
-// Number of columns in use at a breakpoint
 @function -columns-at($name) {
   $columns: map.get($grid-columns, 'base');
   @each $from, $count in $grid-columns {
@@ -18,7 +16,6 @@ $-span-breakpoints: ('mobile-large', 'tablet', 'desktop-small', 'desktop');
 .grid {
   @include grid;
 
-  // Full width unless told otherwise
   > * {
     grid-column: 1 / -1;
   }

@@ -1,0 +1,61 @@
+---
+import { getEntry } from 'astro:content';
+import Icon from '../Icon/Icon.astro';
+import Logo from '../Logo/Logo.astro';
+import './_header.scss';
+
+const site = (await getEntry('settings', 'site'))!.data;
+const phoneLink = `tel:${site.phone.replace(/\D/g, '').replace(/^0/, '+44')}`;
+---
+
+<header class="header" data-header>
+  <div class="header__inner">
+    <Logo name={site.businessName} />
+
+    <ul class="header__contact">
+      <li class="header__contact-item">
+        <a class="header__contact-link" href={phoneLink}>
+          <Icon name="phone" />
+          <span class="header__phone-label">Telephone:</span>
+          <span class="header__phone-number">{site.phone}</span>
+        </a>
+      </li>
+      <li class="header__contact-item">
+        <a class="header__contact-link" href="/contact/">
+          <Icon name="email" label="Email" />
+        </a>
+      </li>
+      {site.facebook && (
+        <li class="header__contact-item">
+          <a class="header__contact-link" href={site.facebook}>
+            <Icon name="facebook" label={`${site.businessName} on Facebook`} />
+          </a>
+        </li>
+      )}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+
+  if (header) {
+    let ticking = false;
+    const update = () => {
+      header.classList.toggle('header--compact', window.scrollY > 24);
+      ticking = false;
+    };
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      },
+      { passive: true },
+    );
+    update();
+  }
+</script>
