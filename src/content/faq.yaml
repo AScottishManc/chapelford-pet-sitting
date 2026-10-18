@@ -1,5 +1,97 @@
-# Placeholder - real FAQs migrated from the old site in MIK-12.
-- id: example
-  question: Example question?
-  answer: Example answer.
+# Frequently asked questions, shown in "order". Answers are Markdown:
+# leave a blank line between paragraphs.
+- id: q1
   order: 1
+  question: What area does your pet sitting cover?
+  answer: |
+    The service is focused on the Chapelford and the surrounding areas of Great Sankey, Warrington. However, if you live outside of these areas and require my services then please contact me to discuss your needs and the prices. [Prices](/prices/) listed on this website are for my services in the local area only.
+- id: q2
+  order: 2
+  question: What animals will you look after?
+  answer: |
+    The service was primarily set up for cats and small dogs. However, I have also cared for other small animals and have such great clients including ducks, rabbits, guinea pigs and a tortoise.
+- id: q3
+  order: 3
+  question: Who looks after my pets?
+  answer: |
+    It is just me, and I offer a truly professional service that I do not pass on to anyone else.
+- id: q4
+  order: 4
+  question: What is the initial consultation and what happens?
+  answer: |
+    I will visit your home and your pet(s) to have a chat with you. This is to find out any specific details about your pet(s). Such as, how much food they have daily, and how they like to be fussed/played with etc.
+
+    I will also find out about any specific details regarding the security of your home, such as locking up, alarm codes and other necessities.
+
+    I will also fill out a questionnaire with you so I can gather important information such as contact details for you and your vet.
+
+    I shall ask you to kindly read and sign my [terms & conditions.](/terms-conditions/) form to confirm that you agree to allow me to enter your home and care for your pet(s).
+
+    Finally, I shall ask for a set of keys to your house, both front and back doors please (in case the front door won't open for some reason).
+
+    Payment is normally taken at time of consultation too.
+- id: q5
+  order: 5
+  question: How many visits do you recommend?
+  answer: |
+    A pet needs a minimum of one visit per day, as they can get ill if they do not have fresh food and water for 24 hours.
+
+    For younger cats, very playful cats and those cats who demand a lot of attention, I recommend two visits a day to ensure they don't get too agitated or lonely. I also recommend two visits a day for older cats as they are more prone to health problems and depression when left by owners.
+
+    For dogs, I recommend the same as above for cats.
+
+    Of course, it is up to you on how many times you want me to visit your pets.
+- id: q6
+  order: 6
+  question: Do you accept last minute booking?
+  answer: |
+    I will always try my best to accommodate any last minute bookings. If something does happen and you need a last minute booking, the best thing to do is contact me on my mobile to check for my availability.
+- id: q7
+  order: 7
+  question: How do you arrange a free consultation?
+  answer: |
+    You can call me on the numbers provided on the [contact page](/contact/) to arrange a meeting.
+
+    My phone also has a messaging service if I am unable to answer. I will call you back as soon as I am available to do so.
+- id: q8
+  order: 8
+  question: What time are your services available?
+  answer: |
+    The standard visiting time is 8am - 6pm. However, in an emergency or by prior arrangement, if needed outside of these times something can be arranged for an additional charge.
+- id: q9
+  order: 9
+  question: How long are your visits for?
+  answer: |
+    The toilet break/cat feeding visit is 15 minutes.
+
+    A standard visit is about 30 minutes, so I have plenty of time to feed your pets, clean out any litter trays, hutches and give them lots of attention.
+
+    If you require me to visit for longer periods this can be discussed at the [free consultation](/contact/).
+
+    For a breakdown, please visit the [cat](/cats/), [dog](/dogs/) or [other pets](/other-pets/) services page.
+- id: q10
+  order: 10
+  question: What if my pet needs medication?
+  answer: |
+    I can administer oral medication to your pet whilst you are away. I have many years of experience of looking after animals. Please ensure that you have left enough medicine for the entire duration of your holiday, plus a bit extra in case you get held up.
+
+    I have also undergone training by our veterinary practice to be able to give cats/dogs injections if needed, for example, diabetes.
+- id: q11
+  order: 11
+  question: What if there was an emergency and you had to take my pet to the vet if I was unable to?
+  # The Emergency Pet to Vet service was removed from the service pages but is
+  # still described here on the live site (see MIK-22).
+  answer: |
+    In the event of an emergency I would obviously make contact with yourself or the emergency contact you have provided me with and if necessary liaise with your vet. If I have to take your pet to the vet as an emergency I will do so and there is a fee of £18 for this service. I shall take your pet to the vet, stay with your pet to keep calm and comfortable and if allowed to bring home I will settle your pet back at home before I leave.
+- id: q12
+  order: 12
+  question: What happens if my pet gets ill while I am away?
+  answer: |
+    In the unlikely event that your pet becomes ill whilst you are away, then I will contact you immediately, and seek advice from your vet if needed. It is vital you leave me with an emergency contact number for yourself, the number of a relative or close friends that you are happy to make decisions on your behalf.
+
+    This is another reason why the consultation prior to booking is so important. You as the pet owner are responsible for all veterinary fees incurred.
+- id: q13
+  order: 13
+  question: What happens if there is a delay in my holiday or something happens?
+  answer: |
+    Please do not worry. All you have to do is contact me and I shall continue to visit your pet(s) until you have confirmed with me that you've arrived home safely.

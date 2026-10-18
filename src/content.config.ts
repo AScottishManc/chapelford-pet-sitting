@@ -125,10 +125,12 @@ const testimonials = defineCollection({
     }),
 });
 
+// Frequently asked questions. The id (q1, q2...) is used in links to each answer.
 const faq = defineCollection({
   loader: file('src/content/faq.yaml'),
   schema: z.object({
     question: z.string(),
+    // Markdown; may have several paragraphs and links
     answer: z.string(),
     order: z.number().int().default(0),
   }),
