@@ -86,7 +86,7 @@ The Emergency Pet to Vet service (£18) has been removed from the service pages 
 - Typos fixed on the way across (e.g. "acccept", "consultantion", "hestate").
 
 ### News → MIK-13
-- **24 posts, May 2013 – January 2018.** Mostly qualifications, training, insurance changes, booking notices.
+- **24 posts, January 2012 – January 2018.** Mostly qualifications, training, insurance changes, booking notices.
 - ⚠️ Nothing for over 8 years, so it makes the business look inactive. Recommendation for the Redesign: drop the News page and fold the useful parts (qualifications, training, insurance) into an About section.
 
 ### Contact → MIK-14
