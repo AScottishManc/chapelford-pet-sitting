@@ -22,7 +22,8 @@ services:
       - Should soiling occur, the area will be cleaned with the products provided for me to use.
   - id: home
     name: Home Visit
-    price: £9.00*
+    price: £9.00
+    priceMarker: "*"
     priceUnit: per visit
     summary:
       - This is an ideal service if you have a puppy or dog that needs attention during the day. Regular visits can be carried out to feed and play with your dog and to give them toilet breaks.
@@ -39,7 +40,8 @@ services:
       - Alternatively, you may prefer a simple text to simply reassure you all is well.
   - id: walking
     name: Walking Service
-    price: £9.00*
+    price: £9.00
+    priceMarker: "*"
     priceUnit: per walk
     summary:
       - I am happy to walk your dog as a one off or as a regular arrangement.

@@ -1,0 +1,35 @@
+# Rows of the price table on the Prices page, grouped by service page.
+# Prices come from each service page (src/content/services), so change them there.
+cats:
+  heading: Cats
+  order: 1
+  rows:
+    - service: feeding
+      marker: "†"
+      time: 15 mins
+    - service: sitting
+      time: 30 mins
+dogs:
+  heading: Dogs
+  order: 2
+  rows:
+    - service: toilet
+      marker: "†"
+      time: 15 mins
+    - service: home
+      marker: "*"
+      time: 30 mins
+    - note: "* This service is half price if taken in conjunction with the walking service during the same visit"
+    - service: walking
+      time: 30 mins
+other-pets:
+  heading: Other Pets
+  order: 3
+  rows:
+    - service: feeding
+      marker: "†"
+      time: 15 mins
+    - service: home
+      time: 30 mins
+    - note: "† This service is only available within Chapelford and the immediate surrounding area."
+      bold: false
