@@ -8,7 +8,7 @@ const { Content } = await render(home);
 const { title, heading, description, image, imageAlt } = home.data;
 ---
 
-<BaseLayout title={title} description={description} sidebar={['recent-news']}>
+<BaseLayout title={title} description={description} sidebar={[]}>
   <h1>{heading ?? title}</h1>
   {image && <Image class="img_right" src={image} alt={imageAlt ?? ''} />}
   <Content />
