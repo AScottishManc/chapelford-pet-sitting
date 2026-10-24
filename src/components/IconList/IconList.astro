@@ -1,0 +1,24 @@
+---
+import Icon, { type IconName } from '../Icon/Icon.astro';
+import './_icon-list.scss';
+
+interface Props {
+  title: string;
+  items: string[];
+  icon?: IconName;
+}
+
+const { title, items, icon = 'paw-cat' } = Astro.props;
+---
+
+<section class="icon-list">
+  <h2 class="icon-list__title">{title}</h2>
+  <ul class="icon-list__list">
+    {items.map((item) => (
+      <li class="icon-list__item">
+        <Icon name={icon} class="icon-list__icon" />
+        <span>{item}</span>
+      </li>
+    ))}
+  </ul>
+</section>
