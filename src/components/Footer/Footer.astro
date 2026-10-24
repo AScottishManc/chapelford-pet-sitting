@@ -1,5 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import cliverton from '../../assets/images/brand/clivertonlogo.jpg';
 import houseMark from '../../assets/images/brand/house-mark.svg?raw';
 import Icon from '../Icon/Icon.astro';
 import { navItems, type NavItem } from '../Navigation/items';
@@ -20,6 +22,9 @@ const pages = navItems.filter((item): item is NavItem & { href: string } => !!it
       <Fragment set:html={mark} />
       <p class="footer__name">{site.businessName}</p>
       {site.tagline && <p class="footer__tagline">{site.tagline}</p>}
+      <a class="footer__insurer" href="https://www.cliverton.co.uk/">
+        <Image class="footer__insurer-logo" src={cliverton} width={160} alt="Insured by Cliverton Insurance" />
+      </a>
     </div>
 
     <div class="footer__section">

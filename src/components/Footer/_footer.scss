@@ -58,6 +58,20 @@ $-rule: color.change(colour('background'), $alpha: 0.15);
     color: palette('duck-egg');
   }
 
+  &__insurer {
+    display: inline-block;
+    margin-top: space('lg');
+    padding: space('sm') space('md');
+    background-color: palette('white');
+    border-radius: radius('md');
+  }
+
+  &__insurer-logo {
+    display: block;
+    width: rem(140px);
+    height: auto;
+  }
+
   // Sections
 
   &__heading {
