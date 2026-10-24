@@ -28,6 +28,16 @@ const pages = defineCollection({
       imageAlt: z.string().optional(),
       sidebar: z.array(z.string()).default(['recent-news']),
       outro: z.array(z.string()).default([]),
+      hero: z
+        .object({
+          heading: z.string(),
+          text: z.string().optional(),
+          image: image().optional(),
+          imageAlt: z.string().optional(),
+          imagePosition: z.string().optional(),
+          buttons: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
+        })
+        .optional(),
       iconList: z
         .object({
           title: z.string(),

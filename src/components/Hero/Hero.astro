@@ -1,0 +1,57 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Breadcrumb, { type Crumb } from '../Breadcrumb/Breadcrumb.astro';
+import Icon from '../Icon/Icon.astro';
+import './_hero.scss';
+
+export interface HeroProps {
+  heading: string;
+  text?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  imagePosition?: string;
+  buttons?: { label: string; href: string }[];
+}
+
+interface Props extends HeroProps {
+  size?: 'large' | 'small';
+  breadcrumb?: Crumb[];
+}
+
+const { heading, text, image, imageAlt = '', imagePosition = 'center', buttons = [], size = 'large', breadcrumb } = Astro.props;
+---
+
+<section class:list={['hero', `hero--${size}`, image ? 'hero--image' : 'hero--plain']}>
+  {image ? (
+    <Image
+      class="hero__image"
+      src={image}
+      alt={imageAlt}
+      widths={[640, 1024, 1380, 1920]}
+      sizes="(min-width: 1380px) 900px, (min-width: 1024px) 65vw, 100vw"
+      loading="eager"
+      fetchpriority="high"
+      style={`object-position: ${imagePosition}`}
+    />
+  ) : (
+    <Icon name="paw-cat" class="hero__paw" />
+  )}
+
+  <div class="hero__inner">
+    <div class="hero__content">
+      {breadcrumb && <Breadcrumb items={breadcrumb} />}
+      <h1 class="hero__heading">{heading}</h1>
+      {text && <p class="hero__text">{text}</p>}
+      {buttons.length > 0 && (
+        <div class="hero__actions">
+          {buttons.map((button, index) => (
+            <a class:list={['hero__button', { 'hero__button--secondary': index > 0 }]} href={button.href}>
+              {button.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>
