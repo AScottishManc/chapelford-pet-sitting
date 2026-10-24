@@ -1,0 +1,62 @@
+.rich-text {
+  display: flow-root;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  // Images on their own line: centred on phones; from tablet, left and right float
+  // with the text wrapping round them
+  p:has(> .rich-text__image) {
+    margin-block: space('lg');
+  }
+
+  @include above('tablet') {
+    p:has(> .rich-text__image--left),
+    p:has(> .rich-text__image--right) {
+      max-width: min(40%, #{rem(288px)});
+      margin-block: 0 space('sm');
+    }
+
+    p:has(> .rich-text__image--left) {
+      float: left;
+      margin-right: space('xl');
+    }
+
+    p:has(> .rich-text__image--right) {
+      float: right;
+      margin-left: space('xl');
+    }
+
+    p:has(> .rich-text__image--centre) {
+      clear: both;
+    }
+  }
+
+  // Photo in a white frame; never larger than the image itself
+  &__image {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: rem(480px);
+    margin-inline: auto;
+    padding: space('xs');
+    background-color: palette('white');
+    border: 1px solid colour('border');
+    border-radius: radius('sm');
+    box-shadow: shadow('card');
+
+    @include above('tablet') {
+      &--left {
+        max-height: none;
+        transform: rotate(-2deg);
+      }
+
+      &--right {
+        max-height: none;
+        transform: rotate(2deg);
+      }
+    }
+  }
+}

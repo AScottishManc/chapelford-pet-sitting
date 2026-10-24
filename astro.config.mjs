@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { satteri } from '@astrojs/markdown-satteri';
+import { markdownImages } from './src/lib/markdown-images.ts';
 
 export default defineConfig({
   output: 'static',
@@ -14,8 +16,10 @@ export default defineConfig({
     },
   },
   markdown: {
-    // Keep text exactly as typed: straight quotes, no auto-linked "www."
-    smartypants: false,
-    gfm: false,
+    processor: satteri({
+      // Keep text exactly as typed: straight quotes, no auto-linked "www."
+      features: { gfm: false, smartPunctuation: false },
+      hastPlugins: [markdownImages()],
+    }),
   },
 });
