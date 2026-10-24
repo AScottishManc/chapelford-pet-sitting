@@ -28,6 +28,13 @@ const pages = defineCollection({
       imageAlt: z.string().optional(),
       sidebar: z.array(z.string()).default(['recent-news']),
       outro: z.array(z.string()).default([]),
+      iconList: z
+        .object({
+          title: z.string(),
+          items: z.array(z.string()),
+          icon: z.enum(['paw-cat', 'paw-dog', 'paw-rabbit']).default('paw-cat'),
+        })
+        .optional(),
       ctaBlock: z
         .object({
           title: z.string(),

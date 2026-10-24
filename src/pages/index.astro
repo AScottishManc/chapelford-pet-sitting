@@ -3,15 +3,17 @@ import { getEntry, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBlock from '../components/CtaBlock/CtaBlock.astro';
+import IconList from '../components/IconList/IconList.astro';
 
 const home = (await getEntry('pages', 'home'))!;
 const { Content } = await render(home);
-const { title, heading, description, image, imageAlt, ctaBlock } = home.data;
+const { title, heading, description, image, imageAlt, iconList, ctaBlock } = home.data;
 ---
 
 <BaseLayout title={title} description={description} sidebar={[]}>
   <h1>{heading ?? title}</h1>
   {image && <Image class="img_right" src={image} alt={imageAlt ?? ''} />}
   <Content />
+  {iconList && <IconList {...iconList} />}
   {ctaBlock && <CtaBlock {...ctaBlock} />}
 </BaseLayout>
