@@ -28,6 +28,19 @@ const pages = defineCollection({
       imageAlt: z.string().optional(),
       sidebar: z.array(z.string()).default(['recent-news']),
       outro: z.array(z.string()).default([]),
+      ctaBlock: z
+        .object({
+          title: z.string(),
+          items: z.array(
+            z.object({
+              label: z.string(),
+              href: z.string(),
+              icon: z.enum(['paw-cat', 'paw-dog', 'paw-rabbit']),
+              theme: z.enum(['navy', 'duck-egg', 'apricot', 'stone']).default('navy'),
+            }),
+          ),
+        })
+        .optional(),
     }),
 });
 

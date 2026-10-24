@@ -1,0 +1,26 @@
+---
+import Icon, { type IconName } from '../Icon/Icon.astro';
+import './_cta-block.scss';
+
+interface Props {
+  title: string;
+  items: { label: string; href: string; icon: IconName; theme?: 'navy' | 'duck-egg' | 'apricot' | 'stone' }[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<section class="cta-block">
+  <h2 class="cta-block__title">{title}</h2>
+  <ul class="cta-block__list">
+    {items.map((item) => (
+      <li class="cta-block__item">
+        <a class={`cta-block__card cta-block__card--${item.theme ?? 'navy'}`} href={item.href}>
+          <Icon name={item.icon} class="cta-block__paw" />
+          <span class="cta-block__label">{item.label}</span>
+          <span class="cta-block__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
