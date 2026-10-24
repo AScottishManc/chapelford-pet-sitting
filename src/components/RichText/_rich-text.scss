@@ -33,7 +33,7 @@
     }
   }
 
-  // Photo in a white frame; never larger than the image itself
+  // Photos: no frame, straight, rounded corners; never larger than the image itself
   &__image {
     display: block;
     width: auto;
@@ -41,21 +41,12 @@
     height: auto;
     max-height: rem(480px);
     margin-inline: auto;
-    padding: space('xs');
-    background-color: palette('white');
-    border: 1px solid colour('border');
-    border-radius: radius('sm');
-    box-shadow: shadow('card');
+    border-radius: radius('lg');
 
     @include above('tablet') {
-      &--left {
-        max-height: none;
-        transform: rotate(-2deg);
-      }
-
+      &--left,
       &--right {
         max-height: none;
-        transform: rotate(2deg);
       }
     }
   }
