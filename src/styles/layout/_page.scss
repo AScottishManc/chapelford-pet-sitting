@@ -1,6 +1,12 @@
 @use 'sass:map';
 @use 'abstracts' as *;
 
+// From desktop-small, content sits in the centre 10 of 12 columns, shared
+// with the sidebar when there is one
+$-content-start: 2;
+$-main-columns: 7;
+$-sidebar-columns: 3;
+
 html {
   scroll-padding-top: $header-height-compact + 16px;
 
@@ -32,11 +38,15 @@ html {
 
   @include above('desktop-small') {
     &__main {
-      @include grid-col-layout(auto, 8);
+      @include grid-col-layout($-content-start, $-main-columns);
     }
 
     &__sidebar {
-      @include grid-col-layout(auto, 4);
+      @include grid-col-layout($-content-start + $-main-columns, $-sidebar-columns);
+    }
+
+    &--full &__main {
+      @include grid-col-layout($-content-start, $-main-columns + $-sidebar-columns);
     }
   }
 }

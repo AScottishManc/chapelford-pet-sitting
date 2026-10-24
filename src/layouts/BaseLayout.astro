@@ -30,7 +30,7 @@ const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.busi
     <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
-    <div class="container page">
+    <div class:list={['container', 'page', { 'page--full': !sidebar.length }]}>
       <a class="skip-link" href="#site-nav">Skip to Navigation</a>
       <a class="skip-link" href="#content">Skip to Content</a>
 
@@ -42,9 +42,11 @@ const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.busi
         <slot />
       </main>
 
-      <div class="page__sidebar">
-        <Sidebar boxes={sidebar} />
-      </div>
+      {sidebar.length > 0 && (
+        <div class="page__sidebar">
+          <Sidebar boxes={sidebar} />
+        </div>
+      )}
     </div>
 
     <Footer />

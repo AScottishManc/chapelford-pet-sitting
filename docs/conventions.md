@@ -132,7 +132,11 @@ Prefer the mixins, so markup stays clean:
 | `grid-col-layout($start, $span)` | Place an item, e.g. `(1, 6)` or `(auto, 3)` |
 | `grid-row-layout($start, $span, $gap)` | Place an item across rows |
 
-The site layout itself (header, navigation, content, sidebar, footer) is in `src/styles/layout/_page.scss`.
+### Page layout
+
+From `desktop-small`, page content sits in the **centre 10 of the 12 columns** (columns 2–11). Pages with a sidebar split those 10 columns: content 7, sidebar 3. Pages without one (e.g. the home page, `sidebar={[]}` on `BaseLayout`) use all 10 for content. On tablet the content is full width with the sidebar below; on phones everything is full width.
+
+The split is set at the top of `src/styles/layout/_page.scss`.
 
 ### Checking styles
 
