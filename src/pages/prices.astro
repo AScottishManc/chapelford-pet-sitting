@@ -28,7 +28,7 @@ const sections = await Promise.all(
 );
 ---
 
-<BaseLayout title={page.title} description={page.description} sidebar={page.sidebar} heading={page.heading ?? page.title}>
+<BaseLayout title={page.title} description={page.description} heading={page.heading ?? page.title}>
   <Content />
 
   <table id="table">

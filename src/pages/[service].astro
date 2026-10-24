@@ -19,7 +19,7 @@ const { Content } = await render(entry);
 const page = entry.data;
 ---
 
-<BaseLayout title={`${page.title} | Services`} description={page.description} sidebar={page.sidebar} heading={page.title}>
+<BaseLayout title={`${page.title} | Services`} description={page.description} heading={page.title}>
   {page.quote && <blockquote>{page.quote}</blockquote>}
   <Image class={`img_${page.imagePosition}`} src={page.image} alt={page.imageAlt} />
   <Content />

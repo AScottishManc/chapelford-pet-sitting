@@ -1,7 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
 import Header from '../components/Header/Header.astro';
-import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer/Footer.astro';
 import Hero, { type HeroProps } from '../components/Hero/Hero.astro';
 import type { Crumb } from '../components/Breadcrumb/Breadcrumb.astro';
@@ -16,12 +15,11 @@ import '../styles/main.scss';
 interface Props {
   title: string;
   description: string;
-  sidebar?: string[];
   heading?: string;
   hero?: HeroProps;
 }
 
-const { title, description, sidebar = ['recent-news'], heading, hero } = Astro.props;
+const { title, description, heading, hero } = Astro.props;
 const site = (await getEntry('settings', 'site'))!.data;
 const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.businessName}`;
 
@@ -45,7 +43,7 @@ const breadcrumb: Crumb[] = [
     <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
-    <div class:list={['container', 'page', { 'page--full': !sidebar.length }]}>
+    <div class="container page page--full">
       <a class="skip-link" href="#site-nav">Skip to Navigation</a>
       <a class="skip-link" href="#content">Skip to Content</a>
 
@@ -62,12 +60,6 @@ const breadcrumb: Crumb[] = [
       <main id="content" class="page__main">
         <slot />
       </main>
-
-      {sidebar.length > 0 && (
-        <div class="page__sidebar">
-          <Sidebar boxes={sidebar} />
-        </div>
-      )}
     </div>
 
     <Footer />

@@ -10,7 +10,7 @@ const { Content } = await render(home);
 const { title, description, hero, iconList, ctaBlock } = home.data;
 ---
 
-<BaseLayout title={title} description={description} sidebar={[]} hero={hero}>
+<BaseLayout title={title} description={description} hero={hero}>
   <RichText>
     <Content />
   </RichText>
