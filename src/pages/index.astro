@@ -7,11 +7,10 @@ import RichText from '../components/RichText/RichText.astro';
 
 const home = (await getEntry('pages', 'home'))!;
 const { Content } = await render(home);
-const { title, heading, description, iconList, ctaBlock } = home.data;
+const { title, description, hero, iconList, ctaBlock } = home.data;
 ---
 
-<BaseLayout title={title} description={description} sidebar={[]}>
-  <h1>{heading ?? title}</h1>
+<BaseLayout title={title} description={description} hero={hero}>
   <RichText>
     <Content />
   </RichText>

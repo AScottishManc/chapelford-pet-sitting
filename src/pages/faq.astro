@@ -7,8 +7,7 @@ const page = (await getEntry('pages', 'faq'))!.data;
 const questions = (await getCollection('faq')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<BaseLayout title={page.title} description={page.description} sidebar={page.sidebar}>
-  <h1>{page.heading ?? page.title}</h1>
+<BaseLayout title={page.title} description={page.description} heading={page.heading ?? page.title}>
 
   <ol class="top">
     {questions.map(({ id, data }) => (

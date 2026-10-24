@@ -14,8 +14,7 @@ const encodedEmail = [...site.email]
   .join('');
 ---
 
-<BaseLayout title={page.title} description={page.description} sidebar={page.sidebar}>
-  <h1>{page.heading ?? page.title}</h1>
+<BaseLayout title={page.title} description={page.description} heading={page.heading ?? page.title}>
 
   <article>
     <h1>Telephone</h1>

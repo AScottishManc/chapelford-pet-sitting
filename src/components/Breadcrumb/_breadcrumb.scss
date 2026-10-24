@@ -1,0 +1,35 @@
+.breadcrumb {
+  font-size: font-size('sm');
+
+  &__list {
+    @include list-reset;
+    display: flex;
+    flex-wrap: wrap;
+    gap: space('xxs') space('xs');
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: space('xs');
+    margin: 0;
+
+    + .breadcrumb__item::before {
+      content: '/';
+      opacity: 0.6;
+    }
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.2em;
+    @include transition(text-decoration-color);
+
+    &:hover {
+      color: inherit;
+      text-decoration-color: currentColor;
+    }
+  }
+}

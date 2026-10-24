@@ -1,6 +1,16 @@
 ---
 title: Home
-heading: Welcome to Chapelford Petsitting Services
+hero:
+  heading: Welcome to Chapelford Petsitting Services
+  image: ../../assets/images/pages/dog-and-cat.jpg
+  imageAlt: A brown dog and a tabby cat sitting side by side
+  imagePosition: 65% 35%
+  text: A personal yet professional pet sitting service for cats, dogs and other small animals in Chapelford, Great Sankey and surrounding areas of Warrington.
+  buttons:
+    - label: Book a free consultation
+      href: /contact/
+    - label: View prices
+      href: /prices/
 description: A personal yet professional pet sitting service for cats, small/medium dogs & other small animals in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire.
 iconList:
   title: About me
@@ -29,6 +39,8 @@ ctaBlock:
 
 ![Lizzie and Errol, two cats asleep together](../../assets/images/pages/lizzie-and-errol.jpg)
 
-A professional pet sitting service for cats, small to medium dogs and other small animals in their own home whilst you are away or in work.
+Hi, I'm Karen. Being away on holiday, or out at work all day, shouldn't mean worrying about your pets. I visit them in their own home, so they keep their usual routine and surroundings, which is far less stressful for them, especially cats.
 
-Covering the Chapelford and surrounding areas of Great Sankey in Warrington, Cheshire.
+Every visit is tailored to your pets: feeding and fresh water, litter trays or toilet breaks, any medication they need, and plenty of fuss for those who want it. I charge per visit, not per animal, and I can send you a photo or a quick text so you know all is well.
+
+It all starts with a [free consultation](/contact/), where I meet your pets and we agree what they need.

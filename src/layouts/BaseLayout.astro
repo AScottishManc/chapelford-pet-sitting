@@ -1,8 +1,10 @@
 ---
 import { getEntry } from 'astro:content';
 import Header from '../components/Header/Header.astro';
-import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer/Footer.astro';
+import Hero, { type HeroProps } from '../components/Hero/Hero.astro';
+import type { Crumb } from '../components/Breadcrumb/Breadcrumb.astro';
+import { navItems } from '../components/Navigation/items';
 import '@fontsource/lato/300.css';
 import '@fontsource/lato/400.css';
 import '@fontsource/lato/700.css';
@@ -13,12 +15,23 @@ import '../styles/main.scss';
 interface Props {
   title: string;
   description: string;
-  sidebar?: string[];
+  heading?: string;
+  hero?: HeroProps;
 }
 
-const { title, description, sidebar = ['recent-news'] } = Astro.props;
+const { title, description, heading, hero } = Astro.props;
 const site = (await getEntry('settings', 'site'))!.data;
 const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.businessName}`;
+
+// Breadcrumb from the menu: Home / section / page
+const path = Astro.url.pathname;
+const section = navItems.find((item) => item.children?.some((child) => child.href === path));
+const navItem = section?.children?.find((child) => child.href === path) ?? navItems.find((item) => item.href === path);
+const breadcrumb: Crumb[] = [
+  { label: 'Home', href: '/' },
+  ...(section ? [{ label: section.label, href: section.href }] : []),
+  { label: navItem?.label ?? heading ?? title },
+];
 ---
 <!doctype html>
 <html lang="en-GB">
@@ -30,7 +43,7 @@ const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.busi
     <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
-    <div class:list={['container', 'page', { 'page--full': !sidebar.length }]}>
+    <div class="container page page--full">
       <a class="skip-link" href="#site-nav">Skip to Navigation</a>
       <a class="skip-link" href="#content">Skip to Content</a>
 
@@ -38,15 +51,15 @@ const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.busi
         <Header />
       </div>
 
+      {hero ? (
+        <Hero {...hero} />
+      ) : heading && (
+        <Hero heading={heading} size="small" breadcrumb={breadcrumb} />
+      )}
+
       <main id="content" class="page__main">
         <slot />
       </main>
-
-      {sidebar.length > 0 && (
-        <div class="page__sidebar">
-          <Sidebar boxes={sidebar} />
-        </div>
-      )}
     </div>
 
     <Footer />

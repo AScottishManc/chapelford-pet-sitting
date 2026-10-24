@@ -14,17 +14,15 @@ if (!entry) throw new Error(`No page content "src/content/pages/${id}.md"`);
 const { Content } = await render(entry);
 const page = entry.data;
 ---
-<BaseLayout title={page.title} description={page.description} sidebar={page.sidebar}>
+<BaseLayout title={page.title} description={page.description} heading={page.heading ?? page.title}>
   {
     sectionId ? (
       <section id={sectionId}>
-        <h1>{page.heading ?? page.title}</h1>
         {page.image && <Image class="img_right" src={page.image} alt={page.imageAlt ?? ''} />}
         <Content />
       </section>
     ) : (
       <>
-        <h1>{page.heading ?? page.title}</h1>
         {page.image && <Image class="img_right" src={page.image} alt={page.imageAlt ?? ''} />}
         <Content />
       </>
