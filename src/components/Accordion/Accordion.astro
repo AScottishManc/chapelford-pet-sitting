@@ -1,0 +1,79 @@
+---
+import Icon from '../Icon/Icon.astro';
+import './_accordion.scss';
+
+interface Props {
+  items: { id: string; question: string; answer: string }[];
+  name?: string;
+}
+
+const { items, name = 'accordion' } = Astro.props;
+---
+
+<div class="accordion" data-accordion>
+  {items.map((item, index) => (
+    <details class="accordion__item" id={item.id} name={name} open={index === 0}>
+      <summary class="accordion__question">
+        <span>{item.question}</span>
+        <Icon name="chevron-down" class="accordion__icon" />
+      </summary>
+      <div class="accordion__answer">
+        <div class="accordion__answer-inner" set:html={item.answer} />
+      </div>
+    </details>
+  ))}
+</div>
+
+<script>
+  // One item open at a time, with a smooth open and close. Without JavaScript the
+  // shared name keeps one open (in modern browsers), just without the animation.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const duration = 250;
+
+  document.querySelectorAll<HTMLElement>('[data-accordion]').forEach((accordion) => {
+    accordion.classList.add('accordion--js');
+    const items = [...accordion.querySelectorAll<HTMLDetailsElement>('.accordion__item')];
+    items.forEach((item) => item.removeAttribute('name'));
+
+    const answerOf = (item: HTMLDetailsElement) => item.querySelector<HTMLElement>('.accordion__answer')!;
+
+    const animate = (item: HTMLDetailsElement, open: boolean) => {
+      const answer = answerOf(item);
+      item.classList.toggle('accordion__item--open', open);
+      if (reduceMotion.matches) {
+        item.open = open;
+        return;
+      }
+      if (open) item.open = true;
+      const height = answer.scrollHeight;
+      const animation = answer.animate(
+        [{ height: open ? '0px' : `${height}px` }, { height: open ? `${height}px` : '0px' }],
+        { duration, easing: 'ease' },
+      );
+      animation.onfinish = () => {
+        if (!open) item.open = false;
+      };
+    };
+
+    items.forEach((item) => {
+      item.classList.toggle('accordion__item--open', item.open);
+      item.querySelector('summary')!.addEventListener('click', (event) => {
+        event.preventDefault();
+        const opening = !item.classList.contains('accordion__item--open');
+        if (opening) {
+          items.filter((other) => other !== item && other.classList.contains('accordion__item--open')).forEach((other) => animate(other, false));
+        }
+        animate(item, opening);
+      });
+    });
+
+    // Open the item linked to in the address, e.g. /faq/#q4
+    const linked = items.find((item) => `#${item.id}` === window.location.hash);
+    if (linked && !linked.open) {
+      items.forEach((item) => {
+        item.open = item === linked;
+        item.classList.toggle('accordion__item--open', item === linked);
+      });
+    }
+  });
+</script>
