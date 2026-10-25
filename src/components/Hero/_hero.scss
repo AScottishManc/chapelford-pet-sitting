@@ -8,6 +8,29 @@ $-max-width: $site-width - 2 * map-deep-get($container, 'tablet', 'padding');
 $-overlay: palette('navy-dark');
 $-image-start: 35%;
 
+@mixin -tint($colour) {
+  background: color.change($colour, $alpha: 0.8);
+
+  @include above('tablet') {
+    background: linear-gradient(
+      to right,
+      color.change($colour, $alpha: 0.9) 0%,
+      color.change($colour, $alpha: 0.78) 55%,
+      color.change($colour, $alpha: 0.25) 100%
+    );
+  }
+
+  // Photo fills the right-hand side and fades into solid colour behind the text
+  @include above('desktop-small') {
+    background: linear-gradient(
+      to right,
+      $colour $-image-start,
+      color.change($colour, $alpha: 0.7) ($-image-start + 12%),
+      color.change($colour, $alpha: 0.15) 100%
+    );
+  }
+}
+
 .hero {
   --hero-gutter: #{map-deep-get($container, 'base', 'padding')};
   --hero-bleed: min(var(--hero-gutter), (#{$-max-width} - 100%) / 2);
@@ -126,17 +149,33 @@ $-image-start: 35%;
   // Small (inner pages): a band with the breadcrumb and page heading
 
   &--small {
+    min-height: rem(200px);
     padding-block: space('lg');
     color: colour('heading');
     background-color: palette('duck-egg');
 
     @include above('tablet') {
+      min-height: rem(240px);
       padding-block: space('xl');
+    }
+
+    @include above('desktop-small') {
+      min-height: rem(280px);
     }
   }
 
+  // Breadcrumb at the top, heading centred in the band
+  &--small {
+    align-items: stretch;
+  }
+
+  &--small &__content {
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+  }
+
   &--small &__heading {
-    margin-top: space('xs');
+    grid-row: 2;
     font-size: font-size('xxl');
 
     @include above('tablet') {
@@ -145,10 +184,12 @@ $-image-start: 35%;
   }
 
   &--small .breadcrumb {
+    align-self: start;
     color: colour('heading');
   }
 
-  // Photo behind the text, darkened on the text side so it stays readable
+  // Photo behind the text, tinted on the text side so it stays readable: navy on
+  // the home page, duck-egg (matching the plain band) on inner pages
 
   &--image {
     color: colour('background');
@@ -159,26 +200,7 @@ $-image-start: 35%;
       inset: 0;
       z-index: -1;
       content: '';
-      background: color.change($-overlay, $alpha: 0.8);
-
-      @include above('tablet') {
-        background: linear-gradient(
-          to right,
-          color.change($-overlay, $alpha: 0.9) 0%,
-          color.change($-overlay, $alpha: 0.78) 55%,
-          color.change($-overlay, $alpha: 0.25) 100%
-        );
-      }
-
-      // Photo fills the right-hand side and fades into solid colour behind the text
-      @include above('desktop-small') {
-        background: linear-gradient(
-          to right,
-          $-overlay $-image-start,
-          color.change($-overlay, $alpha: 0.7) ($-image-start + 12%),
-          color.change($-overlay, $alpha: 0.15) 100%
-        );
-      }
+      @include -tint($-overlay);
     }
 
     @include above('desktop-small') {
@@ -186,8 +208,13 @@ $-image-start: 35%;
     }
   }
 
-  &--image.hero--small .breadcrumb {
-    color: inherit;
+  &--small.hero--image {
+    color: colour('heading');
+    background-color: palette('duck-egg');
+
+    &::before {
+      @include -tint(palette('duck-egg'));
+    }
   }
 
   &__image {

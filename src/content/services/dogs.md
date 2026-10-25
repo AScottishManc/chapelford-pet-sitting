@@ -2,6 +2,10 @@
 title: Dogs
 description: I offer personal yet professional pet sitting services, including dog walking, available for dog owners in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire.
 order: 2
+heroImage:
+  src: ../../assets/images/pages/dog-on-roof.jpg
+  alt: A fluffy white dog against a blue sky
+  position: 50% 30%
 sidebar:
   - testimonial-dogs
 quote: Dogs require plenty of exercise and stimulation. There is evidence that suggests bad behaviours such as barking, destroying furniture and chewing are all common problems in dogs that are bored and lonely. Physical and mental stimulation is one of the best ways to avoid this.

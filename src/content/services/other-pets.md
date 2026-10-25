@@ -2,6 +2,10 @@
 title: Other Pets
 description: I offer personal yet professional pet sitting services for small animals, including guinea pigs, rabbits, chickens and ducks, for owners in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire.
 order: 3
+heroImage:
+  src: ../../assets/images/pages/rabbits.jpg
+  alt: Three rabbits eating fresh grass
+  position: 50% 40%
 sidebar:
   - recent-news
 image: ../../assets/images/pages/other_pets.jpg
