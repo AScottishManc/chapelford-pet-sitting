@@ -78,7 +78,7 @@ $-themes: (
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     aspect-ratio: 1;
     padding: space('lg');
     overflow: hidden;
@@ -132,9 +132,10 @@ $-themes: (
     line-height: $line-height-heading;
   }
 
+  // Label top left, arrow bottom right
   &__arrow {
-    margin-top: space('xs');
-    font-size: font-size('xl');
+    align-self: flex-end;
+    font-size: font-size('xxl');
     @include transition(transform);
   }
 

@@ -4,6 +4,7 @@ import './_icon.scss';
 const icons = import.meta.glob<string>('../../icons/*.svg', { query: '?raw', import: 'default', eager: true });
 
 export type IconName =
+  | 'arrow-right'
   | 'arrow-up'
   | 'chevron-down'
   | 'close'
