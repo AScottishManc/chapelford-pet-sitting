@@ -1,0 +1,25 @@
+# Every price on the site, in one place. Service cards and the Prices table
+# look prices up from here, so change a price here and it updates everywhere.
+cat-feeding:
+  amount: £5.00
+  unit: per visit
+cat-sitting:
+  amount: £9.00
+  unit: per visit
+dog-toilet:
+  amount: £5.00
+  unit: per visit
+dog-home:
+  amount: £9.00
+  unit: per visit
+dog-walking:
+  amount: £9.00
+  unit: per walk
+dog-longer:
+  amount: Please call
+other-feeding:
+  amount: £5.00
+  unit: per visit
+other-home:
+  amount: £9.00
+  unit: per visit

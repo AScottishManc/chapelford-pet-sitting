@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -23,6 +23,7 @@ const pages = defineCollection({
     z.object({
       title: z.string(),
       heading: z.string().optional(),
+      intro: z.string().optional(),
       description: z.string(),
       image: image().optional(),
       imageAlt: z.string().optional(),
@@ -69,10 +70,7 @@ const services = defineCollection({
       description: z.string(),
       order: z.number().int().default(0),
       sidebar: z.array(z.string()).default(['recent-news']),
-      quote: z.string().optional(),
-      image: image(),
-      imageAlt: z.string(),
-      imagePosition: z.enum(['left', 'right']).default('right'),
+      intro: z.string().optional(),
       heroImage: z
         .object({ src: image(), alt: z.string(), position: z.string().optional() })
         .optional(),
@@ -80,9 +78,8 @@ const services = defineCollection({
         z.object({
           id: z.string(),
           name: z.string(),
-          price: z.string(),
+          price: reference('prices'),
           priceMarker: z.string().optional(),
-          priceUnit: z.string().optional(),
           note: z.string().optional(),
           summary: z.array(z.string()).default([]),
           footnote: z.string().optional(),
@@ -94,24 +91,27 @@ const services = defineCollection({
 });
 
 // Prices come from the service pages; this only sets the table layout
+const prices = defineCollection({
+  loader: file('src/content/prices.yaml'),
+  schema: z.object({
+    amount: z.string(),
+    unit: z.string().optional(),
+  }),
+});
+
 const priceTable = defineCollection({
   loader: file('src/content/price-table.yaml'),
   schema: z.object({
     heading: z.string(),
     order: z.number().int(),
     rows: z.array(
-      z.union([
-        z.object({
-          service: z.string(),
-          marker: z.string().optional(),
-          time: z.string(),
-        }),
-        z.object({
-          note: z.string(),
-          bold: z.boolean().default(true),
-        }),
-      ]),
+      z.object({
+        service: z.string(),
+        marker: z.string().optional(),
+        time: z.string(),
+      }),
     ),
+    notes: z.array(z.string()).default([]),
   }),
 });
 
@@ -178,4 +178,4 @@ const links = defineCollection({
     }),
 });
 
-export const collections = { settings, pages, services, priceTable, testimonials, faq, sidebar, news, links };
+export const collections = { settings, pages, services, prices, priceTable, testimonials, faq, sidebar, news, links };

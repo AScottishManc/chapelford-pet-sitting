@@ -1,0 +1,47 @@
+---
+import Icon, { type IconName } from '../Icon/Icon.astro';
+import './_price-list.scss';
+
+export interface PriceGroup {
+  heading: string;
+  icon: IconName;
+  rows: { name: string; time: string; price: string; unit?: string; marker?: string; href: string }[];
+  notes: string[];
+}
+
+interface Props {
+  groups: PriceGroup[];
+}
+
+const { groups } = Astro.props;
+---
+
+<div class="price-list">
+  {groups.map((group) => (
+    <section class="price-list__group">
+      <h2 class="price-list__heading">
+        <Icon name={group.icon} class="price-list__paw" />
+        {group.heading}
+      </h2>
+      <ul class="price-list__rows">
+        {group.rows.map((row) => (
+          <li class="price-list__row">
+            <span class="price-list__service">
+              <span class="price-list__name">{row.name}{row.marker && <sup>{row.marker}</sup>}</span>
+              <span class="price-list__time">{row.time}</span>
+            </span>
+            <span class="price-list__price">
+              <span class="price-list__amount">{row.price}</span>
+              {row.unit && <span class="price-list__unit">{row.unit}</span>}
+            </span>
+            <a class="price-list__link" href={row.href}>
+              Details<span class="price-list__hint"> of {row.name}</span>
+              <Icon name="arrow-right" class="price-list__arrow" />
+            </a>
+          </li>
+        ))}
+      </ul>
+      {group.notes.map((note) => <p class="price-list__note">{note}</p>)}
+    </section>
+  ))}
+</div>

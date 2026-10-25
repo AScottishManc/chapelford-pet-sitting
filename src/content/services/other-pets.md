@@ -8,14 +8,11 @@ heroImage:
   position: 50% 40%
 sidebar:
   - recent-news
-image: ../../assets/images/pages/other_pets.jpg
-imageAlt: Charlie the duck enjoying the sun
-imagePosition: left
+intro: Rabbits, guinea pigs, tortoises, ducks and chickens all have their own routines, and they're happiest when those routines carry on at home while you're away.
 services:
   - id: feeding
     name: Feeding Service
-    price: £5.00
-    priceUnit: per visit
+    price: other-feeding
     note: This service is only available within Chapelford and the immediate surrounding area.
     summary:
       - This is an ideal service when you are away from home for a day or are at work, and your pet needs feeding.
@@ -25,8 +22,7 @@ services:
       - Water bowls will be filled with fresh water on each visit.
   - id: home
     name: Home Visit
-    price: £9.00
-    priceUnit: per visit
+    price: other-home
     summary:
       - This is an ideal service if you have a pet that needs attention during the day. Regular visits can be carried out to feed and play with your pet.
     includes:
@@ -43,6 +39,8 @@ outro:
   - Some smaller pets have a combination of 15 and 30 minute visits as not all smaller pets need cleaning out on a daily basis. At the consultation, we can discuss your exact needs to ensure your pet(s) get the best possible care and attention.
   - Please ensure you read my [terms & conditions.](/terms-conditions/)
 ---
+
+![Charlie the duck enjoying the sun](../../assets/images/pages/other_pets.jpg "left")
 
 It's not just cats and dogs that need care, love and attention when you are away from home or on holiday. I am able to look after a variety of small animals and give them the individual care and attention they need to. Small animal clients have included rabbits, a tortoise, a variety of ducks, guinea pigs and fish. Soon there will be chickens that I will be looking after too.
 

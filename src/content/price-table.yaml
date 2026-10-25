@@ -1,5 +1,5 @@
-# Rows of the price table on the Prices page, grouped by service page.
-# Prices come from each service page (src/content/services), so change them there.
+# Sections and rows of the price list on the Prices page.
+# Names come from each service page; prices come from src/content/prices.yaml.
 cats:
   heading: Cats
   order: 1
@@ -9,6 +9,8 @@ cats:
       time: 15 mins
     - service: sitting
       time: 30 mins
+  notes:
+    - "† Only available within Chapelford and the immediate surrounding area."
 dogs:
   heading: Dogs
   order: 2
@@ -19,9 +21,11 @@ dogs:
     - service: home
       marker: "*"
       time: 30 mins
-    - note: "* This service is half price if taken in conjunction with the walking service during the same visit"
     - service: walking
       time: 30 mins
+  notes:
+    - "† Only available within Chapelford and the immediate surrounding area."
+    - "* Half price if taken in conjunction with the walking service during the same visit."
 other-pets:
   heading: Other Pets
   order: 3
@@ -31,5 +35,5 @@ other-pets:
       time: 15 mins
     - service: home
       time: 30 mins
-    - note: "† This service is only available within Chapelford and the immediate surrounding area."
-      bold: false
+  notes:
+    - "† Only available within Chapelford and the immediate surrounding area."

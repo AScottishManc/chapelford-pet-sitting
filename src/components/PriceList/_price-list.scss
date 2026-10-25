@@ -1,0 +1,134 @@
+.price-list {
+  display: grid;
+  gap: space('lg');
+  margin-block: space('xl');
+  @include content-columns(8);
+
+  // One card per section
+  &__group {
+    padding: space('lg');
+    background-color: colour('surface');
+    border: 1px solid colour('border');
+    border-radius: radius('lg');
+    box-shadow: shadow('card');
+
+    @include above('tablet') {
+      padding: space('lg') space('xl') space('xl');
+    }
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    gap: space('sm');
+    margin: 0 0 space('sm');
+    font-size: font-size('xl');
+  }
+
+  &__paw#{&}__paw {
+    font-size: 1.25em;
+    transform: rotate(-12deg);
+  }
+
+  &__rows {
+    @include list-reset;
+  }
+
+  // Name and time, price, then a short "Details" link; the link drops below on phones
+  &__row {
+    display: grid;
+    grid-template-areas:
+      'service price'
+      'link link';
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: space('xs') space('md');
+    margin: 0;
+    padding-block: space('md');
+    border-top: 1px solid colour('border');
+
+    @include above('tablet') {
+      grid-template-areas: 'service price link';
+      grid-template-columns: 1fr auto auto;
+      gap: space('xl');
+    }
+  }
+
+  &__service {
+    display: flex;
+    flex-direction: column;
+    grid-area: service;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: font-size('md');
+    font-weight: font-weight('bold');
+    color: colour('heading');
+  }
+
+  &__time {
+    font-size: font-size('sm');
+    color: colour('text-muted');
+  }
+
+  &__price {
+    grid-area: price;
+    text-align: right;
+  }
+
+  &__link {
+    display: inline-flex;
+    grid-area: link;
+    align-items: center;
+    justify-self: start;
+    gap: space('xxs');
+    font-size: font-size('sm');
+    font-weight: font-weight('semi');
+    color: colour('heading');
+    text-decoration: none;
+
+    &:hover {
+      color: colour('heading');
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+  }
+
+  &__amount {
+    font-family: $font-heading;
+    font-size: font-size('md');
+    font-weight: font-weight('bold');
+    color: colour('heading');
+    white-space: nowrap;
+  }
+
+  &__unit {
+    display: block;
+    font-size: font-size('xs');
+    color: colour('text-muted');
+    white-space: nowrap;
+  }
+
+  &__arrow {
+    @include transition(transform);
+  }
+
+  &__link:hover &__arrow {
+    transform: translateX(3px);
+  }
+
+  &__hint {
+    @include visually-hidden;
+  }
+
+  &__note {
+    margin: space('md') 0 0;
+    font-size: font-size('sm');
+    color: colour('text-muted');
+
+    + .price-list__note {
+      margin-top: space('xxs');
+    }
+  }
+}

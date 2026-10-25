@@ -8,15 +8,11 @@ heroImage:
   position: 50% 40%
 sidebar:
   - special-offer
-quote: Cats can be very territorial and they often react to changes in their environment and routine; therefore can get stressed quite easily. If they are able to stay in their own environment, they tend to be happier cats.
-image: ../../assets/images/pages/cats.jpg
-imageAlt: Rosie the cat - one of my regular clients
-imagePosition: left
+intro: Cats can be very territorial and they often react to changes in their environment and routine; therefore can get stressed quite easily. If they are able to stay in their own environment, they tend to be happier cats.
 services:
   - id: feeding
     name: Feeding Service
-    price: £5.00
-    priceUnit: per visit
+    price: cat-feeding
     note: This service is only available within Chapelford and the immediate surrounding area.
     summary:
       - This is an ideal service if you have outdoor cats or cats that only require a quick visit to provide them with fresh food and water.
@@ -27,8 +23,7 @@ services:
       - Should soiling occur, the area will be cleaned with the products provided for me to use.
   - id: sitting
     name: Sitting Service
-    price: £9.00
-    priceUnit: per visit
+    price: cat-sitting
     includes:
       - This visit will be for 30 minutes and can be carried out up to 3 times a day.
       - Will feed your pet(s) either a regular or specialised diet.
@@ -45,6 +40,8 @@ outro:
   - It is recommended your cat is kept indoors whilst in my care to ensure their health and safety. However should you wish for your cat to have free access to outside then I cannot be held liable for any disappearance, injury or death.
   - Please ensure you read my [terms & conditions.](/terms-conditions/)
 ---
+
+![Rosie the cat - one of my regular clients](../../assets/images/pages/cats.jpg "left")
 
 As a passionate cat owner, I have studied cat behaviour and psychology; I just simply have a love of cats and everything about them just fascinates me.
 
