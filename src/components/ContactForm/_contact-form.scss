@@ -1,0 +1,141 @@
+.contact-form {
+  margin-block: space('xl');
+  padding: space('lg');
+  background-color: colour('surface');
+  border: 1px solid colour('border');
+  border-radius: radius('lg');
+  box-shadow: shadow('card');
+  @include content-columns(8);
+
+  @include above('tablet') {
+    padding: space('xl');
+  }
+
+  &__title {
+    margin: 0 0 space('xs');
+    font-size: font-size('xl');
+  }
+
+  &__lead {
+    margin-bottom: space('lg');
+  }
+
+  &__form {
+    display: grid;
+    gap: space('md');
+  }
+
+  &__row {
+    display: grid;
+    gap: space('md');
+
+    @include above('tablet') {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__field {
+    display: grid;
+    gap: space('xxs');
+    min-width: 0;
+
+    > label,
+    legend {
+      font-weight: font-weight('semi');
+      color: colour('heading');
+    }
+
+    input:not([type='checkbox']),
+    textarea {
+      width: 100%;
+      padding: space('xs') space('sm');
+      font: inherit;
+      color: colour('text');
+      background-color: palette('white');
+      border: 1px solid colour('border');
+      border-radius: radius('md');
+      @include transition(border-color);
+
+      &:hover {
+        border-color: palette('duck-egg');
+      }
+
+      &:focus-visible {
+        border-color: colour('heading');
+        @include focus-ring(0);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
+
+  &__optional {
+    font-weight: font-weight('regular');
+    color: colour('text-muted');
+  }
+
+  &__pets {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    legend {
+      margin-bottom: space('xxs');
+      padding: 0;
+    }
+  }
+
+  &__checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: space('xs') space('lg');
+
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: space('xs');
+      cursor: pointer;
+    }
+
+    input {
+      width: 1.1rem;
+      height: 1.1rem;
+      accent-color: colour('heading');
+    }
+  }
+
+  &__submit {
+    justify-self: end;
+    margin-top: space('xs');
+  }
+
+  // Shown after sending, in case the email app didn't open
+  &__fallback {
+    margin-top: space('lg');
+    padding: space('md') space('lg');
+    background-color: colour('highlight');
+    border-radius: radius('md');
+
+    p {
+      margin-bottom: space('xs');
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__copied {
+    margin-left: space('sm');
+    font-size: font-size('sm');
+    color: colour('text-muted');
+  }
+
+  &__note {
+    padding: space('sm') space('md');
+    background-color: colour('highlight');
+    border-radius: radius('md');
+  }
+}

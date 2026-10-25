@@ -1,0 +1,100 @@
+@use 'abstracts' as *;
+
+// Contact page
+
+.contact-page {
+  &__cards {
+    display: grid;
+    gap: space('lg');
+    margin-block: space('xl');
+    @include content-columns(8);
+
+    @include above('tablet') {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: space('lg');
+    background-color: colour('surface');
+    border: 1px solid colour('border');
+    border-radius: radius('lg');
+    box-shadow: shadow('card');
+
+    @include above('tablet') {
+      padding: space('xl');
+    }
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: rem(48px);
+    height: rem(48px);
+    margin-bottom: space('md');
+    font-size: 1.5rem;
+    color: colour('heading');
+    background-color: palette('duck-egg');
+    border-radius: 50%;
+  }
+
+  &__title {
+    margin: 0 0 space('sm');
+    font-size: font-size('xl');
+  }
+
+  &__detail {
+    margin: 0 0 space('xs');
+
+    a {
+      font-family: $font-heading;
+      font-size: font-size('lg');
+      font-weight: font-weight('bold');
+      color: colour('heading');
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: font-size('sm');
+    color: colour('text-muted');
+  }
+
+  &__button {
+    margin-top: auto;
+  }
+
+  &__card &__detail:last-of-type {
+    margin-bottom: space('lg');
+  }
+
+  // Area and hours under the cards
+  &__facts {
+    display: grid;
+    gap: space('md');
+    margin: 0 0 space('xl');
+    @include content-columns(8);
+
+    @include above('tablet') {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    dt {
+      font-size: font-size('sm');
+      color: colour('text-muted');
+    }
+
+    dd {
+      margin: 0;
+      color: colour('heading');
+    }
+  }
+}

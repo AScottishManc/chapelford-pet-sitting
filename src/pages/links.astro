@@ -1,33 +1,21 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-import { Image } from 'astro:assets';
+import { getCollection, getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { blockMarkdown } from '../lib/markdown';
+import LinkCard from '../components/LinkCard/LinkCard.astro';
+import RichText from '../components/RichText/RichText.astro';
 
-const page = (await getEntry('pages', 'links'))!.data;
+const entry = (await getEntry('pages', 'links'))!;
+const { Content } = await render(entry);
+const page = entry.data;
 const links = (await getCollection('links')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout title={page.title} description={page.description} heading={page.heading ?? page.title}>
+  <RichText>
+    <Content />
+  </RichText>
 
-  {links.map(({ data }) => (
-    <>
-      <article class="links">
-        <h1>{data.name}</h1>
-        <a href={data.url} title="Company website">
-          <Image
-            class={`img_${data.logoPosition}`}
-            src={data.logo}
-            alt="Company logo"
-            width={data.logoWidth}
-            height={data.logoHeight}
-          />
-        </a>
-        <Fragment set:html={blockMarkdown(data.description)} />
-      </article>
-      <article class="links">
-        <a class="top_link" href="#top"><p>Back to the top</p></a>
-      </article>
-    </>
-  ))}
+  <div class="links-page__list">
+    {links.map(({ data }) => <LinkCard {...data} />)}
+  </div>
 </BaseLayout>

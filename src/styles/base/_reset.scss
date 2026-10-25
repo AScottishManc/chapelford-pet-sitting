@@ -55,3 +55,8 @@ table {
     transition-duration: 0.01ms !important;
   }
 }
+
+// Hidden elements stay hidden, whatever their display style
+[hidden] {
+  display: none !important;
+}

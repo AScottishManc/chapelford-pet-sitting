@@ -1,0 +1,10 @@
+@use 'abstracts' as *;
+
+// Links page
+
+.links-page__list {
+  display: grid;
+  gap: space('lg');
+  margin-block: space('xl');
+  @include content-columns(8);
+}

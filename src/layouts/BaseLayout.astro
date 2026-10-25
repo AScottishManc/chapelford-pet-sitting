@@ -18,17 +18,18 @@ interface Props {
   heading?: string;
   hero?: HeroProps;
   heroImage?: { src: ImageMetadata; alt: string; position?: string };
+  breadcrumb?: Crumb[];
 }
 
-const { title, description, heading, hero, heroImage } = Astro.props;
+const { title, description, heading, hero, heroImage, breadcrumb: crumbs } = Astro.props;
 const site = (await getEntry('settings', 'site'))!.data;
 const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.businessName}`;
 
-// Breadcrumb from the menu: Home / section / page
+// Breadcrumb from the menu (Home / section / page) unless the page gives one
 const path = Astro.url.pathname;
 const section = navItems.find((item) => item.children?.some((child) => child.href === path));
 const navItem = section?.children?.find((child) => child.href === path) ?? navItems.find((item) => item.href === path);
-const breadcrumb: Crumb[] = [
+const breadcrumb: Crumb[] = crumbs ?? [
   { label: 'Home', href: '/' },
   ...(section ? [{ label: section.label, href: section.href }] : []),
   { label: navItem?.label ?? heading ?? title },

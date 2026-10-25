@@ -1,0 +1,111 @@
+.news-list {
+  margin-block: space('xl');
+  @include content-columns(8);
+
+  &__items {
+    @include list-reset;
+    display: grid;
+    gap: space('md');
+  }
+
+  &__actions {
+    margin-top: space('lg');
+    text-align: center;
+  }
+
+  &__item {
+    margin: 0;
+  }
+
+  // The whole card is clickable through the title link
+  &__card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: space('lg');
+    padding: space('lg');
+    background-color: colour('surface');
+    border: 1px solid colour('border');
+    border-radius: radius('lg');
+    box-shadow: shadow('card');
+    @include transition(box-shadow);
+
+    // Same as the testimonial photos: duck-egg ring, arrow circle turns duck-egg
+    &:hover {
+      box-shadow:
+        0 0 0 4px palette('duck-egg'),
+        shadow('card');
+    }
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__date {
+    display: block;
+    margin-bottom: space('xs');
+    font-size: font-size('sm');
+    color: colour('text-muted');
+  }
+
+  &__title {
+    margin: 0 0 space('xxs');
+    font-size: font-size('lg');
+
+    @include above('tablet') {
+      font-size: font-size('xl');
+    }
+  }
+
+  &__link {
+    color: colour('heading');
+    text-decoration: none;
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      content: '';
+      border-radius: radius('lg');
+    }
+
+    &:hover {
+      color: colour('heading');
+    }
+  }
+
+  &__excerpt {
+    margin: 0 0 space('sm');
+  }
+
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    gap: space('xs');
+    font-size: font-size('sm');
+    font-weight: font-weight('semi');
+    color: colour('heading');
+  }
+
+  &__arrow#{&}__arrow {
+    @include arrow-circle;
+  }
+
+  &__card:hover &__arrow {
+    background-color: palette('duck-egg');
+  }
+
+  &__image {
+    display: none;
+    flex-shrink: 0;
+    width: rem(120px);
+    height: rem(120px);
+    object-fit: contain;
+    border-radius: radius('md');
+
+    @include above('tablet') {
+      display: block;
+    }
+  }
+}
