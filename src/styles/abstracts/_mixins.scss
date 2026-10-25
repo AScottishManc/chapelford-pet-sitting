@@ -141,6 +141,19 @@
   grid-column: $start / span $span;
 }
 
+// Small round icon button, as on the testimonial photos (turns duck-egg on hover)
+@mixin arrow-circle {
+  box-sizing: content-box;
+  width: 1rem;
+  height: 1rem;
+  padding: 0.375rem;
+  color: colour('heading');
+  background-color: colour('surface');
+  border-radius: 50%;
+  box-shadow: shadow('card');
+  @include transition(background-color);
+}
+
 // Narrow a block inside the page content (10 of 12 columns) to the centre
 // $span columns, from desktop-small
 @mixin content-columns($span) {

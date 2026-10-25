@@ -9,11 +9,14 @@
   align-items: center;
   gap: space('xs');
   padding: space('sm') space('lg');
+  font: inherit;
   font-weight: font-weight('semi');
   color: colour('heading');
   text-decoration: none;
   background-color: colour('accent');
+  border: 0;
   border-radius: radius('pill');
+  cursor: pointer;
   @include transition(background-color);
 
   &:hover {

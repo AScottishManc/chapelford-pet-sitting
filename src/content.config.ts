@@ -157,7 +157,7 @@ const news = defineCollection({
       date: z.coerce.date(),
       image: image().optional(),
       imageAlt: z.string().optional(),
-      imagePosition: z.enum(['left', 'right']).default('left'),
+      imagePosition: z.enum(['left', 'right', 'centre']).default('left'),
       imageWidth: z.number().int().optional(),
       imageHeight: z.number().int().optional(),
     }),

@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon/Icon.astro';
+import { formatDate, type NewsPost } from '../../lib/news';
+import './_news-list.scss';
+
+interface Props {
+  posts: NewsPost[];
+  pageSize?: number;
+}
+
+const { posts, pageSize = 10 } = Astro.props;
+---
+
+<div class="news-list" data-news-list data-page-size={pageSize}>
+<ul class="news-list__items">
+  {posts.map((post) => (
+    <li class="news-list__item">
+      <article class="news-list__card">
+        <div class="news-list__body">
+          <h2 class="news-list__title">
+            <a class="news-list__link" href={`/news/${post.slug}/`}>{post.data.title}</a>
+          </h2>
+          <time class="news-list__date" datetime={post.data.date.toISOString().slice(0, 10)}>
+            {formatDate(post.data.date)}
+          </time>
+          <p class="news-list__excerpt">{post.excerpt}</p>
+          <span class="news-list__more" aria-hidden="true">
+            Read more
+            <Icon name="arrow-right" class="news-list__arrow" />
+          </span>
+        </div>
+        {post.data.image && (
+          <Image class="news-list__image" src={post.data.image} alt="" width={240} height={240} />
+        )}
+      </article>
+    </li>
+  ))}
+</ul>
+
+  {posts.length > pageSize && (
+    <div class="news-list__actions">
+      <button class="button news-list__more-button" type="button" data-news-more hidden>Load more news</button>
+    </div>
+  )}
+</div>
+
+<script>
+  // Show the newest posts first, then the next batch on each click.
+  // Without JavaScript every post is listed.
+  document.querySelectorAll<HTMLElement>('[data-news-list]').forEach((list) => {
+    const size = Number(list.dataset.pageSize);
+    const items = [...list.querySelectorAll<HTMLLIElement>('.news-list__item')];
+    const button = list.querySelector<HTMLButtonElement>('[data-news-more]');
+    let shown = Math.min(size, items.length);
+
+    items.forEach((item, index) => (item.hidden = index >= shown));
+    if (!button) return;
+    button.hidden = false;
+
+    button.addEventListener('click', () => {
+      const next = Math.min(shown + size, items.length);
+      items.slice(shown, next).forEach((item) => (item.hidden = false));
+      items[shown].querySelector('a')?.focus();
+      shown = next;
+      if (shown >= items.length) button.hidden = true;
+    });
+  });
+</script>
