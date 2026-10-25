@@ -1,14 +1,12 @@
 # Recommended websites on the Links page, shown in "order".
 # description is Markdown: leave a blank line between paragraphs.
+# secondary is an optional second button, e.g. a Facebook page.
 westbrook-vets:
   order: 1
   name: Westbrook Vets
   # Fixed: the live site has https://https://www.westbrookvets.co.uk/
   url: https://www.westbrookvets.co.uk/
   logo: ../assets/images/links/WestbrookVets.jpg
-  logoPosition: left
-  logoWidth: 300
-  logoHeight: 60
   description: |
     Westbrook Vets are a fantastic practice and I whole heartedly recommend them personally and professionally. Their aim is to be your vet for life and will give you the best possible care for you and you pet.
 hoo-farm:
@@ -17,25 +15,20 @@ hoo-farm:
   # Fixed: the live site has https://https://www.hoofarm.com/ (now Hoo Zoo)
   url: https://www.hoo-zoo.com/
   logo: ../assets/images/links/hoofarmimage.jpg
-  logoPosition: left
-  logoWidth: 160
-  logoHeight: 160
   description: |
     A place that has become very special to us is Hoo Farm Animal Kingdom in Shropshire.
 
     We are very lucky that we have become good friends with the owners, Will & Becky Dorrell and with some of the amazing animals too that we have met on many experience opportunities.
 
-    For more details on the amazing work they do at Hoo Farm Animal Kingdom and to visit or arrange one of their incredible animal experiences please visit their website. Follow them on Facebook too
-
-    [Hoo Farm Animal Kingdom - Facebook Page](https://www.facebook.com/HooFarmAnimalKingdom/)
+    For more details on the amazing work they do at Hoo Farm Animal Kingdom and to visit or arrange one of their incredible animal experiences please visit their website. Follow them on Facebook too.
+  secondary:
+    label: Follow on Facebook
+    url: https://www.facebook.com/HooFarmAnimalKingdom/
 dogs-trust:
   order: 3
   name: Dogs Trust
   url: http://www.dogstrust.org.uk/
   logo: ../assets/images/links/dogs_trust.jpg
-  logoPosition: right
-  logoWidth: 150
-  logoHeight: 117
   description: |
     Founded in 1891, Dogs Trust (formerly the National Canine Defence League) is the largest dog welfare charity in the UK. Our mission is to bring about the day when all dogs can enjoy a happy life, free from the threat of unnecessary destruction.
 international-cat-care:
@@ -43,9 +36,6 @@ international-cat-care:
   name: International Cat Care
   url: http://www.icatcare.org/
   logo: ../assets/images/links/international_cat_care.jpg
-  logoPosition: left
-  logoWidth: 94
-  logoHeight: 94
   description: |
     A charity dedicated to promoting the health and welfare of cats through improved feline knowledge, to help us all care better for our cats.
 apdt:
@@ -53,9 +43,6 @@ apdt:
   name: Association of Pet Dog Trainers (UK)
   url: http://www.apdt.co.uk/
   logo: ../assets/images/links/adpt.jpg
-  logoPosition: right
-  logoWidth: 150
-  logoHeight: 150
   description: |
     A voluntary organisation established to improve the welfare of dogs and the competence of dog owners through the promotion of training skills and techniques based on up to date, researched, methods that apply the principles of kindness fairness and effectiveness and are in keeping with modern learning theory.
 vicky-halls:
@@ -63,9 +50,6 @@ vicky-halls:
   name: Vicky Halls
   url: http://www.vickyhalls.net/
   logo: ../assets/images/links/vicky_halls.jpg
-  logoPosition: right
-  logoWidth: 200
-  logoHeight: 65
   description: |
     Vicky Halls is an acclaimed Pet Behaviour Counsellor with many years experience of treating behavioural problems in cats both in the UK and abroad. She is also an international best selling author of cat behaviour books. Her books are ALL well worth a read indeed.
 feliway:
@@ -73,9 +57,6 @@ feliway:
   name: Feliway
   url: http://www.feliway.co.uk/
   logo: ../assets/images/links/feliway.jpg
-  logoPosition: left
-  logoWidth: 150
-  logoHeight: 150
   description: |
     I have personally had great success in using the Feliway plug in diffusers for a number of years. I have used them when introducing new cats to the household, during house moves and especially when veterinary treatment has been needed on any of my cats.
 your-cat:
@@ -83,9 +64,6 @@ your-cat:
   name: Your Cat
   url: http://www.yourcat.co.uk
   logo: ../assets/images/links/yourcat.jpg
-  logoPosition: right
-  logoWidth: 150
-  logoHeight: 106
   description: |
     Your favourite monthly cat magazine, available online with great stories, info, hints & tips!
 your-dog:
@@ -93,8 +71,5 @@ your-dog:
   name: Your Dog
   url: http://www.yourdog.co.uk/
   logo: ../assets/images/links/yourdog.jpg
-  logoPosition: left
-  logoWidth: 150
-  logoHeight: 100
   description: |
     Your favourite monthly dog magazine, available online with great stories, info, hints & tips!

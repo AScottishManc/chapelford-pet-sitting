@@ -171,10 +171,8 @@ const links = defineCollection({
       name: z.string(),
       url: z.url(),
       logo: image(),
-      logoPosition: z.enum(['left', 'right']).default('left'),
-      logoWidth: z.number().int(),
-      logoHeight: z.number().int(),
       description: z.string(),
+      secondary: z.object({ label: z.string(), url: z.url() }).optional(),
     }),
 });
 

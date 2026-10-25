@@ -24,6 +24,20 @@
     background-color: color.adjust(colour('accent'), $lightness: 8%);
   }
 
+  // Outline version for a second, less important action
+  &--secondary {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 2px colour('heading');
+
+    &:hover {
+      background-color: colour('highlight');
+    }
+  }
+
+  &__icon#{&}__icon {
+    font-size: 1.1em;
+  }
+
   // Download icon after the label
   &--download::after {
     flex-shrink: 0;

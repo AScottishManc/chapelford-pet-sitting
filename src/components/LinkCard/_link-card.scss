@@ -1,0 +1,48 @@
+// Image, title, description and buttons; image above on phones, beside from tablet
+.link-card {
+  display: grid;
+  gap: space('lg');
+  padding: space('lg');
+  background-color: colour('surface');
+  border: 1px solid colour('border');
+  border-radius: radius('lg');
+  box-shadow: shadow('card');
+
+  @include above('tablet') {
+    grid-template-columns: rem(180px) 1fr;
+    align-items: start;
+    gap: space('xl');
+    padding: space('xl');
+  }
+
+  // Logo top left: its own shape on phones, the full image column from tablet
+  &__logo {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: rem(120px);
+    border-radius: radius('sm');
+
+    @include above('tablet') {
+      width: 100%;
+      max-height: none;
+    }
+  }
+
+  &__title {
+    margin: 0 0 space('sm');
+    font-size: font-size('xl');
+  }
+
+  &__description > :last-child {
+    margin-bottom: 0;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: space('sm');
+    margin-top: space('lg');
+  }
+}
