@@ -1,0 +1,134 @@
+---
+// Builds an email from the form and opens it in the visitor's own email app.
+// Nothing is sent from the site, so there's no server and no spam to filter.
+import Icon from '../Icon/Icon.astro';
+import './_contact-form.scss';
+
+interface Props {
+  /** Percent-encoded address, decoded only when the form is sent */
+  encodedEmail: string;
+}
+
+const { encodedEmail } = Astro.props;
+---
+
+<section class="contact-form" aria-labelledby="contact-form-title">
+  <h2 class="contact-form__title" id="contact-form-title">Send me a message</h2>
+  <p class="contact-form__lead">
+    Fill in the details below and press <strong>Send email</strong>. Your email app will open with the message ready
+    to send to us.
+  </p>
+
+  <noscript>
+    <p class="contact-form__note">This form needs JavaScript. Please use the Email button above instead.</p>
+  </noscript>
+
+  <form class="contact-form__form" data-contact-form data-to={encodedEmail}>
+    <div class="contact-form__row">
+      <div class="contact-form__field">
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" required />
+      </div>
+      <div class="contact-form__field">
+        <label for="cf-phone">Phone number <span class="contact-form__optional">(optional)</span></label>
+        <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
+      </div>
+    </div>
+
+    <fieldset class="contact-form__field contact-form__pets">
+      <legend>Your pets</legend>
+      <div class="contact-form__checks">
+        <label><input type="checkbox" name="pets" value="Cats" /> Cats</label>
+        <label><input type="checkbox" name="pets" value="Dogs" /> Dogs</label>
+        <label><input type="checkbox" name="pets" value="Other pets" /> Other pets</label>
+      </div>
+    </fieldset>
+
+    <div class="contact-form__field">
+      <label for="cf-pet-details">How many, and their names <span class="contact-form__optional">(optional)</span></label>
+      <input id="cf-pet-details" name="petDetails" type="text" placeholder="e.g. Two cats, Lizzie and Errol" />
+    </div>
+
+    <div class="contact-form__row">
+      <div class="contact-form__field">
+        <label for="cf-from">Dates needed: from <span class="contact-form__optional">(optional)</span></label>
+        <input id="cf-from" name="from" type="date" />
+      </div>
+      <div class="contact-form__field">
+        <label for="cf-to">To <span class="contact-form__optional">(optional)</span></label>
+        <input id="cf-to" name="to" type="date" />
+      </div>
+    </div>
+
+    <div class="contact-form__field">
+      <label for="cf-message">Your message</label>
+      <textarea id="cf-message" name="message" rows="6" required></textarea>
+    </div>
+
+    <button class="button contact-form__submit" type="submit">
+      Send email
+      <Icon name="email" class="button__icon" />
+    </button>
+  </form>
+
+  <div class="contact-form__fallback" data-contact-fallback hidden tabindex="-1">
+    <p><strong>Your email app should now be open with your message.</strong></p>
+    <p>
+      Didn't open? Copy your message and send it to{' '}
+      <a data-contact-address href="#"></a>.
+    </p>
+    <button class="button button--secondary" type="button" data-contact-copy>Copy message</button>
+    <span class="contact-form__copied" data-contact-copied role="status"></span>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  const fallback = document.querySelector<HTMLElement>('[data-contact-fallback]');
+
+  if (form && fallback) {
+    const to = decodeURIComponent(form.dataset.to ?? '');
+    const address = fallback.querySelector<HTMLAnchorElement>('[data-contact-address]')!;
+    const copied = fallback.querySelector<HTMLElement>('[data-contact-copied]')!;
+    let message = '';
+
+    const formatDate = (value: string) =>
+      value ? new Date(value).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const get = (key: string) => String(data.get(key) ?? '').trim();
+      const pets = data.getAll('pets').join(', ');
+      const from = formatDate(get('from'));
+      const until = formatDate(get('to'));
+
+      const details = [
+        `Name: ${get('name')}`,
+        get('phone') && `Phone: ${get('phone')}`,
+        pets && `Pets: ${pets}`,
+        get('petDetails') && `Pet details: ${get('petDetails')}`,
+        (from || until) && `Dates: ${[from, until].filter(Boolean).join(' to ')}`,
+      ].filter(Boolean);
+
+      message = [get('message'), '', '---', ...details].join('\n');
+      const subject = `Pet sitting enquiry from ${get('name')}`;
+
+      address.textContent = to;
+      address.href = `mailto:${to}`;
+      fallback.hidden = false;
+      copied.textContent = '';
+      window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+      fallback.focus();
+    });
+
+    fallback.querySelector('[data-contact-copy]')!.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(message);
+        copied.textContent = 'Copied';
+      } catch {
+        copied.textContent = 'Copy failed, please select the text in the form instead';
+      }
+    });
+  }
+</script>

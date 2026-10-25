@@ -47,7 +47,7 @@ Further information is available on the [BBC Website](http://www.bbc.co.uk/priva
 Chapelford Pet Sitting Services publishes feedback received from our customers on the website, which may contain personally identifiable information.
 
 <!-- Email address encoded to deter spam bots, as on the live site -->
-We do obtain permission from from all customer's prior to publishing the testimonial. However, if you wish to request the removal of your testimonial, please <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#67;&#104;&#97;&#112;&#101;&#108;&#102;&#111;&#114;&#100;&#80;&#101;&#116;&#83;&#105;&#116;&#116;&#105;&#110;&#103;&#83;&#101;&#114;&#118;&#105;&#99;&#101;&#115;&#64;&#111;&#50;&#46;&#99;&#111;&#46;&#117;&#107;">email us.</a>
+We do obtain permission from from all customer's prior to publishing the testimonial. However, if you wish to request the removal of your testimonial, please [contact us](/contact/).
 
 </article>
 
@@ -85,6 +85,6 @@ This privacy policy statement only applies to the information collected via this
 
 # Contact Us
 
-If you have any questions in relation to this privacy policy, please <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#104;&#97;&#112;&#101;&#108;&#102;&#111;&#114;&#100;&#112;&#101;&#116;&#115;&#105;&#116;&#116;&#105;&#110;&#103;&#115;&#101;&#114;&#118;&#105;&#99;&#101;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">email us.</a>
+If you have any questions in relation to this privacy policy, please [contact us](/contact/).
 
 </article>
