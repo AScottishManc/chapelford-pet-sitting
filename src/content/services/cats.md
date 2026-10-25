@@ -2,6 +2,10 @@
 title: Cats
 description: A personal yet professional pet sitting service for cats, dogs & other small animals in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire.
 order: 1
+heroImage:
+  src: ../../assets/images/pages/two-cats.jpg
+  alt: Two young cats, one ginger and white, one grey tabby
+  position: 50% 40%
 sidebar:
   - special-offer
 quote: Cats can be very territorial and they often react to changes in their environment and routine; therefore can get stressed quite easily. If they are able to stay in their own environment, they tend to be happier cats.

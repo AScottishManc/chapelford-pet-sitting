@@ -17,9 +17,10 @@ interface Props {
   description: string;
   heading?: string;
   hero?: HeroProps;
+  heroImage?: { src: ImageMetadata; alt: string; position?: string };
 }
 
-const { title, description, heading, hero } = Astro.props;
+const { title, description, heading, hero, heroImage } = Astro.props;
 const site = (await getEntry('settings', 'site'))!.data;
 const pageTitle = title === 'Home' ? site.businessName : `${title} | ${site.businessName}`;
 
@@ -54,7 +55,14 @@ const breadcrumb: Crumb[] = [
       {hero ? (
         <Hero {...hero} />
       ) : heading && (
-        <Hero heading={heading} size="small" breadcrumb={breadcrumb} />
+        <Hero
+          heading={heading}
+          size="small"
+          breadcrumb={breadcrumb}
+          image={heroImage?.src}
+          imageAlt={heroImage?.alt}
+          imagePosition={heroImage?.position}
+        />
       )}
 
       <main id="content" class="page__main">

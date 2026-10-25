@@ -73,6 +73,9 @@ const services = defineCollection({
       image: image(),
       imageAlt: z.string(),
       imagePosition: z.enum(['left', 'right']).default('right'),
+      heroImage: z
+        .object({ src: image(), alt: z.string(), position: z.string().optional() })
+        .optional(),
       services: z.array(
         z.object({
           id: z.string(),
