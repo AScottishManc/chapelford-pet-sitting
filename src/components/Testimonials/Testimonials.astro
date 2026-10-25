@@ -1,0 +1,144 @@
+---
+import type { ImageMetadata } from 'astro';
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
+import { Image } from 'astro:assets';
+import Icon from '../Icon/Icon.astro';
+import './_testimonials.scss';
+
+interface Props {
+  items: { id: string; name: string; image: ImageMetadata; Content: AstroComponentFactory }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="testimonials" data-testimonials>
+  {items.map((item, index) => (
+    <>
+      <button
+        class="testimonials__thumb"
+        type="button"
+        id={item.id}
+        style={`order: ${index * 2}`}
+        aria-expanded="false"
+        aria-controls={`${item.id}-panel`}
+        data-testimonial-thumb
+      >
+        <Image class="testimonials__image" src={item.image} alt="" width={150} height={150} />
+        <span class="testimonials__indicator" aria-hidden="true">
+          <Icon name="chevron-down" />
+        </span>
+        <span class="testimonials__label">Read the testimonial for {item.name}</span>
+      </button>
+      <section class="testimonials__panel" id={`${item.id}-panel`} aria-labelledby={`${item.id}-name`} data-testimonial-panel>
+        <div class="testimonials__panel-inner">
+          <h2 class="testimonials__name" id={`${item.id}-name`}>{item.name}</h2>
+          <div class="testimonials__text">
+            <item.Content />
+          </div>
+        </div>
+      </section>
+    </>
+  ))}
+</div>
+
+<script>
+  // One testimonial open at a time, in a full-width panel under the clicked photo's row
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const duration = 300;
+
+  document.querySelectorAll<HTMLElement>('[data-testimonials]').forEach((gallery) => {
+    gallery.classList.add('testimonials--js');
+    const thumbs = [...gallery.querySelectorAll<HTMLButtonElement>('[data-testimonial-thumb]')];
+    const panels = thumbs.map((thumb) => document.getElementById(thumb.getAttribute('aria-controls')!)!);
+    let active = -1;
+
+    // The last photo on the same row as the given one
+    const rowEnd = (index: number) => {
+      const top = thumbs[index].offsetTop;
+      let end = index;
+      while (end + 1 < thumbs.length && thumbs[end + 1].offsetTop === top) end++;
+      return end;
+    };
+
+    // Put the panel after the photo's row; square the panel's top corner when the
+    // photo sits at that edge, so its frame runs straight down
+    const place = (index: number) => {
+      const panel = panels[index];
+      const thumb = thumbs[index];
+      panel.style.order = String(rowEnd(index) * 2 + 1);
+      const left = thumb.offsetLeft <= 1;
+      const right = thumb.offsetLeft + thumb.offsetWidth >= gallery.clientWidth - 1;
+      [panel, thumb].forEach((el) => {
+        const block = el === panel ? 'testimonials__panel' : 'testimonials__thumb';
+        el.classList.toggle(`${block}--flush-left`, left);
+        el.classList.toggle(`${block}--flush-right`, right);
+      });
+    };
+
+    const animateHeight = (panel: HTMLElement, from: number, to: number) =>
+      reduceMotion.matches
+        ? Promise.resolve()
+        : panel.animate([{ height: `${from}px` }, { height: `${to}px` }], { duration, easing: 'ease' }).finished;
+
+    const setActive = (index: number, on: boolean) => {
+      thumbs[index].classList.toggle('testimonials__thumb--active', on);
+      thumbs[index].setAttribute('aria-expanded', String(on));
+      panels[index].classList.toggle('testimonials__panel--open', on);
+    };
+
+    const close = async (index: number) => {
+      const panel = panels[index];
+      const height = panel.offsetHeight;
+      setActive(index, false);
+      panel.classList.add('testimonials__panel--closing');
+      await animateHeight(panel, height, 0);
+      panel.classList.remove('testimonials__panel--closing');
+    };
+
+    const open = async (index: number, fromHeight = 0) => {
+      place(index);
+      setActive(index, true);
+      const panel = panels[index];
+      await animateHeight(panel, fromHeight, panel.offsetHeight);
+    };
+
+    const select = async (index: number) => {
+      const previous = active;
+      active = index === previous ? -1 : index;
+
+      if (previous === -1) return open(index);
+      if (index === previous) return close(previous);
+
+      // Same row: swap the text in place; another row: close, then open there
+      if (rowEnd(previous) === rowEnd(index)) {
+        const height = panels[previous].offsetHeight;
+        setActive(previous, false);
+        return open(index, height);
+      }
+      await close(previous);
+      return open(index);
+    };
+
+    thumbs.forEach((thumb, index) => thumb.addEventListener('click', () => select(index)));
+
+    // Rows reflow on resize, so close rather than leave the panel in the wrong place
+    let width = gallery.clientWidth;
+    window.addEventListener('resize', () => {
+      if (gallery.clientWidth === width) return;
+      width = gallery.clientWidth;
+      if (active !== -1) {
+        setActive(active, false);
+        active = -1;
+      }
+    });
+
+    // Open the testimonial linked to in the address, e.g. /testimonials/#test_25
+    const linked = thumbs.findIndex((thumb) => `#${thumb.id}` === window.location.hash);
+    if (linked !== -1) {
+      active = linked;
+      place(linked);
+      setActive(linked, true);
+    }
+  });
+</script>

@@ -1,32 +1,30 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
-import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import RichText from '../components/RichText/RichText.astro';
+import Testimonials from '../components/Testimonials/Testimonials.astro';
 
-const page = (await getEntry('pages', 'testimonials'))!.data;
-const testimonials = await Promise.all(
+const entry = (await getEntry('pages', 'testimonials'))!;
+const { Content } = await render(entry);
+const page = entry.data;
+
+// Newest first
+const items = await Promise.all(
   (await getCollection('testimonials'))
     .sort((a, b) => b.data.number - a.data.number)
-    .map(async (entry) => ({ ...entry.data, Content: (await render(entry)).Content })),
+    .map(async (testimonial) => ({
+      id: `test_${testimonial.data.number}`,
+      name: testimonial.data.name,
+      image: testimonial.data.image,
+      Content: (await render(testimonial)).Content,
+    })),
 );
 ---
 
 <BaseLayout title={page.title} description={page.description} heading={page.heading ?? page.title}>
+  <RichText>
+    <Content />
+  </RichText>
 
-  {testimonials.map(({ number, name, caption, image, imageAlt, Content }) => (
-    <>
-      <article class="testimonial" id={`test_${number}`}>
-        <h1>{name}</h1>
-        {/* Photos alternate sides by number, as on the old site */}
-        <figure class={number % 2 === 1 ? 'odd' : 'even'}>
-          <Image src={image} alt={imageAlt ?? name} width={150} height={150} />
-          <figcaption>{caption ?? name}</figcaption>
-        </figure>
-        <Content />
-      </article>
-      <article class="testimonial">
-        <a class="top_link" href="#top"><p>Back to the top</p></a>
-      </article>
-    </>
-  ))}
+  <Testimonials items={items} />
 </BaseLayout>

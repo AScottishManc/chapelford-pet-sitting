@@ -1,0 +1,188 @@
+$-thumb: rem(150px);
+$-frame: 6px;
+$-row-gap: space('lg');
+$-radius: radius('lg');
+$-join: space('xs');
+$-accent: colour('accent');
+
+.testimonials {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, $-thumb);
+  justify-content: space-between;
+  gap: $-row-gap space('md');
+  margin-block: space('xl');
+
+  // Photo button
+  &__thumb {
+    @include button-reset;
+    position: relative;
+    isolation: isolate;
+    width: $-thumb;
+    height: $-thumb;
+    border-radius: $-radius;
+    cursor: pointer;
+    @include transition(box-shadow);
+
+    &:hover {
+      box-shadow: 0 0 0 4px palette('duck-egg');
+    }
+  }
+
+  // Open photo: a thick frame that runs down into the panel's border
+  &__thumb--active,
+  &__thumb--active:hover {
+    box-shadow: none;
+  }
+
+  // The frame runs down to the panel; ::after rounds the corners out into it
+  &__thumb--active::before,
+  &__thumb--active::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    pointer-events: none;
+    animation: testimonials-fade 0.25s ease;
+  }
+
+  &__thumb--active::before {
+    inset: (-1 * $-frame) (-1 * $-frame) calc(-1 * (#{$-join} + #{$-frame})) (-1 * $-frame);
+    background-color: $-accent;
+    border-radius: calc(#{$-radius} + #{$-frame}) calc(#{$-radius} + #{$-frame}) 0 0;
+  }
+
+  &__thumb--active::after {
+    right: calc(-1 * (#{$-frame} + #{$-radius}));
+    bottom: calc(-1 * (#{$-join} + #{$-frame}));
+    left: calc(-1 * (#{$-frame} + #{$-radius}));
+    height: calc(#{$-radius} + #{$-frame});
+    background:
+      radial-gradient(circle at 0 0, transparent $-radius, $-accent calc(#{$-radius} + 0.5px)) left bottom / $-radius 100%
+        no-repeat,
+      radial-gradient(circle at 100% 0, transparent $-radius, $-accent calc(#{$-radius} + 0.5px)) right bottom /
+        $-radius 100% no-repeat;
+  }
+
+  // No outward corner on the side that sits at the gallery's edge
+  &__thumb--flush-left::after {
+    background-size: 0 0, $-radius 100%;
+  }
+
+  &__thumb--flush-right::after {
+    background-size: $-radius 100%, 0 0;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $-radius;
+  }
+
+  // Shows the photo opens something; turns apricot on hover and flips when open
+  &__indicator {
+    position: absolute;
+    right: space('xs');
+    bottom: space('xs');
+    display: grid;
+    place-items: center;
+    width: rem(28px);
+    height: rem(28px);
+    font-size: 1.1rem;
+    color: colour('heading');
+    background-color: colour('surface');
+    border-radius: 50%;
+    box-shadow: shadow('card');
+    @include transition(background-color);
+
+    .icon {
+      @include transition(transform);
+    }
+  }
+
+  &__thumb:hover &__indicator {
+    background-color: palette('duck-egg');
+  }
+
+  &__thumb--active &__indicator,
+  &__thumb--active:hover &__indicator {
+    background-color: colour('accent');
+  }
+
+  &__thumb--active &__indicator .icon {
+    transform: rotate(180deg);
+  }
+
+  &__label {
+    @include visually-hidden;
+  }
+
+  // Full-width panel under the row; its outer edge lines up with the frame
+  &__panel {
+    grid-column: 1 / -1;
+    order: 9999;
+    margin-inline: (-1 * $-frame);
+    margin-top: calc(#{$-join} - #{$-row-gap});
+  }
+
+  &__panel-inner {
+    padding: space('lg');
+    background-color: colour('surface');
+    border: $-frame solid $-accent;
+    border-radius: calc(#{$-radius} + #{$-frame});
+
+    @include above('tablet') {
+      padding: space('lg') space('xl');
+    }
+  }
+
+  &__panel--flush-left &__panel-inner {
+    border-top-left-radius: 0;
+  }
+
+  &__panel--flush-right &__panel-inner {
+    border-top-right-radius: 0;
+  }
+
+  &__name {
+    margin: 0 0 space('sm');
+    font-size: font-size('xl');
+  }
+
+  &__text > :last-child {
+    margin-bottom: 0;
+  }
+
+  // With JavaScript, panels stay hidden until opened; without it every one shows
+  @media (scripting: enabled) {
+    &__panel {
+      display: none;
+      overflow: hidden;
+    }
+
+    &__panel--open,
+    &__panel--closing {
+      display: block;
+    }
+  }
+
+  // Text fades in once the panel has started to open
+  &__panel--open &__panel-inner > * {
+    animation: testimonials-fade 0.3s ease 0.15s both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__thumb--active::before,
+    &__thumb--active::after,
+    &__panel--open &__panel-inner > * {
+      animation: none;
+    }
+  }
+}
+
+@keyframes testimonials-fade {
+  from {
+    opacity: 0;
+  }
+}
