@@ -1,0 +1,33 @@
+@use 'sass:color';
+@use 'abstracts' as *;
+
+// Buttons usable anywhere, including raw HTML in markdown:
+// <a class="button button--download" href="/files/example.pdf">Download</a>
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: space('xs');
+  padding: space('sm') space('lg');
+  font-weight: font-weight('semi');
+  color: colour('heading');
+  text-decoration: none;
+  background-color: colour('accent');
+  border-radius: radius('pill');
+  @include transition(background-color);
+
+  &:hover {
+    color: colour('heading');
+    background-color: color.adjust(colour('accent'), $lightness: 8%);
+  }
+
+  // Download icon after the label
+  &--download::after {
+    flex-shrink: 0;
+    width: 1.25em;
+    height: 1.25em;
+    content: '';
+    background-color: currentColor;
+    mask: url('../../icons/download.svg') center / contain no-repeat;
+  }
+}

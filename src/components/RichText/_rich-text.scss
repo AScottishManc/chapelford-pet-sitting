@@ -5,6 +5,60 @@
     margin-bottom: 0;
   }
 
+  // Bullet list: paw bullets, matching the IconList component
+  ul {
+    @include list-reset;
+    display: grid;
+    gap: space('sm');
+    margin-bottom: space('md');
+  }
+
+  ul > li {
+    position: relative;
+    margin: 0;
+    padding-inline-start: calc(1.25em + #{space('sm')});
+
+    &::before {
+      position: absolute;
+      top: 0.15em;
+      left: 0;
+      width: 1.25em;
+      height: 1.25em;
+      content: '';
+      background-color: colour('primary');
+      transform: rotate(-12deg);
+      mask: url('../../icons/paw-cat.svg') center / contain no-repeat;
+    }
+  }
+
+  // Numbered list: bold navy numbers lined up in their own column
+  ol {
+    @include list-reset;
+    margin-bottom: space('md');
+    counter-reset: rich-text-list;
+  }
+
+  ol > li {
+    position: relative;
+    margin: 0;
+    padding-inline-start: space('xl');
+    counter-increment: rich-text-list;
+
+    + li {
+      margin-top: space('sm');
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-family: $font-heading;
+      font-weight: font-weight('bold');
+      color: colour('heading');
+      content: counter(rich-text-list) '.';
+    }
+  }
+
   // Images on their own line: centred on phones; from tablet, left and right float
   // with the text wrapping round them
   p:has(> .rich-text__image) {
