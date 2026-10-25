@@ -1,0 +1,19 @@
+// Lead paragraph at the top of a page
+.intro {
+  max-width: 48rem;
+  margin: 0 0 space('xl');
+  font-family: $font-heading;
+  font-size: font-size('lg');
+  font-weight: font-weight('light');
+  line-height: 1.5;
+  color: colour('heading');
+  text-wrap: balance;
+
+  @include above('tablet') {
+    font-size: font-size('xl');
+  }
+
+  strong {
+    font-weight: font-weight('bold');
+  }
+}

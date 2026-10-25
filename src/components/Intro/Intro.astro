@@ -1,0 +1,12 @@
+---
+import { inlineMarkdown } from '../../lib/markdown';
+import './_intro.scss';
+
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<p class="intro" set:html={inlineMarkdown(text)} />

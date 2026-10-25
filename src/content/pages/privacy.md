@@ -10,13 +10,7 @@ description: Read about our privacy policy, including information about the cook
 
 Chapelford Pet Sitting Services respect our user's privacy and take protecting it seriously. The privacy policy covers our use and disclosure of data we collect through the website. The use of the data collected via the website, shall be restricted to the purpose it was intended for.
 
-<a href="/files/PrivacyPolicyMay2018.pdf" title="Download a copy of our Privacy Policy"><img class="img_right" src="/images/adobe.png" width="80" height="85" alt="Adobe PDF logo"></a>
-
-For our full Privacy Policy and how we deal with you data please click here
-
-.
-
-.
+<a class="button button--download" href="/files/PrivacyPolicyMay2018.pdf" download>Download our Privacy Policy (PDF)</a>
 
 <article>
 
@@ -28,13 +22,7 @@ If you are not happy with any aspect of how we collect and use your data, you ha
 
 Chapelford Pet Sitting Services respects your privacy and is committed to protecting your personal data.
 
-<a href="/files/GDPRMay2018.pdf" title="Download a copy of our GDPR Policy"><img class="img_right" src="/images/adobe.png" width="80" height="85" alt="Adobe PDF logo"></a>
-
-For our GDPR Policy please click here
-
-.
-
-.
+<a class="button button--download" href="/files/GDPRMay2018.pdf" download>Download our GDPR Policy (PDF)</a>
 
 </article>
 

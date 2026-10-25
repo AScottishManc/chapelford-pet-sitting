@@ -1,0 +1,81 @@
+.service-card {
+  padding: space('lg');
+  background-color: colour('surface');
+  border: 1px solid colour('border');
+  border-radius: radius('lg');
+  box-shadow: shadow('card');
+
+  @include above('tablet') {
+    padding: space('xl');
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  // Header: name and "please note" on the left, price on the right
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: space('md');
+    margin-bottom: space('lg');
+  }
+
+  &__name {
+    margin: 0;
+    font-size: font-size('lg');
+
+    @include above('tablet') {
+      font-size: font-size('xl');
+    }
+  }
+
+  &__note {
+    margin: space('xs') 0 0;
+    font-size: font-size('sm');
+    color: colour('text-muted');
+  }
+
+  // Price tag
+  &__price {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: space('xs') space('md');
+    line-height: 1.2;
+    color: colour('heading');
+    text-align: center;
+    background-color: colour('accent');
+    border-radius: radius('md');
+  }
+
+  &__amount {
+    font-family: $font-heading;
+    font-size: font-size('lg');
+    font-weight: font-weight('bold');
+    white-space: nowrap;
+
+    @include above('tablet') {
+      font-size: font-size('xl');
+    }
+  }
+
+  &__unit {
+    font-size: font-size('sm');
+    white-space: nowrap;
+  }
+
+  &__includes#{&}__includes {
+    clear: none;
+    margin-block: space('lg') 0;
+  }
+
+  &__footnote {
+    margin: space('lg') 0 0;
+    font-size: font-size('sm');
+    color: colour('text-muted');
+  }
+}

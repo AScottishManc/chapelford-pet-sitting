@@ -1,0 +1,22 @@
+@use 'abstracts' as *;
+
+// Cats, Dogs and Other Pets pages
+
+.service-page {
+  &__services {
+    clear: both;
+    margin-block: space('xxl') space('xl');
+
+    h2 {
+      margin-bottom: space('lg');
+    }
+  }
+
+  // Cards span the centre 8 of the 10 content columns from desktop-small
+  &__cards {
+    display: grid;
+    gap: space('lg');
+
+    @include content-columns(8);
+  }
+}

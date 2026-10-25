@@ -18,7 +18,7 @@ const { title, items } = Astro.props;
         <a class={`cta-block__card cta-block__card--${item.theme ?? 'navy'}`} href={item.href}>
           <Icon name={item.icon} class="cta-block__paw" />
           <span class="cta-block__label">{item.label}</span>
-          <span class="cta-block__arrow" aria-hidden="true">&rarr;</span>
+          <Icon name="arrow-right" class="cta-block__arrow" />
         </a>
       </li>
     ))}

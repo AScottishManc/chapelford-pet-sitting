@@ -16,6 +16,10 @@
     }
   }
 
+  &--single &__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   &__item {
     display: flex;
     align-items: flex-start;

@@ -1,9 +1,12 @@
 ---
 // Service pages: /cats/, /dogs/, /other-pets/
-import { getCollection, render, type CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
+import { getCollection, getEntry, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Intro from '../components/Intro/Intro.astro';
+import RichText from '../components/RichText/RichText.astro';
+import ServiceCard from '../components/ServiceCard/ServiceCard.astro';
 import { inlineMarkdown } from '../lib/markdown';
+import { pawFor } from '../lib/paws';
 
 export async function getStaticPaths() {
   const services = await getCollection('services');
@@ -17,44 +20,32 @@ interface Props {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const page = entry.data;
+
+const icon = pawFor(entry.id);
+
+const services = await Promise.all(
+  page.services.map(async (service) => {
+    const price = (await getEntry(service.price))!.data;
+    return { ...service, price: price.amount, priceUnit: price.unit };
+  }),
+);
 ---
 
 <BaseLayout title={`${page.title} | Services`} description={page.description} heading={page.title} heroImage={page.heroImage}>
-  {page.quote && <blockquote>{page.quote}</blockquote>}
-  <Image class={`img_${page.imagePosition}`} src={page.image} alt={page.imageAlt} />
-  <Content />
+  {page.intro && <Intro text={page.intro} />}
 
-  <h2 class="service">Services available</h2>
+  <RichText>
+    <Content />
+  </RichText>
 
-  {page.services.map((service) => (
-    <article id={service.id}>
-      <h1>{service.name}</h1>
-      <div class="price">
-        <p>
-          {service.price}{service.priceMarker}
-          {service.priceUnit && (
-            <>
-              <br />
-              {service.priceUnit}
-            </>
-          )}
-        </p>
-      </div>
-      {service.note && (
-        <p>
-          <span class="bold">Please note:</span> <Fragment set:html={inlineMarkdown(service.note)} />
-        </p>
-      )}
-      {service.summary.map((paragraph) => <p set:html={inlineMarkdown(paragraph)} />)}
-      {service.footnote && <p class="sup bold">{service.footnote}</p>}
-      {service.includes.length > 0 && (
-        <ul>
-          {service.includes.map((item) => <li set:html={inlineMarkdown(item)} />)}
-        </ul>
-      )}
-    </article>
-  ))}
+  <section class="service-page__services">
+    <h2>Services available</h2>
+    <div class="service-page__cards">
+      {services.map((service) => <ServiceCard {...service} icon={icon} />)}
+    </div>
+  </section>
 
-  <br />
-  {page.outro.map((paragraph) => <p set:html={inlineMarkdown(paragraph)} />)}
+  <div class="service-page__outro">
+    {page.outro.map((paragraph) => <p set:html={inlineMarkdown(paragraph)} />)}
+  </div>
 </BaseLayout>

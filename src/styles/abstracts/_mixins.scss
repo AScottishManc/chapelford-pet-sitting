@@ -141,6 +141,16 @@
   grid-column: $start / span $span;
 }
 
+// Narrow a block inside the page content (10 of 12 columns) to the centre
+// $span columns, from desktop-small
+@mixin content-columns($span) {
+  @include above('desktop-small') {
+    $gap: map.get($grid-gaps, 'desktop-small');
+    max-width: calc((100% - 9 * #{$gap}) / 10 * #{$span} + #{$span - 1} * #{$gap});
+    margin-inline: auto;
+  }
+}
+
 @mixin grid-row-layout($start, $span, $gap: null) {
   grid-row: $start / span $span;
 

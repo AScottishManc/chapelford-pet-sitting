@@ -2,11 +2,10 @@
 title: Added Extras | Services
 heading: Added Extras
 description: Free additional services that are provided as part of the pet sitting service for cats, dogs & other small animals in Chapelford & surrounding areas of Great Sankey in Warrington, Cheshire.
-image: ../../assets/images/pages/extras.jpg
-imageAlt: Post placed on a side cabinet
+intro: These extras are **free** as part of the pet sitting service.
 ---
 
-### This service is FREE as part of the pet sitting services
+![Post placed on a side cabinet](../../assets/images/pages/extras.jpg "right")
 
 Having someone check on your pet throughout the day means your property will still appear "lived in".
 

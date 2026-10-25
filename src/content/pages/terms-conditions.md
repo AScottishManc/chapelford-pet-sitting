@@ -33,6 +33,4 @@ description: During the free consultation, all new customers are required to agr
 - Failure to give 48-hour notice will result in the retention of 50% of fees by Chapelford Pet Sitting Services, (except in very exceptional circumstances ie family bereavement).
 - There is also no refund if you arrive back earlier from your holiday than planned. Last minute bookings made within 48 hours of the commencement of the service will receive no refund if the booking is then cancelled.
 
-<a href="/files/TandCs2018.pdf" title="Download a copy of our terms and conditions"><img class="img_right" src="/images/adobe.png" width="80" height="85" alt="Adobe PDF logo"></a>
-
-**Download a copy of our terms and conditions.**
+<a class="button button--download" href="/files/TandCs2018.pdf" download>Download our terms and conditions (PDF)</a>

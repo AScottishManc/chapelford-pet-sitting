@@ -1,0 +1,42 @@
+---
+import type { IconName } from '../Icon/Icon.astro';
+import IconList from '../IconList/IconList.astro';
+import { inlineMarkdown } from '../../lib/markdown';
+import './_service-card.scss';
+
+interface Props {
+  id: string;
+  name: string;
+  price: string;
+  priceMarker?: string;
+  priceUnit?: string;
+  note?: string;
+  summary?: string[];
+  footnote?: string;
+  includes?: string[];
+  icon?: IconName;
+}
+
+const { id, name, price, priceMarker, priceUnit, note, summary = [], footnote, includes = [], icon } = Astro.props;
+---
+
+<article class="service-card" id={id}>
+  <header class="service-card__header">
+    <div class="service-card__heading">
+      <h3 class="service-card__name">{name}</h3>
+      {note && (
+        <p class="service-card__note">
+          <strong>Please note:</strong> <Fragment set:html={inlineMarkdown(note)} />
+        </p>
+      )}
+    </div>
+    <p class="service-card__price">
+      <span class="service-card__amount">{price}{priceMarker}</span>
+      {priceUnit && <span class="service-card__unit">{priceUnit}</span>}
+    </p>
+  </header>
+
+  {summary.map((paragraph) => <p set:html={inlineMarkdown(paragraph)} />)}
+  {includes.length > 0 && <IconList class="service-card__includes" items={includes} icon={icon} columns={1} />}
+  {footnote && <p class="service-card__footnote">{footnote}</p>}
+</article>

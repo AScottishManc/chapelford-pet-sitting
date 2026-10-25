@@ -1,0 +1,63 @@
+.accordion {
+  display: grid;
+  gap: space('sm');
+  margin-block: space('lg') space('xl');
+  @include content-columns(8);
+
+  &__item {
+    background-color: colour('surface');
+    border: 1px solid colour('border');
+    border-radius: radius('lg');
+    box-shadow: shadow('card');
+  }
+
+  &__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: space('md');
+    padding: space('md') space('lg');
+    font-family: $font-heading;
+    font-size: font-size('md');
+    font-weight: font-weight('bold');
+    color: colour('heading');
+    list-style: none;
+    cursor: pointer;
+
+    @include above('tablet') {
+      font-size: font-size('lg');
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:focus-visible {
+      border-radius: radius('lg');
+    }
+  }
+
+  &__icon#{&}__icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    @include transition(transform);
+  }
+
+  // Chevron points up when open (the script sets --open as the animation starts)
+  &:not(&--js) &__item[open] &__icon,
+  &__item--open &__icon {
+    transform: rotate(180deg);
+  }
+
+  &__answer {
+    overflow: hidden;
+  }
+
+  &__answer-inner {
+    padding: 0 space('lg') space('lg');
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}

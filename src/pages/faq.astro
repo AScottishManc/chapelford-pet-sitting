@@ -1,27 +1,20 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Accordion from '../components/Accordion/Accordion.astro';
+import Intro from '../components/Intro/Intro.astro';
 import { blockMarkdown, inlineMarkdown } from '../lib/markdown';
 
 const page = (await getEntry('pages', 'faq'))!.data;
-const questions = (await getCollection('faq')).sort((a, b) => a.data.order - b.data.order);
+const questions = (await getCollection('faq'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map(({ id, data }) => ({ id, question: data.question, answer: blockMarkdown(data.answer) }));
 ---
 
 <BaseLayout title={page.title} description={page.description} heading={page.heading ?? page.title}>
+  {page.intro && <Intro text={page.intro} />}
 
-  <ol class="top">
-    {questions.map(({ id, data }) => (
-      <li><a href={`#${id}`} title="Direct to answer">{data.question}</a></li>
-    ))}
-  </ol>
-
-  {questions.map(({ id, data }, index) => (
-    <>
-      <p id={id} class="bold">{index + 1}. {data.question}</p>
-      <Fragment set:html={blockMarkdown(data.answer)} />
-      <a class="top_link" href="#top"><p>Back to the top</p></a>
-    </>
-  ))}
+  <Accordion items={questions} name="faq" />
 
   {page.outro.map((paragraph) => <p set:html={inlineMarkdown(paragraph)} />)}
 </BaseLayout>
