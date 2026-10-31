@@ -68,4 +68,4 @@ Every dog is different. Some just need a toilet break while you're at work, othe
 
 Walks are always one family at a time and on the lead, and I'm happy to walk up to two well-behaved dogs together. Between visits I can send you a photo or a quick text so you can see how they're getting on.
 
-I charge per visit, not per dog, so if you have more than one dog my services are even better value. The services below can easily be tailored to suit you and your dog(s). Just book a [free consultation](/contact/) to talk through what they need.
+I charge per visit, not per dog, so if you have more than one dog my services are even better value. The services below can easily be tailored to suit you and your dog(s). Just book a [free consultation](/contact/#contact-form) to talk through what they need.
